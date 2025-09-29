@@ -1,0 +1,117 @@
+html, body {
+    overflow: hidden; /* hide scrollbars https://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily  (base question) */
+    height: 100%;
+}
+
+body {
+    background-color: rgb(53, 125, 53);
+}
+
+
+
+#cardsContainer{
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    right: 20%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 144px;
+    min-width: 108px;
+    height: fit-content;
+}
+
+/* sprite sheet tutorial gevonden op en copilot vragen gesteld over wat ik kon gebruiken bij de js: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Implementing_image_sprites_in_CSS */
+
+.card{
+    width: 88px;  /* card width */
+    height: 124px; /* card height */
+    background-image: url('../images/cards/Poker_cards.png'); /*path to the image*/
+    background-repeat: no-repeat;
+    background-position: 0 0; /*top left card (default position)*/
+    transition: transform 0.2s opacity 0.2s, box-shadow 0.2s;
+}
+
+
+
+
+
+
+.deck_cards{
+    bottom: 5%;
+    right: 3%;
+
+    width: 88px;  /* card width */
+    height: 124px; /* card height */
+
+    transform: scale(1.2);
+    background-image: url('../images/cards/poker_card_back.png'); /*path to the image*/
+    background-repeat: no-repeat;
+    background-position: 0 0; /*top left card (default position)*/
+    position: absolute; /*makes it possible to move the carfd*/
+}
+
+#deck_cards{
+    z-index: 10;
+
+    transition: top 0.5s, left 0.5s;
+    cursor: grab;
+}
+
+#deck_cards:active{
+    cursor: grabbing;
+}
+
+#deck_cards:hover {
+    transform: scale(1.25);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.drag_input{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    border: rgba(183, 174, 174, 0.665) 4px dashed;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+
+
+.played_card_container{
+    opacity: 1;
+
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    right: 20%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 144px;
+    min-width: 108px;
+    height: fit-content;
+}
+
+#use_card_box{
+    opacity: 1;
+}

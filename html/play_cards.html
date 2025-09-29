@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/card_style.css">
+
+    <title>Black jack rougelite</title>
+
+
+    <!-- all js stuff -->
+
+    <script src="../js/cards/play_card.js" defer></script>
+    <script src="../js/cards/grab_card.js" defer></script>
+
+    <script src="../js/game state/order.js" defer></script>
+
+    <script src="../js/general/disable scrolling.js"></script>
+    
+</head>
+
+
+<body>
+    <!-- container for all cards -->
+    <div id="cardsContainer">
+
+        <!-- draw new card box -->
+        <div id="play_card_box" class="drag_input"></div>
+        
+    </div>
+
+    <!-- playing cards -->
+    <div id="deck_cards" class="deck_cards"></div>
+    <!-- no id so you can't move it -->
+    <div class="deck_cards"></div> 
+
+
+    <!-- use cards box -->
+    <div id="cardsContainer" class="played_card_container">
+        <div id="use_card_box" class="drag_input"></div>
+    </div>
+    
+    
+</body>
+</html>
