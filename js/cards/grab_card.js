@@ -1,6 +1,7 @@
 const card = document.getElementById("deck_cards");
 const cards = document.getElementsByClassName("deck_cards");
 const play_card_box = document.getElementById("play_card_box");
+const use_card_box = document.getElementById("use_card_box");
 
 // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.
 window.isDealing = false;
@@ -74,8 +75,12 @@ function stop_dragging() {
 function resetPosition() {
     hide_drag_box();
 
-    if (is_card_in_draw_new_card(card, play_card_box)){
+    if (is_card_in_play_box(card, play_card_box)){
         addCard();
+    }
+
+    else if (is_card_in_play_box(card, use_card_box)){
+        use_cards();
     }
     
     card.style.transition = "top 0.3s ease, left 0.3s ease"; // ik ben blij dat ik door de tutorial dit snap dus daarom weet ik nu ook hoe dit moest
@@ -103,7 +108,7 @@ Array.from(cards).forEach((card) => {
 
 
 //https://bobbyhadz.com/blog/javascript-check-if-two-elements-overlap
-function is_card_in_draw_new_card(draw_card, play_card_box){
+function is_card_in_play_box(draw_card, play_card_box){
     const rect1 = draw_card.getBoundingClientRect();
     const rect2 = play_card_box.getBoundingClientRect();
 
@@ -120,7 +125,9 @@ function is_card_in_draw_new_card(draw_card, play_card_box){
 function hide_drag_box(){
     if (is_dragging) {
         play_card_box.style.opacity = "1";
+        use_card_box.style.opacity = "1";
     } else {
         play_card_box.style.opacity = "0";
+        use_card_box.style.opacity = "0";
     }
 }

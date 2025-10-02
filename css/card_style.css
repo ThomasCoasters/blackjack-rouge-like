@@ -9,7 +9,7 @@ body {
 
 
 
-#cardsContainer{
+#cardsContainer, #use_cardsContainer{
     position: absolute;
     bottom: 15%;
     left: 20%;
@@ -92,8 +92,6 @@ body {
 
 
 .played_card_container{
-    opacity: 1;
-
     position: absolute;
     top: 10%;
     left: 20%;
@@ -112,6 +110,6 @@ body {
     height: fit-content;
 }
 
-#use_card_box{
+/* #use_card_box{
     opacity: 1;
-}
+} */
