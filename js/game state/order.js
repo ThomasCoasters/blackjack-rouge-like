@@ -1,5 +1,7 @@
 var forced_amount_draw = 2;
 
+window.max_total_value = 21;
+
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));
 

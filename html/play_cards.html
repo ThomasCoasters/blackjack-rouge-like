@@ -16,9 +16,12 @@
     <script src="../js/cards/grab_card.js" defer></script>
     <script src="../js/cards/use_card.js" defer></script>
 
-    <script src="../js/game state/order.js" defer></script>
+    <script src="../js/game state/total_value.js" defer></script>
 
-    <script src="../js/general/disable scrolling.js"></script>
+    <script src="../js/general/disable scrolling.js" defer></script>
+
+    <!-- deze als laatste zodat de functions eerst allemaal defined worden -->
+    <script src="../js/game state/order.js" defer></script>
     
 </head>
 
@@ -30,6 +33,11 @@
         <!-- draw new card box -->
         <div id="play_card_box" class="drag_input"></div>
         
+    </div>
+
+    <!-- total value amount -->
+    <div id="total_value_container" class="total_value_container">
+        <div id="total_value_text" class="total_value_text">Total value: 0</div>
     </div>
 
     <!-- playing cards -->
