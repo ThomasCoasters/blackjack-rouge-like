@@ -45,35 +45,35 @@ const value_map = {
 
 // Function to create a new card
 function addCard() {
-    //check if there are available cards and reshuffle if not
-    if (available_cards.length === 0) {
-        alert("refill");
-        available_cards = used_cards;
-        used_cards = [];
-    }
+  //check if there are available cards and reshuffle if not
+  if (available_cards.length === 0) {
+    alert("refill");
+    available_cards = used_cards;
+    used_cards = [];
+  }
 
 
 
-    //choose random card from available cards
-    const card = available_cards[Math.floor(Math.random() * available_cards.length)];
+  //choose random card from available cards
+  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
 
-    //remove chosen card from available cards
-    const index = available_cards.indexOf(card); // volgens google geeft indexof -1 als het niet bestaat dus daarom de in inderx !== -1 (waarom deed ik dit nl?)
+  //remove chosen card from available cards
+  const index = available_cards.indexOf(card); // volgens google geeft indexof -1 als het niet bestaat dus daarom de in inderx !== -1 (waarom deed ik dit nl?)
 
-    if (index !== -1) {
-        available_cards.splice(index, 1); // reomevs 1 card
-    }
-
-
-    used_cards.push(card); //add chosen card to used cards
-    held_cards.push(card); // add to held cards
+  if (index !== -1) {
+    available_cards.splice(index, 1); // reomevs 1 card
+  }
 
 
-    create_new_card(card, cardsContainer, "card");
+  used_cards.push(card); //add chosen card to used cards
+  held_cards.push(card); // add to held cards
 
-    // if (card.special){
-    //   card.special();
-    // }
+
+  create_new_card(card, cardsContainer, "card");
+
+  // if (card.special){
+  //   card.special();
+  // }
 }
 
 

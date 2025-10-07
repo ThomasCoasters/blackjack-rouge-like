@@ -1,3 +1,9 @@
+html, body {
+    overflow: hidden; /* hide scrollbars https://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily  (base question) */
+    height: 100%;
+}
+
+
 body {
     /* https://cssgradient.io/ */
     background: #020024;

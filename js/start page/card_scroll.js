@@ -41,12 +41,12 @@ const value_map = {
 
 // Function to create a new card
 setInterval(() => {
-    //choose random card from available cards
-    const card = available_cards[Math.floor(Math.random() * available_cards.length)];
+  //choose random card from available cards
+  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
 
-    change_card(card);
+  change_card(card);
 
-}, 1000); // 0.5s per card
+}, 1000);//tijd per card in ms
 
 
 
