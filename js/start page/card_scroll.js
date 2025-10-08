@@ -39,13 +39,12 @@ const value_map = {
 
 
 
+choose_random_card()
+
+
 // Function to create a new card
 setInterval(() => {
-  //choose random card from available cards
-  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
-
-  change_card(card);
-
+  choose_random_card();
 }, 1000);//tijd per card in ms
 
 
@@ -59,4 +58,13 @@ function change_card(card) {
   const yPercent = (row / 3) * 100;  // change the 3 to the new suit map numver (when changes)
 
   deco_card.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+}
+
+
+
+function choose_random_card() {
+  //choose random card from available cards
+  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
+
+  change_card(card);
 }

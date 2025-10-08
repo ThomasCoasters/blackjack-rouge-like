@@ -8,6 +8,19 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 const overlay = document.getElementById('overlay');
 
 
+const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
+
+if (urlvars) {
+    const urlparams = new URLSearchParams(urlvars);
+    current_background_color = urlparams.get('background_color');
+    if (current_background_color == "null") {
+        current_background_color = "#357D35";;
+    }
+
+    document.body.style.backgroundColor = current_background_color;
+}
+
+
 
 
 async function start_turn() {
