@@ -5,7 +5,7 @@ const cardsContainer = document.getElementById("cardsContainer");
 
 //list stolen from zweeds pensten in godot
 var available_cards = [
-	{"suit": "hearts", "value": "ace"}, {"suit": "hearts", "value": "2"}, {"suit": "hearts", "value": "3"}, {"suit": "hearts", "value": "4"}, {"suit": "hearts", "value": "5"}, {"suit": "hearts", "value": "6"}, {"suit": "hearts", "value": "7"}, {"suit": "hearts", "value": "8"}, {"suit": "hearts", "value": "9"}, {"suit": "hearts", "value": "10"}, {"suit": "hearts", "value": "jack"}, {"suit": "hearts", "value": "queen"}, {"suit": "hearts", "value": "king"},
+	{"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11"}, {"suit": "hearts", "value": "2"}, {"suit": "hearts", "value": "3"}, {"suit": "hearts", "value": "4"}, {"suit": "hearts", "value": "5"}, {"suit": "hearts", "value": "6"}, {"suit": "hearts", "value": "7"}, {"suit": "hearts", "value": "8"}, {"suit": "hearts", "value": "9"}, {"suit": "hearts", "value": "10"}, {"suit": "hearts", "value": "jack"}, {"suit": "hearts", "value": "queen"}, {"suit": "hearts", "value": "king"},
 	{"suit": "diamonds", "value": "ace"}, {"suit": "diamonds", "value": "2"}, {"suit": "diamonds", "value": "3"}, {"suit": "diamonds", "value": "4"}, {"suit": "diamonds", "value": "5"}, {"suit": "diamonds", "value": "6"}, {"suit": "diamonds", "value": "7"}, {"suit": "diamonds", "value": "8"}, {"suit": "diamonds", "value": "9"}, {"suit": "diamonds", "value": "10"}, {"suit": "diamonds", "value": "jack"}, {"suit": "diamonds", "value": "queen"}, {"suit": "diamonds", "value": "king"},
 	{"suit": "spades", "value": "ace"}, {"suit": "spades", "value": "2"}, {"suit": "spades", "value": "3"}, {"suit": "spades", "value": "4"}, {"suit": "spades", "value": "5"}, {"suit": "spades", "value": "6"}, {"suit": "spades", "value": "7"}, {"suit": "spades", "value": "8"}, {"suit": "spades", "value": "9"}, {"suit": "spades", "value": "10"}, {"suit": "spades", "value": "jack"}, {"suit": "spades", "value": "queen"}, {"suit": "spades", "value": "king"},
 	{"suit": "clubs", "value": "ace"}, {"suit": "clubs", "value": "2"}, {"suit": "clubs", "value": "3"}, {"suit": "clubs", "value": "4"}, {"suit": "clubs", "value": "5"}, {"suit": "clubs", "value": "6"}, {"suit": "clubs", "value": "7"}, {"suit": "clubs", "value": "8"}, {"suit": "clubs", "value": "9"}, {"suit": "clubs", "value": "10"}, {"suit": "clubs", "value": "jack"}, {"suit": "clubs", "value": "queen"}, {"suit": "clubs", "value": "king"},
@@ -18,9 +18,9 @@ window.held_cards = []; // cards that are currently held by the player
 
 // also stolen =)
 const suit_map = {
-  "hearts": 0,
+  "hearts": 2,
   "diamonds": 1,
-  "spades": 2,
+  "spades": 0,
   "clubs": 3
 };
 
@@ -97,6 +97,26 @@ function create_new_card(card, container, new_class_name) {
   // Set background position
   newCard.style.backgroundPosition = `${x}px ${y}px`;
 
+  if (new_class_name === "used card") {
+    container.appendChild(newCard);
+    return;
+  }
+
+  if (!card.hover_name && !card.hover_text) { // failsafe for if it doesn't exist
+    card.hover_name = "Unknown";
+    card.hover_text = "No description available.";
+  }
+
+  // Add hover event listeners to show card info
+
+  newCard.addEventListener('mouseover', () => {
+    show_Card_Info(newCard, card.hover_name, card.hover_text);
+  });
+
+  newCard.addEventListener('mouseout', () => {
+    hide_Card_Info();
+  });
+  
   // Add the new card to the container
   container.appendChild(newCard);
 

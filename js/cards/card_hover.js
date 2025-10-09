@@ -1,0 +1,34 @@
+function show_Card_Info(card, name, text) {
+    const infoBox = document.createElement("div");
+    infoBox.className = "card-info-box";
+
+
+    const coloredName = text_color_change(name);
+    const coloredText = text_color_change(text);
+
+    infoBox.innerHTML = `<strong>${coloredName}</strong><br><p>${coloredText}</p>`;
+
+    // Position the box
+    const rect = card.getBoundingClientRect();
+
+    infoBox.style.top = (rect.bottom + 5) + "px"; // 5px below the card
+    infoBox.style.left = (rect.left - rect.width / 2) + "px"; // center the box
+
+    document.body.appendChild(infoBox);
+}
+
+function hide_Card_Info() {
+    const infoBoxes = document.getElementsByClassName("card-info-box");
+    while (infoBoxes[0]) {
+        infoBoxes[0].parentNode.removeChild(infoBoxes[0]);
+    }
+}
+
+function text_color_change(text) {
+    let new_text = text
+    new_text = new_text.replace(/(hearts|diamonds)/g, '<span style="color: red;">$1</span>');
+    new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
+    new_text = new_text.replace(/(card)/g, '<span style="color: purple;">$1</span>');
+    new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
+    return new_text;
+}
