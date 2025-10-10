@@ -12,7 +12,7 @@ function show_Card_Info(card, name, text) {
     const rect = card.getBoundingClientRect();
 
     infoBox.style.top = (rect.bottom + 5) + "px"; // 5px below the card
-    infoBox.style.left = (rect.left - rect.width / 2) + "px"; // center the box
+    infoBox.style.left = (rect.left - 100) + "px"; // center the box
 
     document.body.appendChild(infoBox);
 }
@@ -30,5 +30,6 @@ function text_color_change(text) {
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
     new_text = new_text.replace(/(card)/g, '<span style="color: purple;">$1</span>');
     new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
+    new_text = new_text.replace(/(face)/g, '<span style="color: lightgreen;">$1</span>');
     return new_text;
 }
