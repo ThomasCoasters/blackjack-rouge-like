@@ -9,7 +9,7 @@ body {
 
 
 
-#cardsContainer, #use_cardsContainer{
+#cardsContainer, #use_cardsContainer, #cards_used_anim_container{
     position: absolute;
     bottom: 15%;
     left: 20%;
@@ -124,22 +124,11 @@ body {
 
 
 .played_card_container{
-    position: absolute;
     top: 10%;
-    left: 20%;
-    right: 20%;
+}
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px;
-
-    justify-content: center;
-    align-items: center;
-
-    min-height: 144px;
-    min-width: 108px;
-    height: fit-content;
+.cards_used_anim_container{
+    top: 40vh;
 }
 
 
@@ -174,6 +163,107 @@ body {
 
 
 
-/* #use_card_box{
-    opacity: 1;
-} */
+.game_info_container{
+    position: absolute;
+
+    top: -1%;
+    bottom: -1%;
+
+    left: 1%;
+
+    background: #363636;
+    opacity: 0.8;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20%;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: rgba(255, 255, 255, 0.665) 4px solid;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.game_info_text_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Arial', sans-serif;
+    font-size: 48px;
+    color: white;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    width: 330px;
+}
+
+.game_info_text{
+    font-family: 'Arial', sans-serif;
+    font-size: 40px;
+    color: white;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    width: 300px;
+}
+
+
+
+.game_info_p{
+    margin: 10px;
+    padding: 10px;
+    line-height: 1;
+}
+
+
+
+
+#total_score_container{
+    background: #0098d0;
+    border: #004c68 4px solid;
+}
+
+#total_score_text{
+    background: #002735;
+    border: #000000 4px solid;
+}
+
+
+#score_to_beat_container{
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-start;
+
+    background: #7d159db7;
+    border: #340068 4px solid;
+}
+
+#score_to_beat_text{
+    background: #340068;
+    border: #000000 4px solid;
+    font-size: 25px;
+
+    width: auto;
+}
+
+#rounds_text{
+    background: #180068;
+    border: #000000 4px solid;
+    font-size: 25px;
+
+    width: auto;
+}

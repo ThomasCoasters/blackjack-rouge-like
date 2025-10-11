@@ -42,7 +42,14 @@ async function update_Total_Value() {
         specialFunction();
     }
 
+    if (total_value > window.max_total_value) {
+        // player bust
+        console.log("bust");
+        use_cards();
+        return;
+    }
 
+    
     //https://stackoverflow.com/questions/1358810/how-do-i-change-the-text-of-an-element-using-javascript
     document.getElementById("total_value_text").textContent="Total value: " + total_value;
 }
