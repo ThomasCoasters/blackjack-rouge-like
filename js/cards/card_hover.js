@@ -28,8 +28,12 @@ function text_color_change(text) {
     let new_text = text
     new_text = new_text.replace(/(hearts|diamonds)/g, '<span style="color: red;">$1</span>');
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
-    new_text = new_text.replace(/(card)/g, '<span style="color: purple;">$1</span>');
+
     new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
-    new_text = new_text.replace(/(face)/g, '<span style="color: lightgreen;">$1</span>');
+    new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0)/g, '<span style="color: darkblue;">$1</span>');
+
+    new_text = new_text.replace(/(face|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');
+    new_text = new_text.replace(/(card)/g, '<span style="color: green;">$1</span>');
+
     return new_text;
 }
