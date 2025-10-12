@@ -18,9 +18,13 @@ const score_per_card = {
     "king": 10
 };
 
+
+
 var using_cards = [];
 
 async function use_cards() {
+    const animation_speed = window.animation_speed;
+
     window.isDealing = true;
 
     document.getElementById("total_value_text").textContent="Total value: 0";
@@ -54,7 +58,7 @@ async function use_cards() {
         card.style.left = Math.round(spacing * (i-1) - 88/2) + "px";
 
 
-        card.style.transition = "all 0.5s ease";
+        card.style.transition = "all " + (0.5 / animation_speed) + "s ease";
 
         // set a concrete start position (not "auto")
         card.style.top = "50%";
@@ -62,19 +66,20 @@ async function use_cards() {
 
     }
 
-    await delay(500);
+    await delay(5*(1/animation_speed));
 
     for (let i = 0; i < use_cards_count; i++) {
         const card = use_cardsContainer.children[i];
 
         card.style.top = "-10%";
-        calculate_score(i);
 
-        await delay(100);
+        await delay(100*(1/animation_speed));
 
         card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        await delay(300);
+        calculate_score(i);
+
+        await delay(300*(1/animation_speed));
     }
 
     for (let i = 0; i < use_cards_count; i++) {
@@ -82,7 +87,7 @@ async function use_cards() {
 
         card.style.top = "-200%";
 
-        await delay(100);
+        await delay(100*(1/animation_speed));
     }
 
     start_turn();

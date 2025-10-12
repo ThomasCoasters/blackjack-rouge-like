@@ -1,3 +1,13 @@
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */
+* {
+    -webkit-user-select: none; /* Safari/Chrome */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+    user-select: none;         /* standard */
+}
+
+
+
 html, body {
     overflow: hidden; /* hide scrollbars https://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily  (base question) */
     height: 100%;

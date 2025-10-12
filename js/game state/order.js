@@ -10,12 +10,23 @@ const overlay = document.getElementById('overlay');
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
+window.animation_speed;
+
 if (urlvars) {
     const urlparams = new URLSearchParams(urlvars);
     current_background_color = urlparams.get('background_color');
+
+    window.animation_speed = parseFloat(urlparams.get('animation_speed'));
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
+
+    if (window.animation_speed == "null" || isNaN(window.animation_speed)) {
+        window.animation_speed = 1;
+    }
+
+
 
     document.body.style.backgroundColor = current_background_color;
 }
@@ -30,7 +41,7 @@ async function start_turn() {
     for (let i = 0; i < forced_amount_draw; i++) {
         addCard();
         //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
-        await delay(500);
+        await delay(500 * (1/window.animation_speed));
     }
 
     // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.

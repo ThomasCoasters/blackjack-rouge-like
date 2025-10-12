@@ -6,11 +6,23 @@ var current_background_color = null;
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
+var animation_speed;
+const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3];
+
+const animation_speed_button = document.getElementById('animation_speed_button');
+
 if (urlvars) {
     const urlparams = new URLSearchParams(urlvars);
     current_background_color = urlparams.get('background_color');
+
+    animation_speed = parseFloat(urlparams.get('animation_speed'));
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
+    }
+
+    if (animation_speed == "null" || isNaN(animation_speed)) {
+        animation_speed = 1;
     }
 }
 
@@ -33,6 +45,12 @@ else if (!current_background_color) {
     current_background_color = "#357D35"; //default color
 }
 
+if (animation_speed_button) { // failsafe for other pages
+    if (animation_speed) {
+        animation_speed_button.innerText = "animation speed: " + animation_speed + "×";
+    }
+}
+
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -45,7 +63,7 @@ async function go_to_link(location) {
 
     await delay(1000);
 
-    window.location.href = location+".html?" + "background_color=" + current_background_color;
+    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
 }
 
 
@@ -63,4 +81,14 @@ async function page_just_loaded() {
 // https://stackoverflow.com/questions/520812/how-do-i-detect-when-a-web-page-is-loaded
 window.onload = function() {
   page_just_loaded();
+}
+
+function animation_speed_change() {
+    const current_index = animation_speeds.indexOf(animation_speed);
+    let new_index = current_index + 1;
+    if (new_index >= animation_speeds.length) {
+        new_index = 0;
+    }
+    animation_speed = animation_speeds[new_index];
+    animation_speed_button.innerText = "animation speed: " + animation_speed + "×";
 }
