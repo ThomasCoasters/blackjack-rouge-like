@@ -1,5 +1,10 @@
 const use_cardsContainer = document.getElementById("cards_used_anim_container");
 
+
+const total_score_text = document.getElementById("current_score_text");
+
+const screen_shake_div = document.getElementById("screen_shake_div");
+
 var score = 0;
 
 const score_per_card = {
@@ -59,6 +64,7 @@ async function use_cards() {
 
 
         card.style.transition = "all " + (0.5 / animation_speed) + "s ease";
+        total_score_text.style.transition = "all " + (0.5 / animation_speed) + "s ease";
 
         // set a concrete start position (not "auto")
         card.style.top = "50%";
@@ -66,7 +72,9 @@ async function use_cards() {
 
     }
 
-    await delay(5*(1/animation_speed));
+    await delay(250*(1/animation_speed));
+
+    let score_text_scale = 1
 
     for (let i = 0; i < use_cards_count; i++) {
         const card = use_cardsContainer.children[i];
@@ -77,7 +85,8 @@ async function use_cards() {
 
         card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        calculate_score(i);
+        score_text_scale = calculate_score(i, score_text_scale);
+        
 
         await delay(300*(1/animation_speed));
     }
@@ -90,6 +99,8 @@ async function use_cards() {
         await delay(100*(1/animation_speed));
     }
 
+    return_anim();
+    
     start_turn();
 }
 
@@ -100,7 +111,18 @@ function delete_old_card() {
     card[0].parentNode.removeChild(card[0]);
 }
 
-function calculate_score(card_index) {
+function calculate_score(card_index, score_text_scale) {
+    score_text_scale += 0.1;
+
+
+    if (!screen_shake_div.style.animation || screen_shake_div.style.animation === "") {
+        screen_shake_div.style.animation = "shake";
+    }
+
+    screen_shake_div.style.animationDuration = (1.5 - (score_text_scale/3)) + "s";
+    screen_shake_div.style.animationTimingFunction = "ease-in-out";
+    screen_shake_div.style.animationIterationCount = "infinite";
+
     console.log(card_index);
     card_value = using_cards[card_index].value;
 
@@ -110,5 +132,20 @@ function calculate_score(card_index) {
         score += score_per_card[card_value];
     }
 
-    document.getElementById("total_score_text").textContent = score;
+    total_score_text.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+    total_score_text.style.scale = score_text_scale;
+
+    total_score_text.textContent = score;
+
+    return score_text_scale;
+}
+
+
+function return_anim(){
+    total_score_text.style.transition = "all " + (2 / animation_speed) + "s ease";
+
+    total_score_text.style.transform = "rotate(0deg)";
+    total_score_text.style.scale = 1;
+
+    screen_shake_div.style.animation = "";
 }

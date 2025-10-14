@@ -25,56 +25,57 @@
 
 
 <body>
-    <!-- container for all cards -->
-    <div id="cardsContainer">
-
+    <div id="screen_shake_div" class="screen_shake_div">
+        <!-- container for all cards -->
+        <div id="cardsContainer">
+            
         <!-- draw new card box -->
         <div id="play_card_box" class="drag_input"></div>
         
-    </div>
+        </div>
 
-    <!-- total value amount -->
-    <div id="total_value_container" class="total_value_container">
-        <div id="total_value_text" class="total_value_text">Total value: 0</div>
-    </div>
+        <!-- total value amount -->
+        <div id="total_value_container" class="total_value_container">
+            <div id="total_value_text" class="total_value_text">Total value: 0</div>
+        </div>
 
-    <!-- playing cards -->
-    <div id="deck_cards" class="deck_cards"></div>
-    <!-- no id so you can't move it -->
-    <div class="deck_cards"></div> 
+        <!-- playing cards -->
+        <div id="deck_cards" class="deck_cards"></div>
+        <!-- no id so you can't move it -->
+        <div class="deck_cards"></div> 
 
 
-    <!-- use cards box -->
-    <div id="use_cardsContainer" class="played_card_container">
-        <div id="use_card_box" class="drag_input"></div>
-    </div>
-
-    <!-- animation container for used cards -->
-    <div id="cards_used_anim_container" class="cards_used_anim_container"></div>
-
-    <div id="game_info_container" class="game_info_container">
-        <div id="score_to_beat_container" class="game_info_text_container">
-            <div id="rounds_text" class="game_info_text">
-                <p id="score_to_beat_static_text" class="game_info_p">round:</p>
-                <p id="score_to_beat_amount" class="game_info_p">1</p>
+        <!-- use cards box -->
+        <div id="use_cardsContainer" class="played_card_container">
+            <div id="use_card_box" class="drag_input"></div>
+        </div>
+        <!-- animation container for used cards -->
+        <div id="cards_used_anim_container" class="cards_used_anim_container"></div>
+        <div id="game_info_container" class="game_info_container">
+            <div id="score_to_beat_container" class="game_info_text_container">
+                <div id="rounds_text" class="game_info_text">
+                    <p id="score_to_beat_static_text" class="game_info_p">round:</p>
+                    <p id="score_to_beat_amount" class="game_info_p">1</p>
+                </div>
+                <div id="score_to_beat_text" class="game_info_text">
+                    <p id="score_to_beat_static_text" class="game_info_p">score at least:</p>
+                    <p id="score_to_beat_amount" class="game_info_p">21</p>
+                </div>
             </div>
-            <div id="score_to_beat_text" class="game_info_text">
-                <p id="score_to_beat_static_text" class="game_info_p">score at least:</p>
-                <p id="score_to_beat_amount" class="game_info_p">21</p>
+
+            <div id="total_score_container" class="game_info_text_container">
+                <p id="total_score_p" class="game_info_p">round score:</p>
+                <div id="total_score_text" class="game_info_text">
+                    <p id="current_score_text">0</p>
+                </div>
             </div>
+            <div id="total_hands_container" class="game_info_text_container">
+                <div id="total_hands_text" class="game_info_text">hands: 1</div>
+            </div>   
         </div>
-
-        <div id="total_score_container" class="game_info_text_container">
-            <p id="total_score_p" class="game_info_p">round score:</p>
-            <div id="total_score_text" class="game_info_text">0</div>
-        </div>
-        <div id="total_hands_container" class="game_info_text_container">
-            <div id="total_hands_text" class="game_info_text">hands: 1</div>
-        </div>
-
-    </div>
     
-    <!-- overlay for fade out effect -->
-    <div id="overlay" class="overlay"></div>
+        <!-- overlay for fade out effect -->
+        <div id="overlay" class="overlay"></div>
+    </div>
 </body>
 </html>
