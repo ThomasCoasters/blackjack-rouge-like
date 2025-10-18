@@ -288,7 +288,7 @@ body {
 }
 
 @keyframes shake {
-    0% { transform: rotate(-1.25deg); }
-    50% { transform: rotate(1.25deg); }
-    100% { transform: rotate(-1.25deg); }
+    0% { transform: rotate(-0.5deg); }
+    50% { transform: rotate(0.5deg); }
+    100% { transform: rotate(-0.5deg); }
 }
