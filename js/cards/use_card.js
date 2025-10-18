@@ -24,10 +24,12 @@ const score_per_card = {
 };
 
 
-
 var using_cards = [];
 
 async function use_cards() {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
     var animation_speed = window.animation_speed;
 
     window.isDealing = true;
@@ -43,7 +45,7 @@ async function use_cards() {
 
         create_new_card(card, use_cardsContainer, "used card");
 
-        delete_old_card("card");
+        delete_old_card("card", [0]);
     }
 
     window.held_cards = [];
@@ -95,28 +97,29 @@ async function use_cards() {
 
     screen_shake_div.style.animation = "";
 
+    var to_be_deleted = [];
+
     for (let i = 0; i < use_cards_count; i++) {
-        const card = use_cardsContainer.children[i];
-
-        if (using_cards[i].reusing) {
-            card.style.top = "-200%";
-        } else {
-            delete_old_card("used card");
+        if (!using_cards[i].reusing) {
+            to_be_deleted.push(i);
         }
-
-        await delay(100*(1/animation_speed));
     }
 
+    await delete_old_card("used card", to_be_deleted);
+
     return_anim();
-    
+
     start_turn();
 }
 
-function delete_old_card(type) {
+async function delete_old_card(type, to_be_deleted) {
     // https://stackoverflow.com/questions/7307776/how-do-i-remove-a-div-using-javascript
     var card = document.getElementsByClassName(type);
 
-    card[0].parentNode.removeChild(card[0]);
+    for (let i = 0; i < to_be_deleted.length; i++) {
+        card[to_be_deleted[i]-i].parentNode.removeChild(card[to_be_deleted[i]-i]);
+        await delay(200*(1/window.animation_speed));
+    }
 }
 
 function calculate_score(card_index, score_text_scale) {
