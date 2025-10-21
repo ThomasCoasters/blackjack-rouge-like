@@ -5,7 +5,10 @@ const total_score_text = document.getElementById("current_score_text");
 
 const screen_shake_div = document.getElementById("screen_shake_div");
 
-var score = 0;
+const screen_text = document.getElementById("screen_text");
+const screen_text_p = document.getElementById("screen_text_p");
+
+score = 0;
 
 const score_per_card = {
     "ace": 11,
@@ -25,6 +28,43 @@ const score_per_card = {
 
 
 var using_cards = [];
+
+
+async function player_bust() {
+    using_cards = [];
+
+    var animation_speed = window.animation_speed;
+
+    window.isDealing = true;
+
+    document.getElementById("total_value_text").textContent="Total value: 0";
+
+    for (let i = 0; i < window.held_cards.length; i++) {
+        const card = window.held_cards[i];
+        console.log("removed a card due to bust");
+        console.log(card);
+
+        delete_old_card("card", [0]);
+    }
+
+    window.held_cards = [];
+
+
+    screen_text_p.innerHTML = "<b>BUST</b>";
+
+    screen_text.style.animation = "screen_text_animation";
+    screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
+    screen_text.style.animationIterationCount = "1";
+
+    await delay(500*(1/animation_speed));
+    
+    return_anim();
+
+    start_turn(score);
+
+    await delay(2000*(1/animation_speed));
+    screen_text.style.animation = "";
+}
 
 async function use_cards() {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -87,7 +127,7 @@ async function use_cards() {
 
         card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        score_text_scale = calculate_score(i, score_text_scale);
+        score_text_scale = score_visuals(i, score_text_scale);
 
         animation_speed = window.animation_speed * score_text_scale;
         
@@ -109,7 +149,7 @@ async function use_cards() {
 
     return_anim();
 
-    start_turn();
+    start_turn(score);
 }
 
 async function delete_old_card(type, to_be_deleted) {
@@ -122,7 +162,7 @@ async function delete_old_card(type, to_be_deleted) {
     }
 }
 
-function calculate_score(card_index, score_text_scale) {
+function score_visuals(card_index, score_text_scale) {
     score_text_scale += 0.1;
 
 
@@ -134,14 +174,9 @@ function calculate_score(card_index, score_text_scale) {
     screen_shake_div.style.animationTimingFunction = "ease-in-out";
     screen_shake_div.style.animationIterationCount = "infinite";
 
-    console.log(card_index);
-    card_value = using_cards[card_index].value;
+    score += calculate_score(card_index);
 
-    console.log(card_value);
 
-    if (card_value in score_per_card) {
-        score += score_per_card[card_value];
-    }
 
     total_score_text.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
     total_score_text.style.scale = score_text_scale;
@@ -149,8 +184,8 @@ function calculate_score(card_index, score_text_scale) {
     total_score_text.textContent = score;
 
     return score_text_scale;
-}
 
+}
 
 function return_anim(){
     total_score_text.style.transition = "all " + (2 / animation_speed) + "s ease";
@@ -159,4 +194,9 @@ function return_anim(){
     total_score_text.style.scale = 1;
 
     screen_shake_div.style.animation = "";
+}
+
+function reset() {
+    score = 0;
+    total_score_text.textContent = score;
 }

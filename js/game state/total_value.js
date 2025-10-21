@@ -42,10 +42,18 @@ async function update_Total_Value() {
         specialFunction();
     }
 
+
+    // ace special handling
+    while (total_value > window.max_total_value && ace_count > 0) {
+        total_value -= 10; // convert one ace from 11 to 1
+        ace_count--;
+    }
+
+    
+
     if (total_value > window.max_total_value) {
         // player bust
-        console.log("bust");
-        use_cards();
+        player_bust();
         return;
     }
 
@@ -57,11 +65,4 @@ async function update_Total_Value() {
 
 function ace_special() {
     ace_count += 1;
-    let total_ace_value = 11 * ace_count;
-
-    while (total_ace_value > ace_count && (total_value-(11 * ace_count)) + total_ace_value > window.max_total_value) {
-        total_ace_value -= 10; // gaat van 11 naar 1 value per ace
-    }
-
-    total_value += (total_ace_value - (11 * ace_count));
 }

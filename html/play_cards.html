@@ -17,6 +17,7 @@
     <script src="../js/cards/grab_card.js" defer></script>
     <script src="../js/cards/use_card.js" defer></script>
     <script src="../js/cards/card_hover.js" defer></script>
+    <script src="../js/cards/calculate_score.js" defer></script>
 
     <!-- deze als laatste zodat de functions eerst allemaal defined worden -->
     <script src="../js/game state/order.js" defer></script>
@@ -54,8 +55,8 @@
         <div id="game_info_container" class="game_info_container">
             <div id="score_to_beat_container" class="game_info_text_container">
                 <div id="rounds_text" class="game_info_text">
-                    <p id="score_to_beat_static_text" class="game_info_p">round:</p>
-                    <p id="score_to_beat_amount" class="game_info_p">1</p>
+                    <p id="round_static_text" class="game_info_p">round:</p>
+                    <p id="round_current" class="game_info_p">1</p>
                 </div>
                 <div id="score_to_beat_text" class="game_info_text">
                     <p id="score_to_beat_static_text" class="game_info_p">score at least:</p>
@@ -70,12 +71,20 @@
                 </div>
             </div>
             <div id="total_hands_container" class="game_info_text_container">
-                <div id="total_hands_text" class="game_info_text">hands: 1</div>
+                <div id="total_hands_p" class="game_info_p">hands:</div>
+                <div id="total_hands_text" class="game_info_text">3</div>
             </div>   
         </div>
     
         <!-- overlay for fade out effect -->
         <div id="overlay" class="overlay"></div>
+
+
+        <div id="screen_text_container" class="screen_text_container">
+            <div id="screen_text" class="screen_text">
+                <p id="screen_text_p"></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>

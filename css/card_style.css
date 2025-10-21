@@ -186,7 +186,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 20%;
+    gap: 15%;
 
     padding: 10px;
 
@@ -278,6 +278,19 @@ body {
     width: auto;
 }
 
+#total_hands_container{
+    background: #be0a0ab7;
+    border: #620000 4px solid;
+}
+
+#total_hands_text{
+    background: #620000;
+    border: #000000 4px solid;
+    font-size: 50px;
+
+    width: 100%;
+}
+
 
 
 
@@ -291,4 +304,39 @@ body {
     0% { transform: rotate(-0.5deg); }
     50% { transform: rotate(0.5deg); }
     100% { transform: rotate(-0.5deg); }
+}
+
+
+
+
+
+
+.screen_text_container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    pointer-events: none; /* makes sure it doesn't block other interactions */
+}
+
+.screen_text {
+    font-family: 'Arial', sans-serif;
+    font-size: 100px;
+    color: red;
+    text-shadow: 2px 2px 4px #000000;
+    opacity: 0;
+    /* animation: screen_text_animation 2.5s; */
+}
+
+@keyframes screen_text_animation {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+    
 }

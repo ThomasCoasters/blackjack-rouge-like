@@ -2,10 +2,23 @@ var forced_amount_draw = 2;
 
 window.max_total_value = 21;
 
+winning_score = 21;
+
+current_round = 1;
+
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const overlay = document.getElementById('overlay');
+
+const total_hands_text = document.getElementById('total_hands_text');
+const score_to_beat_amount_text = document.getElementById('score_to_beat_amount');
+
+const round_current = document.getElementById('round_current');
+
+
+var hands_amount = 3;
+var max_hands_amount = 3;
 
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
@@ -34,10 +47,21 @@ if (urlvars) {
 
 
 
-async function start_turn() {
+async function start_turn(score) {
     // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.
     window.isDealing = true;
-    
+
+    total_hands_text.textContent = hands_amount;
+    score_to_beat_amount_text.textContent = winning_score;
+    round_current.textContent = current_round;
+
+
+    if (hands_amount <= 0 || score >= winning_score) {
+        await win_round(score);
+    } else {
+        hands_amount -= 1;
+    }
+
     for (let i = 0; i < forced_amount_draw; i++) {
         addCard();
         //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
@@ -53,13 +77,67 @@ async function page_just_loaded() {
     overlay.style.zIndex = -10;
     overlay.style.opacity = 0;
 
+    screen_text_p.innerHTML = "<b>START</b>";
+    
+    
+    screen_text.style.animation = "screen_text_animation";
+    screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
+    screen_text.style.animationIterationCount = "1";
+
     await delay(1000);
 
     start_turn();
+
+    await delay(1500*(1/animation_speed));
+    screen_text.style.animation = "";
 }
 
 
 // https://stackoverflow.com/questions/520812/how-do-i-detect-when-a-web-page-is-loaded
 window.onload = function() {
-  page_just_loaded();  //example function call.
+  page_just_loaded();
+}
+
+
+
+
+async function win_round(score) {
+    if (score >= winning_score) {
+        // Player wins the round
+        await won_round();
+        reset();
+    } else {
+        // Player loses the round
+        screen_text_p.innerHTML = "<b>You Lost</b>";
+
+        screen_text.style.animation = "screen_text_animation";
+        screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
+        screen_text.style.animationIterationCount = "1";
+
+        await delay(2500*(1/animation_speed));
+
+        window.location.href = "start.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
+        await delay(10000000000); // Prevent further code execution
+    }
+}
+
+async function won_round() {
+    hands_amount = max_hands_amount - 1;
+    winning_score += 10;
+    current_round += 1;
+
+    total_hands_text.textContent = hands_amount + 1;
+    score_to_beat_amount_text.textContent = winning_score;
+    round_current.textContent = current_round;
+
+
+    screen_text_p.innerHTML = "<b>You Won!</b>";
+    
+    
+    screen_text.style.animation = "screen_text_animation";
+    screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
+    screen_text.style.animationIterationCount = "1";
+
+    await delay(2500*(1/animation_speed));
+    screen_text.style.animation = "";
 }
