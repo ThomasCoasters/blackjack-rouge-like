@@ -3,21 +3,15 @@ const cardHeight = 124; //height of the cards
 
 const deco_card = document.getElementById("deco_card");
 
-//list stolen from zweeds pensten in godot
-var available_cards = [
-	{"suit": "hearts", "value": "ace"}, {"suit": "hearts", "value": "2"}, {"suit": "hearts", "value": "3"}, {"suit": "hearts", "value": "4"}, {"suit": "hearts", "value": "5"}, {"suit": "hearts", "value": "6"}, {"suit": "hearts", "value": "7"}, {"suit": "hearts", "value": "8"}, {"suit": "hearts", "value": "9"}, {"suit": "hearts", "value": "10"}, {"suit": "hearts", "value": "jack"}, {"suit": "hearts", "value": "queen"}, {"suit": "hearts", "value": "king"},
-	{"suit": "diamonds", "value": "ace"}, {"suit": "diamonds", "value": "2"}, {"suit": "diamonds", "value": "3"}, {"suit": "diamonds", "value": "4"}, {"suit": "diamonds", "value": "5"}, {"suit": "diamonds", "value": "6"}, {"suit": "diamonds", "value": "7"}, {"suit": "diamonds", "value": "8"}, {"suit": "diamonds", "value": "9"}, {"suit": "diamonds", "value": "10"}, {"suit": "diamonds", "value": "jack"}, {"suit": "diamonds", "value": "queen"}, {"suit": "diamonds", "value": "king"},
-	{"suit": "spades", "value": "ace"}, {"suit": "spades", "value": "2"}, {"suit": "spades", "value": "3"}, {"suit": "spades", "value": "4"}, {"suit": "spades", "value": "5"}, {"suit": "spades", "value": "6"}, {"suit": "spades", "value": "7"}, {"suit": "spades", "value": "8"}, {"suit": "spades", "value": "9"}, {"suit": "spades", "value": "10"}, {"suit": "spades", "value": "jack"}, {"suit": "spades", "value": "queen"}, {"suit": "spades", "value": "king"},
-	{"suit": "clubs", "value": "ace"}, {"suit": "clubs", "value": "2"}, {"suit": "clubs", "value": "3"}, {"suit": "clubs", "value": "4"}, {"suit": "clubs", "value": "5"}, {"suit": "clubs", "value": "6"}, {"suit": "clubs", "value": "7"}, {"suit": "clubs", "value": "8"}, {"suit": "clubs", "value": "9"}, {"suit": "clubs", "value": "10"}, {"suit": "clubs", "value": "jack"}, {"suit": "clubs", "value": "queen"}, {"suit": "clubs", "value": "king"},
-];
-
 
 // also stolen =)
 const suit_map = {
-  "hearts": 0,
+  "hearts": 2,
   "diamonds": 1,
-  "spades": 2,
-  "clubs": 3
+  "spades": 3,
+  "clubs": 0,
+  
+  "special_row_1": 4
 };
 
 // also stolen =)
@@ -34,7 +28,7 @@ const value_map = {
   "10": 9,
   "jack": 10,
   "queen": 11,
-  "king": 12
+  "king": 12,
 };
 
 
@@ -49,13 +43,9 @@ setInterval(() => {
 
 
 
-function change_card(card) {
-  const col = value_map[card.value];
-  const row = suit_map[card.suit];
-
-
+function change_card(col, row) {
   const xPercent = (col / 12) * 100; // change the 12 to the new value map numver (when changes)
-  const yPercent = (row / 3) * 100;  // change the 3 to the new suit map numver (when changes)
+  const yPercent = (row / 4) * 100;  // change the 4 to the new suit map numver (when changes)
 
   deco_card.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
 }
@@ -64,7 +54,12 @@ function change_card(card) {
 
 function choose_random_card() {
   //choose random card from available cards
-  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
+  let col = Math.floor(Math.random() * 13);
+  let row = Math.floor(Math.random() * 5);
 
-  change_card(card);
+  if (row == 4 && col > 0) { // change coll higher depending on amount of special cards
+    col = 0; // reset to first special card
+  }
+
+  change_card(col, row);
 }

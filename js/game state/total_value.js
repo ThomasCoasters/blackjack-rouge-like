@@ -11,7 +11,9 @@ const value_per_card = {
     "10": 10,
     "jack": 10,
     "queen": 10,
-    "king": 10
+    "king": 10,
+
+    "special_value:5": 5
 };
 
 var total_value = 0;

@@ -23,7 +23,9 @@ const score_per_card = {
     "10": 10,
     "jack": 10,
     "queen": 10,
-    "king": 10
+    "king": 10,
+
+    "special_value:5": 5
 };
 
 
@@ -32,6 +34,13 @@ var using_cards = [];
 
 async function player_bust() {
     using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
+    screen_text_p.innerHTML = "<b>BUST</b>";
+
+    screen_text.style.animation = "screen_text_animation";
+    screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
+    screen_text.style.animationIterationCount = "1";
+
 
     await delete_all_cards_of_type("used card");
     await delete_all_cards_of_type("card");
@@ -50,11 +59,7 @@ async function player_bust() {
     window.held_cards = [];
 
 
-    screen_text_p.innerHTML = "<b>BUST</b>";
-
-    screen_text.style.animation = "screen_text_animation";
-    screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
-    screen_text.style.animationIterationCount = "1";
+    
 
     await delay(500*(1/animation_speed));
     
@@ -116,7 +121,7 @@ async function use_cards() {
 
     await delay(250*(1/animation_speed));
 
-    let score_text_scale = 1
+    var score_text_scale = 1;
 
     for (let i = 0; i < use_cards_count; i++) {
         const card = use_cardsContainer.children[i];
@@ -127,7 +132,7 @@ async function use_cards() {
 
         card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        score_text_scale = score_visuals(i, score_text_scale);
+        score_text_scale = await score_visuals(i, score_text_scale);
 
         animation_speed = window.animation_speed * score_text_scale;
         
@@ -170,26 +175,18 @@ async function delete_all_cards_of_type(type) {
     }
 }
 
-function score_visuals(card_index, score_text_scale) {
+async function score_visuals(card_index, score_text_scale) {
     score_text_scale += 0.1;
-
 
     if (!screen_shake_div.style.animation || screen_shake_div.style.animation === "") {
         screen_shake_div.style.animation = "shake";
     }
 
-    screen_shake_div.style.animationDuration = Math.max(1.5 - (score_text_scale/3), 0.1) + "s";
+    screen_shake_div.style.animationDuration = Math.max(1.5 - (score_text_scale/3)*(1/window.animation_speed), 0.1) + "s";
     screen_shake_div.style.animationTimingFunction = "ease-in-out";
     screen_shake_div.style.animationIterationCount = "infinite";
 
-    score += calculate_score(card_index);
-
-
-
-    total_score_text.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
-    total_score_text.style.scale = score_text_scale;
-
-    total_score_text.textContent = score;
+    await calculate_score(card_index, score_text_scale);
 
     return score_text_scale;
 
@@ -205,6 +202,21 @@ function return_anim(){
 }
 
 function reset() {
+    delete_all_cards_of_type("used card");
+    delete_all_cards_of_type("card");
+
+    using_cards = [];
+
     score = 0;
     total_score_text.textContent = score;
+}
+
+
+function score_text_move(score_text_scale, extra_score=0) {
+    total_score_text.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+    total_score_text.style.scale = score_text_scale;
+
+    total_score_text.textContent = score + extra_score;
+
+    console.log("score updated to " + (score + extra_score));
 }
