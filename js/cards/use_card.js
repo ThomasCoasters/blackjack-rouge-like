@@ -31,21 +31,21 @@ var using_cards = [];
 
 
 async function player_bust() {
+    using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
+    await delete_all_cards_of_type("used card");
+    await delete_all_cards_of_type("card");
+
+    
     using_cards = [];
 
     var animation_speed = window.animation_speed;
 
     window.isDealing = true;
 
-    document.getElementById("total_value_text").textContent="Total value: 0";
+    document.getElementById("total_value_text").textContent="Total value: 0 / " + window.max_total_value;
+    
 
-    for (let i = 0; i < window.held_cards.length; i++) {
-        const card = window.held_cards[i];
-        console.log("removed a card due to bust");
-        console.log(card);
-
-        delete_old_card("card", [0]);
-    }
 
     window.held_cards = [];
 
@@ -74,7 +74,7 @@ async function use_cards() {
 
     window.isDealing = true;
 
-    document.getElementById("total_value_text").textContent="Total value: 0";
+    document.getElementById("total_value_text").textContent="Total value: 0 / " + window.max_total_value;
 
     for (let i = 0; i < window.held_cards.length; i++) {
         const card = window.held_cards[i];
@@ -159,6 +159,14 @@ async function delete_old_card(type, to_be_deleted) {
     for (let i = 0; i < to_be_deleted.length; i++) {
         card[to_be_deleted[i]-i].parentNode.removeChild(card[to_be_deleted[i]-i]);
         await delay(200*(1/window.animation_speed));
+    }
+}
+
+async function delete_all_cards_of_type(type) {
+    var card = document.getElementsByClassName(type);
+    while (card.length > 0) {
+        card[0].parentNode.removeChild(card[0]);
+        await delay(100*(1/window.animation_speed));
     }
 }
 
