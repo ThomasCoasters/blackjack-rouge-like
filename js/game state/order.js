@@ -108,13 +108,18 @@ async function win_round(score) {
         reset();
     } else {
         // Player loses the round
+
+        await delay(1000*(1/animation_speed));
+        screen_text.style.animation = "none";
+        void screen_text.offsetWidth; // trigger reflow to restart animation
+
         screen_text_p.innerHTML = "<b>You Lost</b>";
 
         screen_text.style.animation = "screen_text_animation";
         screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
         screen_text.style.animationIterationCount = "1";
 
-        await delay(2500*(1/animation_speed));
+        await delay(2000*(1/animation_speed));
 
         window.location.href = "start.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
         await delay(10000000000); // Prevent further code execution
@@ -130,6 +135,9 @@ async function won_round() {
     score_to_beat_amount_text.textContent = winning_score;
     round_current.textContent = current_round;
 
+
+    screen_text.style.animation = "none";
+    void screen_text.offsetWidth; // trigger reflow to restart animation
 
     screen_text_p.innerHTML = "<b>You Won!</b>";
     

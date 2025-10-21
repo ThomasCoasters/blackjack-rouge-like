@@ -33,7 +33,12 @@ var using_cards = [];
 
 
 async function player_bust() {
+    var animation_speed = window.animation_speed;
+
     using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
+    screen_text.style.animation = "none";
+    void screen_text.offsetWidth; // trigger reflow to restart animation
 
     screen_text_p.innerHTML = "<b>BUST</b>";
 
@@ -47,8 +52,6 @@ async function player_bust() {
 
     
     using_cards = [];
-
-    var animation_speed = window.animation_speed;
 
     window.isDealing = true;
 
@@ -66,9 +69,6 @@ async function player_bust() {
     return_anim();
 
     start_turn(score);
-
-    await delay(2000*(1/animation_speed));
-    screen_text.style.animation = "";
 }
 
 async function use_cards() {
