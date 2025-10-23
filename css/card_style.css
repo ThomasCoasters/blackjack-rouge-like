@@ -340,3 +340,41 @@ body {
     }
     
 }
+
+
+.card_score_box {
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    pointer-events: none; /* makes sure it doesn't block other interactions */
+
+    transform: translate(-50%, -50%) rotate(0deg);
+
+    z-index: 1000;
+}
+
+
+
+@keyframes score_pop_movement_right {
+    0% {
+        transform: scale(1) rotate(-45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes score_pop_movement_left {
+    0% {
+        transform: scale(1) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) rotate(-45deg);
+        opacity: 0;
+    }
+}

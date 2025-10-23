@@ -30,6 +30,7 @@ function text_color_change(text) {
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
 
     new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
+    new_text = new_text.replace(/(score)/g, '<span style="color: lightblue;">$1</span>');
     new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0)/g, '<span style="color: darkblue;">$1</span>');
 
     new_text = new_text.replace(/(face|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');

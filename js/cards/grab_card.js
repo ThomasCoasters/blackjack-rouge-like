@@ -97,7 +97,6 @@ function resetPosition() {
 Array.from(cards).forEach((card) => {
     // na heel lan draggen zoeken vond ik eindelijk dit:https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#disabling_dragging
     card.addEventListener('dragstart', (e) => {
-        console.log("drag did not start")
         e.preventDefault();
     });
 });

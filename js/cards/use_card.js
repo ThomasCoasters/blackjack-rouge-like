@@ -8,6 +8,8 @@ const screen_shake_div = document.getElementById("screen_shake_div");
 const screen_text = document.getElementById("screen_text");
 const screen_text_p = document.getElementById("screen_text_p");
 
+var is_blackjack = false;
+
 score = 0;
 
 const score_per_card = {
@@ -27,6 +29,28 @@ const score_per_card = {
 
     "special_value:5": 5
 };
+
+
+
+priority_list = {
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "jack": 11,
+    "queen": 12,
+    "king": 13,
+
+    "ace": 14,
+
+
+    "special_value:5": 15
+}
 
 
 var using_cards = [];
@@ -72,8 +96,16 @@ async function player_bust() {
 }
 
 async function use_cards() {
+    is_blackjack = false;
+
+    if (await update_Total_Value(true) === true) {
+        is_blackjack = true;
+    }
+
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
     using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
+    window.held_cards.sort((a, b) => priority_list[b.value] - priority_list[a.value]);
 
     var animation_speed = window.animation_speed;
 
@@ -83,8 +115,6 @@ async function use_cards() {
 
     for (let i = 0; i < window.held_cards.length; i++) {
         const card = window.held_cards[i];
-        console.log("used a card");
-        console.log(card);
 
         using_cards.push(card);
 
@@ -104,10 +134,6 @@ async function use_cards() {
         const card = use_cardsContainer.children[i];
 
         card.style.position = "absolute";
-
-        const spacing = container_width / use_cards_count;
-
-        card.style.left = Math.round(spacing * (i-1) - 88/2) + "px";
 
 
         card.style.transition = "all " + (0.5 / animation_speed) + "s ease";
@@ -132,7 +158,7 @@ async function use_cards() {
 
         card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        score_text_scale = await score_visuals(i, score_text_scale);
+        score_text_scale = await score_visuals(i, score_text_scale, is_blackjack);
 
         animation_speed = window.animation_speed * score_text_scale;
         
@@ -165,6 +191,8 @@ async function delete_old_card(type, to_be_deleted) {
         card[to_be_deleted[i]-i].parentNode.removeChild(card[to_be_deleted[i]-i]);
         await delay(200*(1/window.animation_speed));
     }
+
+    hide_Card_Info();
 }
 
 async function delete_all_cards_of_type(type) {
@@ -175,7 +203,7 @@ async function delete_all_cards_of_type(type) {
     }
 }
 
-async function score_visuals(card_index, score_text_scale) {
+async function score_visuals(card_index, score_text_scale, is_blackjack) {
     score_text_scale += 0.1;
 
     if (!screen_shake_div.style.animation || screen_shake_div.style.animation === "") {
@@ -186,7 +214,7 @@ async function score_visuals(card_index, score_text_scale) {
     screen_shake_div.style.animationTimingFunction = "ease-in-out";
     screen_shake_div.style.animationIterationCount = "infinite";
 
-    await calculate_score(card_index, score_text_scale);
+    await calculate_score(card_index, score_text_scale, is_blackjack);
 
     return score_text_scale;
 
@@ -217,6 +245,4 @@ function score_text_move(score_text_scale, extra_score=0) {
     total_score_text.style.scale = score_text_scale;
 
     total_score_text.textContent = score + extra_score;
-
-    console.log("score updated to " + (score + extra_score));
 }

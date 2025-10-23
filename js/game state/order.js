@@ -2,6 +2,8 @@ var forced_amount_draw = 2;
 
 window.max_total_value = 21;
 
+window.blackjack_bonus_multiplier = 1.5;
+
 winning_score = 21;
 
 current_round = 1;

@@ -20,7 +20,7 @@ var total_value = 0;
 var ace_count = 0;
 
 
-async function update_Total_Value() {
+async function update_Total_Value(from_calculate_score = false) {
     total_value = 0;
     ace_count = 0;
 
@@ -51,7 +51,15 @@ async function update_Total_Value() {
         ace_count--;
     }
 
-    
+
+    if (from_calculate_score) {
+        if (total_value === window.max_total_value) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     if (total_value > window.max_total_value) {
         // player bust
@@ -60,6 +68,7 @@ async function update_Total_Value() {
     }
 
     
+
     //https://stackoverflow.com/questions/1358810/how-do-i-change-the-text-of-an-element-using-javascript
     document.getElementById("total_value_text").textContent="Total value: " + total_value  + " / " + window.max_total_value;
 }
