@@ -36,7 +36,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
 
         use_cardsContainer.children[card_index].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        await calculate_score(card_index, score_text_scale);
+        await calculate_score(card_index, score_text_scale, is_blackjack);
     }
 }
 
