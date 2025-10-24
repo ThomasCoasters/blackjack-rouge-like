@@ -16,12 +16,12 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
 
 
 
-    await scoring_visuals(card_index, is_blackjack);
-
 
     if (is_blackjack == true) {
         card_score = Math.round(card_score * window.blackjack_bonus_multiplier); // blackjack bonus
     }
+
+    await scoring_visuals(card_score, card_index, is_blackjack);
     
     score += card_score;
     score_text_move(score_text_scale);
@@ -46,9 +46,14 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
 
 
 
-async function scoring_visuals(card_index, is_blackjack, amount = 1) {
+
+
+
+async function scoring_visuals(card_score, card_index, is_blackjack, amount = 1) {
     const score_box = document.createElement("div");
     score_box.className = "card_score_box";
+
+    
 
     if (is_blackjack) {
         score_box.style.backgroundColor = "gold";
@@ -63,9 +68,19 @@ async function scoring_visuals(card_index, is_blackjack, amount = 1) {
 
     if (amount === 1) {
         score_box.style.animationName = "score_pop_movement_right";
-        scoring_visuals(card_index, is_blackjack, 0);
+        scoring_visuals(card_score, card_index, is_blackjack, 0);
     } else {
         score_box.style.animationName = "score_pop_movement_left";
+
+        // add score text
+        const score_text = document.createElement("div");
+        score_text.className = "card_score_text";
+        score_text.textContent = "+" + card_score;
+        score_box.appendChild(score_text);
+
+        score_text.style.animationDuration = 2 * (1 / window.animation_speed) + "s";
+
+        hide_score_box(score_text);
     }
 
 
@@ -80,7 +95,6 @@ async function scoring_visuals(card_index, is_blackjack, amount = 1) {
 
     score_box.style.top = "100%";
     score_box.style.left = (baseLeftPct - cardHalfPct) + "%";
-
 
 
     use_cardsContainer.appendChild(score_box);
