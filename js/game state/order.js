@@ -107,7 +107,7 @@ async function win_round(score) {
     if (score >= winning_score) {
         // Player wins the round
         await won_round();
-        reset();
+        await reset();
     } else {
         // Player loses the round
 

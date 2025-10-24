@@ -229,9 +229,9 @@ function return_anim(){
     screen_shake_div.style.animation = "";
 }
 
-function reset() {
-    delete_all_cards_of_type("used card");
-    delete_all_cards_of_type("card");
+async function reset() {
+    await delete_all_cards_of_type("used card");
+    await delete_all_cards_of_type("card");
 
     using_cards = [];
 
