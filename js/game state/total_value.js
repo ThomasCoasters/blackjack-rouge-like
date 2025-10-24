@@ -13,6 +13,8 @@ const value_per_card = {
     "queen": 10,
     "king": 10,
 
+    "special_value:random": 0,
+
     "special_value:5": 5
 };
 

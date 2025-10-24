@@ -26,13 +26,14 @@ const score_per_card = {
     "jack": 10,
     "queen": 10,
     "king": 10,
+    "special_value:random": 0,
 
     "special_value:5": 5
 };
 
 
 
-priority_list = {
+const priority_list = {
     "2": 2,
     "3": 3,
     "4": 4,
@@ -47,6 +48,7 @@ priority_list = {
     "king": 13,
 
     "ace": 14,
+    "special_value:random": 15,
 
 
     "special_value:5": 15

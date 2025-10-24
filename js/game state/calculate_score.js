@@ -10,7 +10,11 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
     }
 
     if (card.special && card.special_location === "score") {
-        card.special();
+        if (card.special.name === "random_score") { // special case for score adding specials
+            card_score += await card.special();
+        } else {
+            await card.special();
+        }
     }
 
 
@@ -107,4 +111,23 @@ async function hide_score_box(score_box) {
     await delay(1900 * (1 / window.animation_speed));
 
     score_box.parentNode.removeChild(score_box);
+}
+
+
+
+
+
+
+
+
+async function random_score() {
+    value_for_card = 0;
+    while (true) {
+        if (Math.random() < 0.25) {
+            break;
+        } else {
+            value_for_card += 1;
+        }
+    }
+    return value_for_card;
 }
