@@ -121,7 +121,9 @@ async function win_round(score) {
         screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
         screen_text.style.animationIterationCount = "1";
 
-        await delay(2000*(1/animation_speed));
+        await delay(1250*(1/animation_speed));
+
+        await screen_darker(1);
 
         window.location.href = "start.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
         await delay(10000000000); // Prevent further code execution
@@ -150,4 +152,14 @@ async function won_round() {
 
     await delay(2500*(1/animation_speed));
     screen_text.style.animation = "";
+}
+
+
+
+
+async function screen_darker(amount){
+    overlay.style.zIndex = 10000000000000;
+    overlay.style.opacity = amount;
+    
+    await delay(1000);
 }
