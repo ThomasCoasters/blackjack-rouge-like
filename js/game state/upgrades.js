@@ -10,7 +10,8 @@ const all_upgrades = {
     "special_cards": [
     {"suit": "special_row_1", "value": "special_value:random", "hover_name": "a random joker", "hover_text": "'they locked me in, but I got free, free, now I make chaos, chaos with my value of ???'", "special": random_score, "special_location": "score", "effect": play_freedom_motif}, // jevil deltarune reference
     {"suit": "special_row_1", "value": "special_value:5", "reusing": true, "hover_name": "reusable waste", "hover_text": "card that can be reused with a value of 5"},
-    {"suit": "special_row_1", "value": "special_value:5", "retrigger": 1, "hover_name": "retriggerable waste", "hover_text": "card that gets retriggered with a value of 5"},
+    {"suit": "special_row_1", "value": "special_value:5", "retrigger": 1, "hover_name": "retriggerable trash", "hover_text": "card that gets retriggered with a value of 5"},
+    {"suit": "special_row_1", "value": "special_value:none", "hover_name": "king of the jokers", "hover_text": "'I am the king here, here and like chaos, chaos so I'll retrigger, retrigger all king cards' (ALL king cards get +1 retrigger for every use)" , "special": retrigger_all_kings, "special_location": "score", "effect": play_freedom_motif},// jevil deltarune reference
     ],
 
     "permanent_upgrades": [
@@ -47,6 +48,7 @@ const col_map = {
 
     "special_value:random": 0,
     "special_value:5": 0,
+    "special_value:none": 0,
 
     "increase_max_total_value": 0,
     "increase_max_total_value_but_less_discards": 0,

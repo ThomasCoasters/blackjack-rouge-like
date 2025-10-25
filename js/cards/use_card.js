@@ -26,7 +26,10 @@ const score_per_card = {
     "jack": 10,
     "queen": 10,
     "king": 10,
+
+
     "special_value:random": 0,
+    "special_value:none": 0,
 
     "special_value:5": 5
 };
@@ -49,6 +52,7 @@ const priority_list = {
 
     "ace": 14,
     "special_value:random": 15,
+    "special_value:none": 20,
 
 
     "special_value:5": 15

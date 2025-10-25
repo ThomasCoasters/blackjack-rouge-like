@@ -43,6 +43,7 @@ const value_map = {
 
 
   "special_value:random": 0,
+  "special_value:none": 0,
   "special_value:5": 0
 };
 

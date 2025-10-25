@@ -36,7 +36,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
     if (card.retrigger > 0) {
         using_cards[card_index].retrigger -= 1;
 
-        await delay(500 * (1 / window.animation_speed));
+        await delay(250 * (1 / window.animation_speed));
 
         use_cardsContainer.children[card_index].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
@@ -130,4 +130,16 @@ async function random_score() {
         }
     }
     return value_for_card;
+}
+
+async function retrigger_all_kings() {
+    const cardArrays = [window.held_cards, window.available_cards, used_cards];
+    
+    for (const cardArray of cardArrays) {
+        for (let i = 0; i < cardArray.length; i++) {
+            if (cardArray[i].value === "king") {
+                cardArray[i].retrigger = (cardArray[i].retrigger || 0) + 1;
+            }
+        }
+    }
 }
