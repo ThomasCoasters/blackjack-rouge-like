@@ -98,9 +98,16 @@ async function player_bust() {
 }
 
 async function use_cards() {
-    is_blackjack = false;
+    [is_blackjack, total_value] = await update_Total_Value(true);
 
-    if (await update_Total_Value(true) === true) {
+    if (total_value > window.max_total_value) {
+        // player bust
+        player_bust();
+        return;
+    }
+
+
+    if (is_blackjack === true) {
         is_blackjack = true;
     }
 

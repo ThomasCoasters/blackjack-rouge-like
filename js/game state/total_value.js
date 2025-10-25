@@ -56,17 +56,11 @@ async function update_Total_Value(from_calculate_score = false) {
 
     if (from_calculate_score) {
         if (total_value === window.max_total_value) {
-            return true;
+            return [true, total_value];
         }
         else {
-            return false;
+            return [false, total_value];
         }
-    }
-
-    if (total_value > window.max_total_value) {
-        // player bust
-        player_bust();
-        return;
     }
 
     

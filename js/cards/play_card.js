@@ -9,9 +9,6 @@ window.available_cards = [
 	{"suit": "diamonds", "value": "ace", "hover_name": "ace of diamonds", "hover_text": "diamonds card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "diamonds", "value": "2", "hover_name": "2 of diamonds", "hover_text": "diamonds card with an value of 2"}, {"suit": "diamonds", "value": "3", "hover_name": "3 of diamonds", "hover_text": "diamonds card with an value of 3"}, {"suit": "diamonds", "value": "4", "hover_name": "4 of diamonds", "hover_text": "diamonds card with an value of 4"}, {"suit": "diamonds", "value": "5", "hover_name": "5 of diamonds", "hover_text": "diamonds card with an value of 5"}, {"suit": "diamonds", "value": "6", "hover_name": "6 of diamonds", "hover_text": "diamonds card with an value of 6"}, {"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "diamonds", "value": "8", "hover_name": "8 of diamonds", "hover_text": "diamonds card with an value of 8"}, {"suit": "diamonds", "value": "9", "hover_name": "9 of diamonds", "hover_text": "diamonds card with an value of 9"}, {"suit": "diamonds", "value": "10", "hover_name": "10 of diamonds", "hover_text": "diamonds card with an value of 10"}, {"suit": "diamonds", "value": "jack", "hover_name": "jack of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "queen", "hover_name": "queen of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "king", "hover_name": "king of diamonds", "hover_text": "diamonds face card with an value of 10"},
 	{"suit": "spades", "value": "ace", "hover_name": "ace of spades", "hover_text": "spades card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "spades", "value": "2", "hover_name": "2 of spades", "hover_text": "spades card with an value of 2"}, {"suit": "spades", "value": "3", "hover_name": "3 of spades", "hover_text": "spades card with an value 3"}, {"suit": "spades", "value": "4", "hover_name": "4 of spades", "hover_text": "spades card with an value of 4"}, {"suit": "spades", "value": "5", "hover_name": "5 of spades", "hover_text": "spades card with an value of 5"}, {"suit": "spades", "value": "6", "hover_name": "6 of spades", "hover_text": "spades card with an value of 6"}, {"suit": "spades", "value": "7", "hover_name": "7 of spades", "hover_text": "spades card with an value of 7"}, {"suit": "spades", "value": "8", "hover_name": "8 of spades", "hover_text": "spades card with an value of 8"}, {"suit": "spades", "value": "9", "hover_name": "9 of spades", "hover_text": "spades card with an value of 9"}, {"suit": "spades", "value": "10", "hover_name": "10 of spades", "hover_text": "spades card with an value of 10"}, {"suit": "spades", "value": "jack", "hover_name": "jack of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "queen", "hover_name": "queen of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "king", "hover_name": "king of spades", "hover_text": "spades face card with an value of 10"},
 	{"suit": "clubs", "value": "ace", "hover_name": "ace of clubs", "hover_text": "clubs card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "clubs", "value": "2", "hover_name": "2 of clubs", "hover_text": "clubs card with an value of 2"}, {"suit": "clubs", "value": "3", "hover_name": "3 of clubs", "hover_text": "clubs card with an value 3"}, {"suit": "clubs", "value": "4", "hover_name": "4 of clubs", "hover_text": "clubs card with an value of 4"}, {"suit": "clubs", "value": "5", "hover_name": "5 of clubs", "hover_text": "clubs card with an value of 5"}, {"suit": "clubs", "value": "6", "hover_name": "6 of clubs", "hover_text": "clubs card with an value of 6"}, {"suit": "clubs", "value": "7", "hover_name": "7 of clubs", "hover_text": "clubs card with an value of 7"}, {"suit": "clubs", "value": "8", "hover_name": "8 of clubs", "hover_text": "clubs card with an value of 8"}, {"suit": "clubs", "value": "9", "hover_name": "9 of clubs", "hover_text": "clubs card with an value of 9"}, {"suit": "clubs", "value": "10", "hover_name": "10 of clubs", "hover_text": "clubs card with an value of 10"}, {"suit": "clubs", "value": "jack", "hover_name": "jack of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "queen", "hover_name": "queen of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "king", "hover_name": "king of clubs", "hover_text": "clubs face card with an value of 10"},
-  // {"suit": "special_row_1", "value": "special_value:random", "hover_name": "a random joker", "hover_text": "'they locked me in, but I got free, free. Now I make chaos, chaos with my value of ???'", "special": random_score, "special_location": "score"}, // jevil deltarune reference
-  // {"suit": "special_row_1", "value": "special_value:5", "reusing": true, "hover_name": "reusable waste", "hover_text": "card that can be reused with no suit but a value of 5"},
-  // {"suit": "special_row_1", "value": "special_value:5", "retrigger": 1, "hover_name": "reusable waste", "hover_text": "card that can be reused with no suit but a value of 5"},
 ];
 
 var used_cards = [];
@@ -122,6 +119,10 @@ function create_new_card(card, container, new_class_name) {
   newCard.addEventListener('mouseout', () => {
     hide_Card_Info();
   });
+
+  newCard.addEventListener('click', async () => {
+    await discard_card(new_class_name, [Array.from(container.children).indexOf(newCard)-1]);
+  });
   
   // Add the new card to the container
   container.appendChild(newCard);
@@ -131,4 +132,26 @@ function create_new_card(card, container, new_class_name) {
   }
 
   update_Total_Value();
+}
+
+
+
+async function discard_card(class_name, card_indx) {
+  if (window.discards_amount <= 0) {
+    return; // no discards left
+  }
+
+  window.discards_amount -= 1;
+
+  const card = window.held_cards[card_indx];
+  window.held_cards.splice(card_indx, 1);
+
+  delete_old_card(class_name, card_indx);
+
+
+  update_Total_Value();
+
+  const total_discards_text = document.getElementById('total_discards_text');
+  total_discards_text.textContent = window.discards_amount;
+
 }

@@ -24,6 +24,11 @@ const round_current = document.getElementById('round_current');
 window.hands_amount = 3;
 window.max_hands_amount = 3;
 
+const total_discards_text = document.getElementById('total_discards_text');
+
+window.discards_amount = 4;
+window.max_discards_amount = 4;
+
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
@@ -58,6 +63,8 @@ async function start_turn(score) {
     total_hands_text.textContent = hands_amount;
     score_to_beat_amount_text.textContent = winning_score;
     round_current.textContent = current_round;
+
+    total_discards_text.textContent = discards_amount;
 
 
     if (hands_amount <= 0 || score >= winning_score) {
@@ -136,6 +143,7 @@ async function win_round(score) {
 
 async function won_round() {
     hands_amount = max_hands_amount;
+    discards_amount = max_discards_amount;
     winning_score += 10;
     current_round += 1;
 

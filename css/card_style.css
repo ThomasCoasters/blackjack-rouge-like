@@ -344,18 +344,29 @@ body {
 
     font-size: 30px;
 
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
-#total_discards_text{
+#total_discards_text, #blackjack_bonus_text{
     background: #0c5017;
     border-radius: 50px;
     border: #3d6d1d 4px solid;
     font-size: 50px;
 
-    width: 100%;
+    flex: 1;
+    min-width: fit-content;
+}
+
+#blackjack_bonus_p{
+    font-size: 20px;
+}
+
+#blackjack_bonus_text{
+    font-size: 40px;
 }
 
 
