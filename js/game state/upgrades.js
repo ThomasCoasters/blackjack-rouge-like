@@ -14,9 +14,11 @@ const all_upgrades = {
     ],
 
     "permanent_upgrades": [
-    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value you can have before busting by 5", "effect": increase_max_total_value},
-    // {"value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.1", "effect": increase_blackjack_bonus},
-    // {"value": "extra_upgrade_slot", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1", "effect": extra_upgrade_slot},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 3", "effect": increase_max_total_value},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value_but_draw_more", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 6 but draw 1 more card at the beginning", "effect": increase_max_total_value_but_draw_more},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.5", "effect": increase_blackjack_bonus},
+    {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 3", "effect": extra_upgrade_slot_but_decrease_max_total_value},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_draw_more", "hover_name": "increase card draw", "hover_text": "increases number of hands by 1 but draw 1 more card at the beginning", "effect": increase_hands_but_draw_more},
     ],
 
 
@@ -41,7 +43,12 @@ const col_map = {
 
     "special_value:random": 0,
     "special_value:5": 0,
-    "increase_max_total_value": 0
+
+    "increase_max_total_value": 0,
+    "increase_max_total_value_but_draw_more": 0,
+    "increase_blackjack_bonus": 0,
+    "extra_upgrade_slot_but_decrease_max_total_value": 0,
+    "increase_hands_but_draw_more": 0,
 };
 
 
@@ -77,11 +84,7 @@ async function choose_upgrade_type() {
         const randomIndex = Math.floor(Math.random() * upgradeTypes.length);
         const selectedType = upgradeTypes[randomIndex];
 
-        alert(JSON.stringify(selectedType));
-        
         const upgrade = await choose_upgrade(selectedType);
-
-        alert(JSON.stringify(upgrade));
 
         upgrade_container.appendChild(await create_upgrade_card(upgrade, selectedType));
     }
@@ -157,5 +160,24 @@ async function upgrade_card_chosen(upgrade, upgrade_type) {
 
 
 async function increase_max_total_value() {
-    window.max_total_value += 5;
+    window.max_total_value += 3;
+}
+
+async function increase_max_total_value_but_draw_more() {
+    window.max_total_value += 6;
+    forced_amount_draw += 1;
+}
+
+async function increase_blackjack_bonus() {
+    window.blackjack_bonus_multiplier += 0.5;
+}
+
+async function extra_upgrade_slot_but_decrease_max_total_value() {
+    window.max_upgrades_amount += 1;
+    window.max_total_value -= 3;
+}
+
+async function increase_hands_but_draw_more() {
+    max_hands_amount += 1;
+    forced_amount_draw += 1;
 }
