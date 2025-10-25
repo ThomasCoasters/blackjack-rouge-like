@@ -219,8 +219,8 @@ body {
 .game_info_container{
     position: absolute;
 
-    top: -5%;
-    bottom: -5%;
+    top: 0;
+    bottom: 0;
 
     left: 1%;
 
@@ -229,7 +229,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 15%;
+    gap: 10%;
 
     padding: 10px;
 
@@ -321,9 +321,11 @@ body {
     width: auto;
 }
 
-#total_hands_container{
+#total_hands_and_discards_container{
     background: #be0a0ab7;
     border: #620000 4px solid;
+
+    gap: 10px;
 }
 
 #total_hands_text{
@@ -334,6 +336,27 @@ body {
     width: 100%;
 }
 
+#total_discards_container{
+    background: #11bc618a;
+    border: #0d3416 4px solid;
+
+    width: 90%;
+
+    font-size: 30px;
+
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+#total_discards_text{
+    background: #0c5017;
+    border-radius: 50px;
+    border: #3d6d1d 4px solid;
+    font-size: 50px;
+
+    width: 100%;
+}
 
 
 

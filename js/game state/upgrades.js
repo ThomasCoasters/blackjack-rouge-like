@@ -8,7 +8,7 @@ const all_upgrades = {
     ],
 
     "special_cards": [
-    {"suit": "special_row_1", "value": "special_value:random", "hover_name": "a random joker", "hover_text": "'they locked me in, but I got free, free. Now I make chaos, chaos with my value of ???'", "special": random_score, "special_location": "score", "effect": play_freedom_motif}, // jevil deltarune reference
+    {"suit": "special_row_1", "value": "special_value:random", "hover_name": "a random joker", "hover_text": "'they locked me in, but I got free, free, now I make chaos, chaos with my value of ???'", "special": random_score, "special_location": "score", "effect": play_freedom_motif}, // jevil deltarune reference
     {"suit": "special_row_1", "value": "special_value:5", "reusing": true, "hover_name": "reusable waste", "hover_text": "card that can be reused with a value of 5"},
     {"suit": "special_row_1", "value": "special_value:5", "retrigger": 1, "hover_name": "retriggerable waste", "hover_text": "card that gets retriggered with a value of 5"},
     ],
@@ -17,7 +17,7 @@ const all_upgrades = {
     {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 2", "effect": increase_max_total_value},
     {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value_but_draw_more", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 5 but draw 1 more card at the beginning", "effect": increase_max_total_value_but_draw_more},
     {"suit": "permanent_upgrade_row_1", "value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.5", "effect": increase_blackjack_bonus},
-    {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 1", "effect": extra_upgrade_slot_but_decrease_max_total_value},
+    {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 2", "effect": extra_upgrade_slot_but_decrease_max_total_value},
     {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_negative_blackjack", "hover_name": "extra hands", "hover_text": "increases number of hands by 1 after 1 round but decrease blackjack multiplier to -0.5 (losing points for blackjack)", "effect": increase_hands_but_negative_blackjack},
     ],
 
@@ -178,7 +178,7 @@ async function increase_blackjack_bonus() {
 
 async function extra_upgrade_slot_but_decrease_max_total_value() {
     window.max_upgrades_amount += 1;
-    window.max_total_value -= 1;
+    window.max_total_value -= 2;
 }
 
 async function increase_hands_but_negative_blackjack() {

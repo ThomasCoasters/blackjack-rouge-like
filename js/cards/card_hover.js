@@ -36,19 +36,22 @@ function hide_Card_Info() {
 function text_color_change(text) {
     let new_text = text
 
-    new_text = new_text.replace(/(blackjack)/g, '<span style="background: linear-gradient(to top, orange, gold);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
+    new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0|\.|\-)/g, '<span style="color: darkblue;">$1</span>');
+
 
     new_text = new_text.replace(/(hearts|diamonds)/g, '<span style="color: red;">$1</span>');
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
 
     new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
     new_text = new_text.replace(/(score)/g, '<span style="color: lightblue;">$1</span>');
-    new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0|\.)/g, '<span style="color: darkblue;">$1</span>');
+
+    
+    new_text = new_text.replace(/(blackjack)/g, '<span style="background: linear-gradient(to top, orange, gold);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
 
     new_text = new_text.replace(/(?<!black)(face|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');
     new_text = new_text.replace(/(card)/g, '<span style="color: green;">$1</span>');
 
-    new_text = new_text.replace(/(retrigger|retriggerable)/g, '<span style="color: purple;">$1</span>');
+    new_text = new_text.replace(/\bretrigger(?:able)?\b/gi, '<span style="color: purple;">$&</span>');
 
     new_text = new_text.replace(/(a random joker|\?\?\?)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
     new_text = new_text.replace(/(chaos, chaos|free, free)/g, '<span style="background: linear-gradient(to top, red, purple);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
@@ -70,17 +73,17 @@ function look_for_special_hover_texts(card, card_raw, infoBox, zIndex) {
     if (card_raw.retrigger > 0) {
         specials_names.push("retrigger");
         // card_raw.retrigger = 2; // temp for testing
-        specials.push("This card can retrigger" + (" up to " + card_raw.retrigger + " times."));
+        specials.push("This card can retrigger" + (" up to " + card_raw.retrigger + " times"));
     }
 
     if (card_raw.different_value_and_score === true) {
         specials_names.push("score difference");
-        specials.push("this card can have a different value and score.");
+        specials.push("this card can have a different value and score");
     }
 
     if (card_raw.reusing === true) {
         specials_names.push("reusable");
-        specials.push("this card can be reused until you bust or win.");
+        specials.push("this card can be reused until you bust or win");
     }
 
     if (specials.length > 0) {
