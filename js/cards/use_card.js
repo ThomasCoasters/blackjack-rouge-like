@@ -129,7 +129,6 @@ async function use_cards() {
 
 
     const use_cards_count = use_cardsContainer.children.length;
-    const container_width = use_cardsContainer.getBoundingClientRect().width;
 
 
     for (let i = 0; i < use_cards_count; i++) {

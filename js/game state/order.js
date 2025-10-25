@@ -8,6 +8,8 @@ winning_score = 21;
 
 current_round = 1;
 
+window.max_upgrades_amount = 2;
+
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -60,6 +62,7 @@ async function start_turn(score) {
 
     if (hands_amount <= 0 || score >= winning_score) {
         await win_round(score);
+        return;
     } else {
         hands_amount -= 1;
     }
@@ -76,9 +79,6 @@ async function start_turn(score) {
 
 
 async function page_just_loaded() {
-    overlay.style.zIndex = -10;
-    overlay.style.opacity = 0;
-
     screen_text_p.innerHTML = "<b>START</b>";
     
     
@@ -86,7 +86,7 @@ async function page_just_loaded() {
     screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
     screen_text.style.animationIterationCount = "1";
 
-    await delay(1000);
+    await screen_light();
 
     start_turn();
 
@@ -108,6 +108,8 @@ async function win_round(score) {
         // Player wins the round
         await won_round();
         await reset();
+
+        // start_turn(0);
     } else {
         // Player loses the round
 
@@ -131,11 +133,11 @@ async function win_round(score) {
 }
 
 async function won_round() {
-    hands_amount = max_hands_amount - 1;
+    hands_amount = max_hands_amount;
     winning_score += 10;
     current_round += 1;
 
-    total_hands_text.textContent = hands_amount + 1;
+    total_hands_text.textContent = hands_amount;
     score_to_beat_amount_text.textContent = winning_score;
     round_current.textContent = current_round;
 
@@ -150,16 +152,23 @@ async function won_round() {
     screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
     screen_text.style.animationIterationCount = "1";
 
-    await delay(2500*(1/animation_speed));
-    screen_text.style.animation = "";
+    await delay(1000*(1/animation_speed));
+
+    await choose_upgrade_setup();
 }
 
 
 
 
 async function screen_darker(amount){
-    overlay.style.zIndex = 10000000000000;
+    overlay.style.zIndex = 10;
     overlay.style.opacity = amount;
     
+    await delay(1000);
+}
+
+async function screen_light(){
+    overlay.style.zIndex = -10;
+    overlay.style.opacity = 0;
     await delay(1000);
 }

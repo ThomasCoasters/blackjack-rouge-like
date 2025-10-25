@@ -1,4 +1,4 @@
-function show_Card_Info(card, name, text, card_raw = null) {
+function show_Card_Info(card, name, text, card_raw = null, zIndex=4) {
     const infoBox = document.createElement("div");
     infoBox.className = "card-info-box";
 
@@ -14,9 +14,11 @@ function show_Card_Info(card, name, text, card_raw = null) {
     infoBox.style.top = (rect.bottom + 5) + "px"; // 5px below the card
     infoBox.style.left = (rect.left - 100) + "px"; // center the box
 
+    infoBox.style.zIndex = zIndex;
+
     document.body.appendChild(infoBox);
 
-    look_for_special_hover_texts(card, card_raw, infoBox);
+    look_for_special_hover_texts(card, card_raw, infoBox, zIndex);
 }
 
 function hide_Card_Info() {
@@ -55,7 +57,7 @@ function text_color_change(text) {
 
 
 
-function look_for_special_hover_texts(card, card_raw, infoBox) {
+function look_for_special_hover_texts(card, card_raw, infoBox, zIndex) {
     if (!card_raw) return;
 
 
@@ -79,14 +81,16 @@ function look_for_special_hover_texts(card, card_raw, infoBox) {
     }
 
     if (specials.length > 0) {
-        special_hover_texts(specials, specials_names, card, infoBox);
+        special_hover_texts(specials, specials_names, card, infoBox, zIndex);
     }
 }
 
 
-function special_hover_texts(specials, specials_names, card, infoBox) {
+function special_hover_texts(specials, specials_names, card, infoBox, zIndex) {
     const specialBox = document.createElement("div");
     specialBox.className = "card-special-box";
+
+    specialBox.style.zIndex = zIndex;
 
     for (let i = 0; i < specials.length; i++) {
         const coloredName = text_color_change(specials_names[i]);

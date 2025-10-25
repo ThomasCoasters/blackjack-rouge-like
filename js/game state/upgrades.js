@@ -1,0 +1,161 @@
+const upgrade_container = document.getElementById("upgrade_container");
+
+const all_upgrades = {
+    "normal_cards": [{"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"}, {"suit": "hearts", "value": "4", "hover_name": "4 of hearts", "hover_text": "hearts card with an value of 4"}, {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"}, {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"}, {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
+	{"suit": "diamonds", "value": "ace", "hover_name": "ace of diamonds", "hover_text": "diamonds card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "diamonds", "value": "2", "hover_name": "2 of diamonds", "hover_text": "diamonds card with an value of 2"}, {"suit": "diamonds", "value": "3", "hover_name": "3 of diamonds", "hover_text": "diamonds card with an value of 3"}, {"suit": "diamonds", "value": "4", "hover_name": "4 of diamonds", "hover_text": "diamonds card with an value of 4"}, {"suit": "diamonds", "value": "5", "hover_name": "5 of diamonds", "hover_text": "diamonds card with an value of 5"}, {"suit": "diamonds", "value": "6", "hover_name": "6 of diamonds", "hover_text": "diamonds card with an value of 6"}, {"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "diamonds", "value": "8", "hover_name": "8 of diamonds", "hover_text": "diamonds card with an value of 8"}, {"suit": "diamonds", "value": "9", "hover_name": "9 of diamonds", "hover_text": "diamonds card with an value of 9"}, {"suit": "diamonds", "value": "10", "hover_name": "10 of diamonds", "hover_text": "diamonds card with an value of 10"}, {"suit": "diamonds", "value": "jack", "hover_name": "jack of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "queen", "hover_name": "queen of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "king", "hover_name": "king of diamonds", "hover_text": "diamonds face card with an value of 10"},
+	{"suit": "spades", "value": "ace", "hover_name": "ace of spades", "hover_text": "spades card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "spades", "value": "2", "hover_name": "2 of spades", "hover_text": "spades card with an value of 2"}, {"suit": "spades", "value": "3", "hover_name": "3 of spades", "hover_text": "spades card with an value 3"}, {"suit": "spades", "value": "4", "hover_name": "4 of spades", "hover_text": "spades card with an value of 4"}, {"suit": "spades", "value": "5", "hover_name": "5 of spades", "hover_text": "spades card with an value of 5"}, {"suit": "spades", "value": "6", "hover_name": "6 of spades", "hover_text": "spades card with an value of 6"}, {"suit": "spades", "value": "7", "hover_name": "7 of spades", "hover_text": "spades card with an value of 7"}, {"suit": "spades", "value": "8", "hover_name": "8 of spades", "hover_text": "spades card with an value of 8"}, {"suit": "spades", "value": "9", "hover_name": "9 of spades", "hover_text": "spades card with an value of 9"}, {"suit": "spades", "value": "10", "hover_name": "10 of spades", "hover_text": "spades card with an value of 10"}, {"suit": "spades", "value": "jack", "hover_name": "jack of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "queen", "hover_name": "queen of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "king", "hover_name": "king of spades", "hover_text": "spades face card with an value of 10"},
+	{"suit": "clubs", "value": "ace", "hover_name": "ace of clubs", "hover_text": "clubs card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "clubs", "value": "2", "hover_name": "2 of clubs", "hover_text": "clubs card with an value of 2"}, {"suit": "clubs", "value": "3", "hover_name": "3 of clubs", "hover_text": "clubs card with an value 3"}, {"suit": "clubs", "value": "4", "hover_name": "4 of clubs", "hover_text": "clubs card with an value of 4"}, {"suit": "clubs", "value": "5", "hover_name": "5 of clubs", "hover_text": "clubs card with an value of 5"}, {"suit": "clubs", "value": "6", "hover_name": "6 of clubs", "hover_text": "clubs card with an value of 6"}, {"suit": "clubs", "value": "7", "hover_name": "7 of clubs", "hover_text": "clubs card with an value of 7"}, {"suit": "clubs", "value": "8", "hover_name": "8 of clubs", "hover_text": "clubs card with an value of 8"}, {"suit": "clubs", "value": "9", "hover_name": "9 of clubs", "hover_text": "clubs card with an value of 9"}, {"suit": "clubs", "value": "10", "hover_name": "10 of clubs", "hover_text": "clubs card with an value of 10"}, {"suit": "clubs", "value": "jack", "hover_name": "jack of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "queen", "hover_name": "queen of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "king", "hover_name": "king of clubs", "hover_text": "clubs face card with an value of 10"}
+    ],
+
+    "special_cards": [
+    {"suit": "special_row_1", "value": "special_value:random", "hover_name": "a random joker", "hover_text": "'they locked me in, but I got free, free. Now I make chaos, chaos with my value of ???'", "special": random_score, "special_location": "score"}, // jevil deltarune reference
+    {"suit": "special_row_1", "value": "special_value:5", "reusing": true, "hover_name": "reusable waste", "hover_text": "card that can be reused with no suit but a value of 5"},
+    {"suit": "special_row_1", "value": "special_value:5", "retrigger": 1, "hover_name": "reusable waste", "hover_text": "card that can be reused with no suit but a value of 5"},
+    ],
+
+    "permanent_upgrades": [
+    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value you can have before busting by 5", "effect": increase_max_total_value},
+    // {"value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.1", "effect": increase_blackjack_bonus},
+    // {"value": "extra_upgrade_slot", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1", "effect": extra_upgrade_slot},
+    ],
+
+
+};
+
+
+const col_map = {
+    "ace": 0,
+    "2": 1,
+    "3": 2,
+    "4": 3,
+    "5": 4,
+    "6": 5,
+    "7": 6,
+    "8": 7,
+    "9": 8,
+    "10": 9,
+    "jack": 10,
+    "queen": 11,
+    "king": 12,
+
+
+    "special_value:random": 0,
+    "special_value:5": 0,
+    "increase_max_total_value": 0
+};
+
+
+const row_map = {
+    "hearts": 2,
+    "diamonds": 1,
+    "spades": 3,
+    "clubs": 0,
+
+    "special_row_1": 4,
+    "permanent_upgrade_row_1": 4
+
+};
+
+
+
+
+
+
+async function choose_upgrade_setup() {
+    screen_darker(0.8);
+
+    await delay(1000);
+
+    await choose_upgrade_type();
+}
+
+
+async function choose_upgrade_type() {
+    const upgradeTypes = Object.keys(all_upgrades);
+    
+    for (let i = 0; i < window.max_upgrades_amount; i++) {
+        const randomIndex = Math.floor(Math.random() * upgradeTypes.length);
+        const selectedType = upgradeTypes[randomIndex];
+
+        alert(JSON.stringify(selectedType));
+        
+        const upgrade = await choose_upgrade(selectedType);
+
+        alert(JSON.stringify(upgrade));
+
+        upgrade_container.appendChild(await create_upgrade_card(upgrade, selectedType));
+    }
+}
+
+
+async function choose_upgrade(type) {
+    const upgradeArray = all_upgrades[type];
+    const upgrade_index = Math.floor(Math.random() * upgradeArray.length);
+
+    return upgradeArray[upgrade_index];
+}
+
+async function create_upgrade_card(upgrade, selectedType) {
+    // Create new card
+    const newCard = document.createElement("div");
+    newCard.className = "upgrade_card";
+
+    newCard.style.zIndex = 13;
+  
+    // Get selected values
+    const col = col_map[upgrade.value];
+    const row = row_map[upgrade.suit];
+
+    // Calculate position
+    const x = -col * cardWidth;
+    const y = -row * cardHeight;
+
+    // Set background position
+    newCard.style.backgroundPosition = `${x}px ${y}px`;
+
+
+    if (!upgrade.hover_name && !upgrade.hover_text) { // failsafe for if it doesn't exist
+        upgrade.hover_name = "Unknown";
+        upgrade.hover_text = "No description available.";
+    }
+
+    // Add hover event listeners to show card info
+
+    newCard.addEventListener('mouseover', () => {
+        show_Card_Info(newCard, upgrade.hover_name, upgrade.hover_text, upgrade, 14);
+    });
+
+    newCard.addEventListener('mouseout', () => {
+        hide_Card_Info();
+    });
+
+
+    newCard.addEventListener('click', async () => {
+        await upgrade_card_chosen(upgrade, selectedType);
+    });
+
+    return newCard;
+}
+
+
+
+async function upgrade_card_chosen(upgrade, upgrade_type) {
+    if (upgrade.effect) {
+        await upgrade.effect();
+    }
+
+    if (upgrade_type === "special_cards" || upgrade_type === "normal_cards") {
+        window.available_cards.push(upgrade);
+    }
+
+    upgrade_container.innerHTML = "";
+    hide_Card_Info();
+    await screen_light();
+    start_turn();
+}
+
+
+
+async function increase_max_total_value() {
+    window.max_total_value += 5;
+}
