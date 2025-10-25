@@ -19,7 +19,11 @@ const all_upgrades = {
     {"suit": "permanent_upgrade_row_1", "value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.5", "effect": increase_blackjack_bonus},
     {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra upgrade slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 2", "effect": extra_upgrade_slot_but_decrease_max_total_value},
     {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_negative_blackjack", "hover_name": "extra hands", "hover_text": "increases number of hands by 1 but decrease blackjack multiplier to -0.5 (losing points for blackjack)", "effect": increase_hands_but_negative_blackjack},
-    ],
+    {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_less_discards", "hover_name": "trade", "hover_text": "increases number of hands by 1 but have 1 less discard", "effect": increase_hands_but_less_discards},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_less_hands", "hover_name": "trade", "hover_text": "increases number of discards by 1 but have 1 less hand", "effect": increase_discards_but_less_hands},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 3 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
+    {"suit": "permanent_upgrade_row_1", "value": "1_hand_now", "hover_name": "glass hand", "hover_text": "this round you have 1 hand but after this round you will get 2", "effect": hand_now_1_later_2},
+],
 
 
 };
@@ -49,6 +53,9 @@ const col_map = {
     "increase_blackjack_bonus": 0,
     "extra_upgrade_slot_but_decrease_max_total_value": 0,
     "increase_hands_but_negative_blackjack": 0,
+
+    "increase_hands_but_less_discards": 0,
+    "increase_discards_but_less_hands": 0
 };
 
 
@@ -185,4 +192,30 @@ async function increase_hands_but_negative_blackjack() {
     window.hands_amount += 1;
     window.max_hands_amount += 1;
     window.blackjack_bonus_multiplier = -0.5;
+}
+
+async function increase_hands_but_less_discards() {
+    if (window.discards_amount <= 0) { return; } // prevent negative discards
+    window.hands_amount += 1;
+    window.max_hands_amount += 1;
+    window.discards_amount -= 1;
+    window.max_discards_amount -= 1;
+}
+async function increase_discards_but_less_hands() {
+    if (window.hands_amount <= 1) { return; } // prevent having no hands
+    window.discards_amount += 1;
+    window.max_discards_amount += 1;
+    window.hands_amount -= 1;
+    window.max_hands_amount -= 1;
+}
+
+async function increase_discards_but_draw_more() {
+    window.discards_amount += 3;
+    window.max_discards_amount += 3;
+    window.forced_amount_draw += 5;
+}
+
+async function hand_now_1_later_2() {
+    window.hands_amount = 1;
+    window.max_hands_amount += 2;
 }
