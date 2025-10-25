@@ -53,6 +53,8 @@ const col_map = {
     "increase_blackjack_bonus": 0,
     "extra_upgrade_slot_but_decrease_max_total_value": 0,
     "increase_hands_but_negative_blackjack": 0,
+    "increase_discards_but_draw_more": 0,
+    "1_hand_now": 0,
 
     "increase_hands_but_less_discards": 0,
     "increase_discards_but_less_hands": 0
