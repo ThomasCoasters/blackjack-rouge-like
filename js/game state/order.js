@@ -4,7 +4,7 @@ window.max_total_value = 21;
 
 window.blackjack_bonus_multiplier = 1.5;
 
-winning_score = 21;
+winning_score = 31;
 
 current_round = 1;
 
@@ -17,6 +17,7 @@ const overlay = document.getElementById('overlay');
 
 const total_hands_text = document.getElementById('total_hands_text');
 const score_to_beat_amount_text = document.getElementById('score_to_beat_amount');
+const blackjack_bonus_text = document.getElementById('blackjack_bonus_text');
 
 const round_current = document.getElementById('round_current');
 
@@ -63,6 +64,7 @@ async function start_turn(score) {
     total_hands_text.textContent = hands_amount;
     score_to_beat_amount_text.textContent = winning_score;
     round_current.textContent = current_round;
+    blackjack_bonus_text.textContent = "×" + window.blackjack_bonus_multiplier;
 
     total_discards_text.textContent = discards_amount;
 
