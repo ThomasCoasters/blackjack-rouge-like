@@ -1,5 +1,6 @@
 var background_audio = new Audio('../../../audio/music/Grasswalk.mp3');
 var freedom_motif_played = false;
+var currentTime = 0;
 
 function background_music_play_normal() {
     background_audio.loop = true;
@@ -8,7 +9,7 @@ function background_music_play_normal() {
 }
 
 function background_music_play_freedom() {
-    const currentTime = background_audio.currentTime;
+    currentTime = background_audio.currentTime;
     background_audio.pause();
     background_audio.src = '../../../audio/music/Grasswalk freedom motif.mp3';
     background_audio.loop = true;
@@ -31,4 +32,32 @@ function play_freedom_motif() {
         background_audio.volume = 0.2;
         audio.pause();
     }, 3000);
+}
+
+
+
+function start_upgrade_music() {
+    currentTime = background_audio.currentTime;
+    background_audio.pause();
+    if (freedom_motif_played) {
+        background_audio.src = '../../../audio/music/Zen Garden freedom motif.mp3';
+    }else {
+        background_audio.src = '../../../audio/music/Zen Garden.mp3';
+    }
+    background_audio.loop = true;
+    background_audio.play();
+    background_audio.volume = 0.3;
+}
+
+
+function stop_upgrade_music() {
+    background_audio.pause();
+    if (freedom_motif_played) {
+        background_audio.src = '../../../audio/music/Grasswalk freedom motif.mp3';
+    }else {
+        background_audio.src = '../../../audio/music/Grasswalk.mp3';
+    }
+    background_audio.loop = true;
+    background_audio.currentTime = currentTime;
+    background_audio.play();
 }
