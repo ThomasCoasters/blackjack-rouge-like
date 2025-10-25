@@ -1,4 +1,4 @@
-var forced_amount_draw = 2;
+window.forced_amount_draw = 2;
 
 window.max_total_value = 21;
 
@@ -21,8 +21,8 @@ const score_to_beat_amount_text = document.getElementById('score_to_beat_amount'
 const round_current = document.getElementById('round_current');
 
 
-var hands_amount = 3;
-var max_hands_amount = 3;
+window.hands_amount = 3;
+window.max_hands_amount = 3;
 
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
@@ -85,6 +85,8 @@ async function page_just_loaded() {
     screen_text.style.animation = "screen_text_animation";
     screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
     screen_text.style.animationIterationCount = "1";
+
+    background_music_play_normal();
 
     await screen_light();
 

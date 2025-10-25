@@ -40,12 +40,12 @@ function text_color_change(text) {
 
     new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
     new_text = new_text.replace(/(score)/g, '<span style="color: lightblue;">$1</span>');
-    new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0)/g, '<span style="color: darkblue;">$1</span>');
+    new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0|\.)/g, '<span style="color: darkblue;">$1</span>');
 
     new_text = new_text.replace(/(face|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');
     new_text = new_text.replace(/(card)/g, '<span style="color: green;">$1</span>');
 
-    new_text = new_text.replace(/(retrigger)/g, '<span style="color: purple;">$1</span>');
+    new_text = new_text.replace(/(retrigger|retriggerable)/g, '<span style="color: purple;">$1</span>');
 
     new_text = new_text.replace(/(a random joker|\?\?\?)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
     new_text = new_text.replace(/(chaos, chaos|free, free)/g, '<span style="background: linear-gradient(to top, red, purple);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
