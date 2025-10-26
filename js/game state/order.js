@@ -8,7 +8,7 @@ winning_score = 31;
 
 current_round = 1;
 
-window.max_upgrades_amount = 2;
+window.max_upgrades_amount = 3;
 
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));

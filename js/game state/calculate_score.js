@@ -133,7 +133,7 @@ async function random_score() {
 }
 
 async function retrigger_all_kings() {
-    const cardArrays = [window.held_cards, window.available_cards, used_cards, window.all_upgrades];
+    const cardArrays = [window.held_cards, window.available_cards, used_cards, window.all_upgrades["normal_cards"]];
     
     for (const cardArray of cardArrays) {
         for (let i = 0; i < cardArray.length; i++) {

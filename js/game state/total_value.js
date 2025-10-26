@@ -18,7 +18,8 @@ const value_per_card = {
     "special_value:increase_max": 0,
 
     "special_value:2": 2,
-    "special_value:5": 5
+    "special_value:5_1": 5,
+    "special_value:5_2": 5,
 };
 
 var increase_max_total_value_count = 0;
