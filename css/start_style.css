@@ -28,12 +28,12 @@ body {
     /* https://www.w3schools.com/Cssref/css_pr_aspect-ratio.php */
     aspect-ratio: 88 / 124;
 
-    background-image: url('../images/cards/Poker_cards.png'); /*path to the image*/
+    background-image: url('../images/cards/all_cards.png'); /*path to the image*/
     background-repeat: no-repeat;
 
     background-position: 0 0; /*top left card (default position)*/
 
-    background-size: 1300% 500%;
+    background-size: 1300% 600%;
 
     transition: transform 0.2s opacity 0.2s, box-shadow 0.2s;
 

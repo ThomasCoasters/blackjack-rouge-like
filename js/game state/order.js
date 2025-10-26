@@ -59,6 +59,7 @@ if (urlvars) {
 
 async function start_turn(score) {
     // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.
+    window.discards_amount += window.gain_discard_each_hand_amount;
     window.isDealing = true;
 
     total_hands_text.textContent = hands_amount;

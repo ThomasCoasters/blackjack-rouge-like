@@ -44,7 +44,7 @@ body {
     width: 88px;  /* card width */
     height: 124px; /* card height */
     z-index: 2;
-    background-image: url('../images/cards/Poker_cards.png'); /*path to the image*/
+    background-image: url('../images/cards/all_cards.png'); /*path to the image*/
     background-repeat: no-repeat;
     background-position: 0 0; /*top left card (default position)*/
     transition: transform 0.2s opacity 0.2s, box-shadow 0.2s;
@@ -488,7 +488,7 @@ body {
     width: 88px;  /* card width */
     height: 124px; /* card height */
     z-index: 2;
-    background-image: url('../images/upgrades/upgrade_cards.png'); /*path to the image*/
+    background-image: url('../images/cards/all_cards.png'); /*path to the image*/
     background-repeat: no-repeat;
     background-position: 0 0; /*top left card (default position)*/
     transition: transform 0.2s opacity 0.2s, box-shadow 0.2s;

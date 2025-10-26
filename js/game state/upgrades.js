@@ -1,5 +1,7 @@
 const upgrade_container = document.getElementById("upgrade_container");
 
+window.gain_discard_each_hand_amount = 0;
+
 window.all_upgrades = {
     "normal_cards": [{"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"}, {"suit": "hearts", "value": "4", "hover_name": "4 of hearts", "hover_text": "hearts card with an value of 4"}, {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"}, {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"}, {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
 	{"suit": "diamonds", "value": "ace", "hover_name": "ace of diamonds", "hover_text": "diamonds card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "diamonds", "value": "2", "hover_name": "2 of diamonds", "hover_text": "diamonds card with an value of 2"}, {"suit": "diamonds", "value": "3", "hover_name": "3 of diamonds", "hover_text": "diamonds card with an value of 3"}, {"suit": "diamonds", "value": "4", "hover_name": "4 of diamonds", "hover_text": "diamonds card with an value of 4"}, {"suit": "diamonds", "value": "5", "hover_name": "5 of diamonds", "hover_text": "diamonds card with an value of 5"}, {"suit": "diamonds", "value": "6", "hover_name": "6 of diamonds", "hover_text": "diamonds card with an value of 6"}, {"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "diamonds", "value": "8", "hover_name": "8 of diamonds", "hover_text": "diamonds card with an value of 8"}, {"suit": "diamonds", "value": "9", "hover_name": "9 of diamonds", "hover_text": "diamonds card with an value of 9"}, {"suit": "diamonds", "value": "10", "hover_name": "10 of diamonds", "hover_text": "diamonds card with an value of 10"}, {"suit": "diamonds", "value": "jack", "hover_name": "jack of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "queen", "hover_name": "queen of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "king", "hover_name": "king of diamonds", "hover_text": "diamonds face card with an value of 10"},
@@ -16,16 +18,17 @@ window.all_upgrades = {
     ],
 
     "permanent_upgrades": [
-    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 2", "effect": increase_max_total_value},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value_but_less_discards", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 5 but have 1 less discard", "effect": increase_max_total_value_but_less_discards},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.5", "effect": increase_blackjack_bonus},
-    {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 3", "effect": extra_upgrade_slot_but_decrease_max_total_value},
-    {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_hands", "hover_name": "extra slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum number of hands decreases by 1", "effect": extra_upgrade_slot_but_decrease_hands},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_negative_blackjack", "hover_name": "extra hands", "hover_text": "increases number of hands by 1 but decrease blackjack multiplier to -0.5 (losing points for blackjack)", "effect": increase_hands_but_negative_blackjack},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_less_discards", "hover_name": "trade", "hover_text": "increases number of hands by 1 but have 1 less discard", "effect": increase_hands_but_less_discards},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_less_hands", "hover_name": "trade", "hover_text": "increases number of discards by 1 but have 1 less hand", "effect": increase_discards_but_less_hands},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 3 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
-    {"suit": "permanent_upgrade_row_1", "value": "1_hand_now", "hover_name": "glass hand", "hover_text": "this round you have 1 hand but after this round you will get 2", "effect": hand_now_1_later_2},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 2", "effect": increase_max_total_value},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value_but_less_discards", "hover_name": "increase max total value", "hover_text": "increases the maximum total value by 5 but have 1 less discard", "effect": increase_max_total_value_but_less_discards},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_blackjack_bonus", "hover_name": "increase blackjack bonus", "hover_text": "increases the blackjack bonus multiplier by 0.5", "effect": increase_blackjack_bonus},
+    // {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_max_total_value", "hover_name": "extra slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum total value decreases by 3", "effect": extra_upgrade_slot_but_decrease_max_total_value},
+    // {"suit": "permanent_upgrade_row_1", "value": "extra_upgrade_slot_but_decrease_hands", "hover_name": "extra slot", "hover_text": "increases the amount of upgrades you can choose from by 1 but maximum number of hands decreases by 1", "effect": extra_upgrade_slot_but_decrease_hands},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_negative_blackjack", "hover_name": "extra hands", "hover_text": "increases number of hands by 1 but decrease blackjack multiplier to -0.5 (losing points for blackjack)", "effect": increase_hands_but_negative_blackjack},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_less_discards", "hover_name": "trade", "hover_text": "increases number of hands by 1 but have 1 less discard", "effect": increase_hands_but_less_discards},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_less_hands", "hover_name": "trade", "hover_text": "increases number of discards by 1 but have 1 less hand", "effect": increase_discards_but_less_hands},
+    // {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 3 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
+    // {"suit": "permanent_upgrade_row_1", "value": "1_hand_now", "hover_name": "glass hand", "hover_text": "this round you have 1 hand but after this round you will get 2", "effect": hand_now_1_later_2},
+    {"suit": "permanent_upgrade_row_1", "value": "gain_discard_each_hand", "hover_name": "tactician", "hover_text": "gain a discard every round but start with 2 less discards", "effect": gain_discard_each_hand},
 ],
 
 
@@ -65,7 +68,8 @@ const col_map = {
     "increase_discards_but_draw_more": 6,
     "1_hand_now": 7,
     "increase_hands_but_less_discards": 8,
-    "increase_discards_but_less_hands": 9
+    "increase_discards_but_less_hands": 9,
+    "gain_discard_each_hand": 10
 };
 
 
@@ -234,4 +238,10 @@ async function increase_discards_but_draw_more() {
 async function hand_now_1_later_2() {
     window.hands_amount = 1;
     window.max_hands_amount += 2;
+}
+
+async function gain_discard_each_hand() {
+    window.discards_amount -= 3;
+    window.max_discards_amount -= 3;
+    window.gain_discard_each_hand_amount += 1;
 }
