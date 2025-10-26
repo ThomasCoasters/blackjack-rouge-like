@@ -46,7 +46,8 @@ const value_map = {
   "special_value:none": 1,
   "special_value:5_1": 2,
   "special_value:5_2": 3,
-  "special_value:2": 4
+  "special_value:2": 4,
+  "special_value:increase_max": 5,
 };
 
 

@@ -30,6 +30,7 @@ const score_per_card = {
 
     "special_value:random": 0,
     "special_value:none": 0,
+    "special_value:increase_max": 0,
 
     "special_value:5": 5,
     "special_value:2": 2
@@ -54,6 +55,8 @@ const priority_list = {
     "ace": 14,
     "special_value:random": 15,
     "special_value:none": 20,
+
+    "special_value:increase_max": 0,
 
 
     "special_value:5": 15,
@@ -211,9 +214,14 @@ async function delete_old_card(type, to_be_deleted) {
 
 async function delete_all_cards_of_type(type) {
     var card = document.getElementsByClassName(type);
+
+    var anim_speed = window.animation_speed;
     while (card.length > 0) {
+        if (anim_speed > 5) anim_speed *= 1.5;
+        else anim_speed += 2;
+
         card[0].parentNode.removeChild(card[0]);
-        await delay(100*(1/window.animation_speed));
+        await delay(50*(1/anim_speed));
     }
 }
 

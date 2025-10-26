@@ -15,6 +15,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:5_1", "reusing": true, "hover_name": "reusable waste", "hover_text": "card that can be reused with a value of 5"},
     {"suit": "special_row_1", "value": "special_value:5_2", "retrigger": 1, "hover_name": "retriggerable trash", "hover_text": "card that gets retriggered with a value of 5"},
     {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "scarp drone", "hover_text": "reusable card with a value of 2 but gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
+    {"suit": "special_row_1", "value": "special_value:increase_max", "hover_name": "overclock Battery", "hover_text": "this hand only, increase max total value by +7", "special": increase_max_total_value_7, "special_location": "total value"},
     ],
 
     "permanent_upgrades": [
@@ -56,6 +57,7 @@ const col_map = {
     "special_value:5_1": 2,
     "special_value:5_2": 3,
     "special_value:2": 4,
+    "special_value:increase_max": 5,
 
 
 
@@ -90,6 +92,8 @@ const row_map = {
 
 
 async function choose_upgrade_setup() {
+    upgrade_container.style.pointerEvents = "auto";
+
     screen_darker(0.8);
 
     start_upgrade_music();
@@ -167,6 +171,8 @@ async function create_upgrade_card(upgrade, selectedType) {
 
 async function upgrade_card_chosen(upgrade, upgrade_type) {
     stop_upgrade_music();
+    upgrade_container.style.pointerEvents = "none";
+
 
     if (upgrade.effect) {
         await upgrade.effect();

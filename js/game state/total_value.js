@@ -15,11 +15,13 @@ const value_per_card = {
 
     "special_value:random": 0,
     "special_value:none": 0,
-    "special_value:2": 2,
+    "special_value:increase_max": 0,
 
+    "special_value:2": 2,
     "special_value:5": 5
 };
 
+var increase_max_total_value_count = 0;
 var total_value = 0;
 var ace_count = 0;
 
@@ -27,6 +29,8 @@ var ace_count = 0;
 async function update_Total_Value(from_calculate_score = false) {
     total_value = 0;
     ace_count = 0;
+    window.max_total_value -= increase_max_total_value_count;
+    increase_max_total_value_count = 0;
 
     const specialCards = [];
 
@@ -47,6 +51,8 @@ async function update_Total_Value(from_calculate_score = false) {
         const specialFunction = specialCards[i];
         specialFunction();
     }
+
+    window.max_total_value += increase_max_total_value_count; // total value special handling
 
 
     // ace special handling
@@ -74,4 +80,8 @@ async function update_Total_Value(from_calculate_score = false) {
 
 function ace_special() {
     ace_count += 1;
+}
+
+function increase_max_total_value_7() {
+    increase_max_total_value_count += 7;
 }
