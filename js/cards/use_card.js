@@ -31,7 +31,8 @@ const score_per_card = {
     "special_value:random": 0,
     "special_value:none": 0,
 
-    "special_value:5": 5
+    "special_value:5": 5,
+    "special_value:2": 2
 };
 
 
@@ -55,7 +56,8 @@ const priority_list = {
     "special_value:none": 20,
 
 
-    "special_value:5": 15
+    "special_value:5": 15,
+    "special_value:2": 16
 }
 
 

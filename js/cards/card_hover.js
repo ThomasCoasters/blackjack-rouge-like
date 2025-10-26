@@ -42,16 +42,22 @@ function text_color_change(text) {
     new_text = new_text.replace(/(hearts|diamonds)/g, '<span style="color: red;">$1</span>');
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
 
-    new_text = new_text.replace(/(value)/g, '<span style="color: blue;">$1</span>');
-    new_text = new_text.replace(/(score)/g, '<span style="color: lightblue;">$1</span>');
+    new_text = new_text.replace(/(total|value)/g, '<span style="color: blue;">$1</span>');
+    new_text = new_text.replace(/(score|hands|hand)/g, '<span style="color: lightblue;">$1</span>');
 
     
     new_text = new_text.replace(/(blackjack)/g, '<span style="background: linear-gradient(to top, orange, gold);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
 
     new_text = new_text.replace(/(?<!black)(face|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');
-    new_text = new_text.replace(/(card)/g, '<span style="color: green;">$1</span>');
+    new_text = new_text.replace(/((?:dis)?card(?:s)?)/g, '<span style="color: MediumSpringGreen;">$1</span>');
 
-    new_text = new_text.replace(/\bretrigger(?:able)?\b/gi, '<span style="color: purple;">$&</span>');
+    new_text = new_text.replace(/\bretrigger(?:able)?\b/gi, '<span style="background: linear-gradient(to top, purple, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
+    new_text = new_text.replace(/\breus(?:able)?(?:ing)?(?:ed)?\b/gi, '<span style="background: linear-gradient(to top, Fuchsia, indigo);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
+
+    new_text = new_text.replace(/(bust|win)/g, '<span style="background: linear-gradient(to right, MediumTurquoise, DodgerBlue);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
+
+    new_text = new_text.replace(/\b(?:increas(?:e|es|ing)?|max(?:imum)?)\b/gi, '<span style="background: linear-gradient(to top, LawnGreen, LightGreen);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
+    new_text = new_text.replace(/\b(?:decreas(?:e|es|ing)?|min(?:imum)?|but)\b/gi, '<span style="background: linear-gradient(to top, Salmon, GoldenRod);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
 
     new_text = new_text.replace(/(a random joker|\?\?\?)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
     new_text = new_text.replace(/(chaos, chaos|free, free)/g, '<span style="background: linear-gradient(to top, red, purple);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
