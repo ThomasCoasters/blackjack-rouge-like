@@ -30,6 +30,8 @@ window.all_upgrades = {
     {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 3 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
     {"suit": "permanent_upgrade_row_1", "value": "1_hand_now", "hover_name": "glass hand", "hover_text": "this round you have 1 hand but after this round you will get 2", "effect": hand_now_1_later_2},
     {"suit": "permanent_upgrade_row_1", "value": "gain_discard_each_hand", "hover_name": "tactician", "hover_text": "gain a discard every round but start with 2 less discards", "effect": gain_discard_each_hand},
+    {"suit": "permanent_upgrade_row_1", "value": "less_hands_but_reuse_face_cards", "hover_name": "faces galore", "hover_text": "lose 1 hand but can reuse face cards", "effect": less_hands_but_reuse_face_cards},
+    {"suit": "permanent_upgrade_row_1", "value": "less_hands_and_discards_but_retrigger_face_cards", "hover_name": "faces galore", "hover_text": "lose 1 hand and 1 discard but can retrigger face cards", "effect": less_hands_and_discards_but_retrigger_face_cards},
 ],
 
 
@@ -71,7 +73,9 @@ const col_map = {
     "1_hand_now": 7,
     "increase_hands_but_less_discards": 8,
     "increase_discards_but_less_hands": 9,
-    "gain_discard_each_hand": 10
+    "gain_discard_each_hand": 10,
+    "less_hands_but_reuse_face_cards": 11,
+    "less_hands_and_discards_but_retrigger_face_cards": 12
 };
 
 
@@ -221,14 +225,12 @@ async function increase_hands_but_negative_blackjack() {
 }
 
 async function increase_hands_but_less_discards() {
-    if (window.discards_amount <= 0) { return; } // prevent negative discards
     window.hands_amount += 1;
     window.max_hands_amount += 1;
     window.discards_amount -= 1;
     window.max_discards_amount -= 1;
 }
 async function increase_discards_but_less_hands() {
-    if (window.hands_amount <= 1) { return; } // prevent having no hands
     window.discards_amount += 1;
     window.max_discards_amount += 1;
     window.hands_amount -= 1;
@@ -250,4 +252,36 @@ async function gain_discard_each_hand() {
     window.discards_amount -= 3;
     window.max_discards_amount -= 3;
     window.gain_discard_each_hand_amount += 1;
+}
+
+async function less_hands_but_reuse_face_cards() {
+    window.hands_amount -= 1;
+    window.max_hands_amount -= 1;
+
+    const cardArrays = [window.held_cards, window.available_cards, used_cards, window.all_upgrades["normal_cards"]];
+    
+    for (const cardArray of cardArrays) {
+        for (let i = 0; i < cardArray.length; i++) {
+            if (cardArray[i].value === "king" || cardArray[i].value === "queen" || cardArray[i].value === "jack") {
+                cardArray[i].reusing = true;
+            }
+        }
+    }
+}
+
+async function less_hands_and_discards_but_retrigger_face_cards() {
+    window.hands_amount -= 1;
+    window.max_hands_amount -= 1;
+    window.discards_amount -= 1;
+    window.max_discards_amount -= 1;
+    
+    const cardArrays = [window.held_cards, window.available_cards, used_cards, window.all_upgrades["normal_cards"]];
+    
+    for (const cardArray of cardArrays) {
+        for (let i = 0; i < cardArray.length; i++) {
+            if (cardArray[i].value === "king" || cardArray[i].value === "queen" || cardArray[i].value === "jack") {
+                cardArray[i].retrigger = (cardArray[i].retrigger || 0) + 1;
+            }
+        }
+    }
 }
