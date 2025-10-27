@@ -152,6 +152,8 @@ async function scrap_drone_special() {
 }
 
 async function reusable_and_retrigger() {
+    weird_sfx()
+    
     const card = using_cards[Math.floor(Math.random() * using_cards.length)];
 
     card.retrigger = (card.retrigger || 0) + 1;

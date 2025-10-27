@@ -89,3 +89,13 @@ function trobbio_sfx() {
         audio.pause();
     }, 2000);
 }
+
+function weird_sfx() {
+    const audio = new Audio('../../../audio/sfx/weird-route-jingle.mp3');
+    audio.play();
+}
+
+function shock_sfx() {
+    const audio = new Audio('../../../audio/sfx/electricity-charge-sound-effect.mp3');
+    audio.play();
+}
