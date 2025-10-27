@@ -1,4 +1,4 @@
-async function calculate_score(card_index, score_text_scale, is_blackjack) {
+async function calculate_score(card_index, score_text_scale, is_blackjack, retriggering_number = null) {
     let card_score = 0;
 
     
@@ -32,15 +32,18 @@ async function calculate_score(card_index, score_text_scale, is_blackjack) {
 
 
 
+    if (retriggering_number === null) {
+        retriggering_number = card.retrigger || 0;
+    }
 
-    if (card.retrigger > 0) {
-        using_cards[card_index].retrigger -= 1;
+    if (card.retrigger > 0 && retriggering_number > 0) {
+        retriggering_number -= 1;
 
         await delay(250 * (1 / window.animation_speed));
 
         use_cardsContainer.children[card_index].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
 
-        await calculate_score(card_index, score_text_scale, is_blackjack);
+        await calculate_score(card_index, score_text_scale, is_blackjack, retriggering_number);
     }
 }
 
