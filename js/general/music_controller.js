@@ -48,6 +48,7 @@ function background_music_trobbio() {
 
 
 function start_upgrade_music() {
+    trobbio_motif_played = false;
     if (currentTime === 0) { currentTime = background_audio.currentTime; }
     background_audio.pause();
     if (freedom_motif_played) {
