@@ -85,8 +85,8 @@ body {
 
 
 .deck_cards{
-    bottom: 5%;
-    right: 3%;
+    bottom: 3%;
+    right: 4%;
 
     width: 88px;  /* card width */
     height: 124px; /* card height */
@@ -112,6 +112,30 @@ body {
 #deck_cards:hover {
     transform: scale(1.25);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cards_left_text{
+    display: flex;
+    
+    bottom: 16%;
+    right: 2.4%;
+
+    min-width: 7%;
+    justify-content: center;
+    align-items: center;
+
+    line-height: 0;
+
+    height: fit-content;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 5px;
+
+    position: absolute; /*makes it possible to move the card*/
 }
 
 
@@ -167,7 +191,7 @@ body {
 
 .card-info-box {
     position: fixed;
-    background-color: rgb(156, 156, 156);
+    background-color: rgb(135, 135, 135);
     border: 2px solid rgb(0, 0, 0);
     padding: 10px;
     border-radius: 15px;

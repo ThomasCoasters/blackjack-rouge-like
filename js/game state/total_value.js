@@ -29,6 +29,8 @@ var ace_count = 0;
 
 
 async function update_Total_Value(from_calculate_score = false) {
+    amount_cards_in_deck_text.textContent = (window.available_cards.length) + "/" + (window.available_cards.length + used_cards.length);
+
     total_value = 0;
     ace_count = 0;
     window.max_total_value -= increase_max_total_value_count;

@@ -109,12 +109,6 @@ function create_new_card(card, container, new_class_name) {
     card.hover_text = "No description available.";
   }
 
-  if (new_class_name === "used card" && !card.reusing) { // only reusing cards (that are used) get the hover text
-    newCard.style.pointerEvents = "none"; // disable hover effects
-    container.appendChild(newCard);
-    return; 
-  }
-
   // Add hover event listeners to show card info
 
   newCard.addEventListener('mouseover', () => {
@@ -125,16 +119,17 @@ function create_new_card(card, container, new_class_name) {
     hide_Card_Info();
   });
 
+  
+  if (new_class_name === "used card") {
+    container.appendChild(newCard);
+    return; 
+  }
+
   newCard.addEventListener('click', async () => {
     await discard_card(new_class_name, [Array.from(container.children).indexOf(newCard)-1]);
   });
-  
-  // Add the new card to the container
-  container.appendChild(newCard);
 
-  if (new_class_name === "used card") {
-    return; 
-  }
+  container.appendChild(newCard);
 
   update_Total_Value();
 }

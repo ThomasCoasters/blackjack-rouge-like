@@ -16,7 +16,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:5_2", "retrigger": 1, "hover_name": "amazing performer", "hover_text": "this performance is so good that it got a 5/5 score and can be retriggered once", "special": trobbio_sfx, "special_location": "score"}, // trobbio refrence
     {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "scarp drone", "hover_text": "reusable card with a value of 2 but gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
     {"suit": "special_row_1", "value": "special_value:increase_max", "hover_name": "overclock Battery", "hover_text": "this hand only, increase max total value by +7", "special": increase_max_total_value_7, "special_location": "total value"},
-    {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "total value"}, // deltarune reference
+    {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "score"}, // deltarune reference
     ],
 
     "permanent_upgrades": [

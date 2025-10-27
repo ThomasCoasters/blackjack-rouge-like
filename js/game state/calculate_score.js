@@ -149,7 +149,7 @@ async function scrap_drone_special() {
 }
 
 async function reusable_and_retrigger() {
-    const card = window.held_cards[Math.floor(Math.random() * window.held_cards.length)];
+    const card = using_cards[Math.floor(Math.random() * using_cards.length)];
 
     card.retrigger = (card.retrigger || 0) + 1;
     card.reusing = true;
