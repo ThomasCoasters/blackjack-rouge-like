@@ -48,6 +48,7 @@ const value_map = {
   "special_value:5_2": 3,
   "special_value:2": 4,
   "special_value:increase_max": 5,
+  "special_value:reusable+retrigger": 6,
 };
 
 

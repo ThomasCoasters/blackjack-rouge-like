@@ -147,3 +147,10 @@ async function retrigger_all_kings() {
 async function scrap_drone_special() {
     window.discards_amount += 1;
 }
+
+async function reusable_and_retrigger() {
+    const card = window.held_cards[Math.floor(Math.random() * window.held_cards.length)];
+
+    card.retrigger = (card.retrigger || 0) + 1;
+    card.reusing = true;
+}

@@ -16,6 +16,7 @@ const value_per_card = {
     "special_value:random": 0,
     "special_value:none": 0,
     "special_value:increase_max": 0,
+    "special_value:reusable+retrigger": 0,
 
     "special_value:2": 2,
     "special_value:5_1": 5,
