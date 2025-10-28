@@ -12,7 +12,7 @@ function show_Card_Info(card, name, text, card_raw = null, zIndex=4) {
     const rect = card.getBoundingClientRect();
 
     infoBox.style.top = (rect.bottom + 5) + "px"; // 5px below the card
-    infoBox.style.left = (rect.left - 100) + "px"; // center the box
+    infoBox.style.left = (rect.left - 120) + "px"; // center the box
 
     infoBox.style.zIndex = zIndex;
 
@@ -59,7 +59,7 @@ function text_color_change(text) {
     new_text = new_text.replace(/\b(?:increas(?:e|es|ing)?|max(?:imum)?)\b/gi, '<span style="background: linear-gradient(to top, LawnGreen, LightGreen);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
     new_text = new_text.replace(/\b(?:decreas(?:e|es|ing)?|min(?:imum)?|but)\b/gi, '<span style="background: linear-gradient(to top, Salmon, GoldenRod);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
 
-    new_text = new_text.replace(/(a random joker|\?\?\?)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
+    new_text = new_text.replace(/(a random joker|\?\?\?|permanent upgrade:)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
     new_text = new_text.replace(/(chaos, chaos|free, free)/g, '<span style="background: linear-gradient(to top, red, purple);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
 
     return new_text;

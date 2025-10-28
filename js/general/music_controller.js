@@ -6,7 +6,7 @@ var currentTime = 0;
 function background_music_play_normal() {
     background_audio.loop = true;
     background_audio.play();
-    background_audio.volume = 0.3;
+    background_audio.volume = 0.3*(music_volume/100);
 }
 
 function background_music_play_freedom() {
@@ -28,10 +28,10 @@ function play_freedom_motif() {
         freedom_motif_played = true;
     }
 
-    background_audio.volume = 0.08;
+    background_audio.volume = 0.08*(music_volume/100);
 
     setTimeout(() => {
-        background_audio.volume = 0.2;
+        background_audio.volume = 0.2*(music_volume/100);
         audio.pause();
     }, 3000);
 }
@@ -58,7 +58,7 @@ function start_upgrade_music() {
     }
     background_audio.loop = true;
     background_audio.play();
-    background_audio.volume = 0.3;
+    background_audio.volume = 0.3*(music_volume/100);
 }
 
 
@@ -83,20 +83,22 @@ function trobbio_sfx() {
         trobbio_motif_played = true;
     }
 
-    background_audio.volume = 0.08;
+    background_audio.volume = 0.08*(music_volume/100);
 
     setTimeout(() => {
-        background_audio.volume = 0.25;
+        background_audio.volume = 0.25*(music_volume/100);
         audio.pause();
     }, 2000);
 }
 
 function weird_sfx() {
     const audio = new Audio('../../../audio/sfx/weird-route-jingle.mp3');
+    audio.volume = 1*(music_volume/100);
     audio.play();
 }
 
 function shock_sfx() {
     const audio = new Audio('../../../audio/sfx/electricity-charge-sound-effect.mp3');
+    audio.volume = 1*(music_volume/100);
     audio.play();
 }

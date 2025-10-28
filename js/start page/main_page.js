@@ -9,6 +9,11 @@ const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), 
 var animation_speed;
 const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3];
 
+var music_volume = 100;
+const music_volumes = [0, 25, 50, 75, 100];
+
+
+const music_volume_button = document.getElementById('music_volume_button');
 const animation_speed_button = document.getElementById('animation_speed_button');
 
 if (urlvars) {
@@ -63,7 +68,7 @@ async function go_to_link(location) {
 
     await delay(1000);
 
-    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
+    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume;
 }
 
 
@@ -91,4 +96,14 @@ function animation_speed_change() {
     }
     animation_speed = animation_speeds[new_index];
     animation_speed_button.innerText = "animation speed: " + animation_speed + "×";
+}
+
+function music_volume_change() {
+    const current_index = music_volumes.indexOf(music_volume);
+    let new_index = current_index + 1;
+    if (new_index >= music_volumes.length) {
+        new_index = 0;
+    }
+    music_volume = music_volumes[new_index];
+    music_volume_button.innerText = "volume: " + music_volume + "%";
 }

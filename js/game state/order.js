@@ -32,6 +32,8 @@ const total_discards_text = document.getElementById('total_discards_text');
 window.discards_amount = 4;
 window.max_discards_amount = 4;
 
+window.music_volume = 100;
+
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
@@ -43,12 +45,18 @@ if (urlvars) {
 
     window.animation_speed = parseFloat(urlparams.get('animation_speed'));
 
+    window.music_volume = parseInt(urlparams.get('volume'));
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
 
     if (window.animation_speed == "null" || isNaN(window.animation_speed)) {
         window.animation_speed = 1;
+    }
+
+    if (music_volume == "null" || isNaN(music_volume)) {
+        music_volume = 100;
     }
 
 

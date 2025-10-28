@@ -57,7 +57,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 20%;
+    gap: 15%;
 
     justify-content: center;
     align-items: center;
@@ -92,6 +92,12 @@ body {
     background: radial-gradient(circle,rgba(85, 42, 155) 18%, rgb(236, 146, 206) 100%);
 }
 
+#music_volume_button, #animation_speed_button {
+    cursor: pointer;
+}
+#music_volume_button{
+    font-size: 45px;
+}
 
 
 
