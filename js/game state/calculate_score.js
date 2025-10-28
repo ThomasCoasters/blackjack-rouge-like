@@ -10,7 +10,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack, retri
     }
 
     if (card.special && card.special_location === "score") {
-        if (card.special.name === "random_score") { // special case for score adding specials
+        if (card.special.name === "random_score" || card.special.name === "run_save") { // special case for score adding specials
             card_score += await card.special();
         } else {
             await card.special();
@@ -158,4 +158,18 @@ async function reusable_and_retrigger() {
 
     card.retrigger = (card.retrigger || 0) + 1;
     card.reusing = true;
+}
+
+async function run_save() {
+    const score_to_beat = winning_score;
+    const current_score = parseInt(current_score_text.textContent);
+
+    if (current_score < score_to_beat * 0.75 && window.hands_amount == 1) {
+        // If the current score is less than 75% of the winning score, activate the special effect
+
+        window.held_cards = window.held_cards.filter(card => card.value !== "special_value:run_save");
+
+        return Math.ceil(score_to_beat * 0.25);
+    }
+    return 0;
 }

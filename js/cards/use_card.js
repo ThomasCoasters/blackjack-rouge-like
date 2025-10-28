@@ -59,6 +59,7 @@ const priority_list = {
 
     "special_value:increase_max": 0,
     "special_value:reusable+retrigger": 100,
+    "special_value:run_save": 0,
 
 
     "special_value:5_1": 15,

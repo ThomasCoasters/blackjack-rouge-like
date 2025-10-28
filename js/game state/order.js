@@ -24,7 +24,7 @@ const round_current = document.getElementById('round_current');
 const amount_cards_in_deck_text = document.getElementById('cards_left_p');
 
 
-window.hands_amount = 3;
+window.window.hands_amount = 3;
 window.max_hands_amount = 3;
 
 const total_discards_text = document.getElementById('total_discards_text');
@@ -66,7 +66,7 @@ async function start_turn(score) {
     window.discards_amount += window.gain_discard_each_hand_amount;
     window.isDealing = true;
 
-    total_hands_text.textContent = hands_amount;
+    total_hands_text.textContent = window.hands_amount;
     score_to_beat_amount_text.textContent = winning_score;
     round_current.textContent = current_round;
     blackjack_bonus_text.textContent = "×" + window.blackjack_bonus_multiplier;
@@ -74,11 +74,11 @@ async function start_turn(score) {
     total_discards_text.textContent = discards_amount;
 
 
-    if (hands_amount <= 0 || score >= winning_score) {
+    if (window.hands_amount <= 0 || score >= winning_score) {
         await win_round(score);
         return;
     } else {
-        hands_amount -= 1;
+        window.hands_amount -= 1;
     }
 
     for (let i = 0; i < forced_amount_draw; i++) {
@@ -149,14 +149,14 @@ async function win_round(score) {
 }
 
 async function won_round() {
-    hands_amount = max_hands_amount;
-    discards_amount = max_discards_amount;
-    winning_score += 10;
-    current_round += 1;
+    window.hands_amount = max_hands_amount;
+    window.discards_amount = max_discards_amount;
+    window.winning_score += 10;
+    window.current_round += 1;
 
-    total_hands_text.textContent = hands_amount;
-    score_to_beat_amount_text.textContent = winning_score;
-    round_current.textContent = current_round;
+    total_hands_text.textContent = window.hands_amount;
+    score_to_beat_amount_text.textContent = window.winning_score;
+    round_current.textContent = window.current_round;
 
 
     screen_text.style.animation = "none";

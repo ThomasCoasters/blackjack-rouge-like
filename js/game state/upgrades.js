@@ -17,6 +17,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "scarp drone", "hover_text": "reusable card with a value of 2 but gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
     {"suit": "special_row_1", "value": "special_value:increase_max", "hover_name": "overclock monkey", "hover_text": "the monkeys designed some usefull stuff: this hand only, increase max total value by +7", "special": increase_max_total_value_7, "special_location": "total value"},
     {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "score"}, // deltarune reference
+    {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "protector", "hover_text": "this one of a kind card is retriggerable and will protect you if your score is missing 25% of the needed score", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // deltarune reference
     ],
 
     "permanent_upgrades": [
@@ -62,6 +63,7 @@ const col_map = {
     "special_value:2": 4,
     "special_value:increase_max": 5,
     "special_value:reusable+retrigger": 6,
+    "special_value:run_save": 7,
 
 
 
@@ -179,17 +181,15 @@ async function upgrade_card_chosen(upgrade, upgrade_type) {
     stop_upgrade_music();
     upgrade_container.style.pointerEvents = "none";
 
-
-    if (upgrade.effect) {
-        await upgrade.effect();
-    }
-
     if (upgrade_type === "special_cards" || upgrade_type === "normal_cards") {
         window.available_cards.push(upgrade);
     }
 
     upgrade_container.innerHTML = "";
     hide_Card_Info();
+    if (upgrade.effect) {
+        await upgrade.effect();
+    }
     await screen_light();
     start_turn();
 }
@@ -202,6 +202,7 @@ async function increase_max_total_value() {
 
 async function increase_max_total_value_but_less_discards() {
     window.max_total_value += 5;
+    window.discards_amount -= 1;
     window.max_discards_amount -= 1;
 }
 
@@ -286,4 +287,8 @@ async function less_hands_and_discards_but_retrigger_face_cards() {
             }
         }
     }
+}
+
+function remove_run_save_special_card() {
+    window.all_upgrades["special_cards"] = window.all_upgrades["special_cards"].filter(card => card.value !== "special_value:run_save");
 }

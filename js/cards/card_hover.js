@@ -51,7 +51,7 @@ function text_color_change(text) {
     new_text = new_text.replace(/(?<!black)(?<!shoc)(face|faces|jack|queen|king)/g, '<span style="color: lightgreen;">$1</span>');
     new_text = new_text.replace(/((?:dis)?card(?:s)?)/g, '<span style="color: MediumSpringGreen;">$1</span>');
 
-    new_text = new_text.replace(/\bretrigger(?:able)?|shocking\b/gi, '<span style="background: linear-gradient(to top, purple, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
+    new_text = new_text.replace(/\bretrigger(?:able)?(?:ed)?(?:ing)?|shocking\b/gi, '<span style="background: linear-gradient(to top, purple, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
     new_text = new_text.replace(/\breus(?:able)?(?:ing)?(?:ed)?\b/gi, '<span style="background: linear-gradient(to top, Fuchsia, indigo);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
 
     new_text = new_text.replace(/(bust|win)/g, '<span style="background: linear-gradient(to right, MediumTurquoise, DodgerBlue);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
