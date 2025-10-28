@@ -10,7 +10,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack, retri
     }
 
     if (card.special && card.special_location === "score") {
-        if (card.special.name === "random_score" || card.special.name === "run_save") { // special case for score adding specials
+        if (card.special.name === "random_score" || card.special.name === "run_save" || card.special.name === "suit_rally" || card.special.name === "value_rally") { // special case for score adding specials
             card_score += await card.special();
         } else {
             await card.special();
@@ -172,4 +172,49 @@ async function run_save() {
         return Math.ceil(score_to_beat * 0.25);
     }
     return 0;
+}
+
+async function suit_rally() {
+    amount_per_suit = {};
+
+    extra_score = 0;
+
+    for (const card of using_cards) {
+        if (amount_per_suit[card.suit]) {
+            amount_per_suit[card.suit] += 1;
+        } else {
+            amount_per_suit[card.suit] = 1;
+        }
+    }
+
+    for (const suit in amount_per_suit) {
+        if (amount_per_suit[suit] > 1) {
+            extra_score += amount_per_suit[suit] * 3;
+        }
+    }
+
+    return extra_score;
+}
+
+
+async function value_rally() {
+    amount_per_value = {};
+
+    extra_score = 0;
+
+    for (const card of using_cards) {
+        if (amount_per_value[card.value]) {
+            amount_per_value[card.value] += 1;
+        } else {
+            amount_per_value[card.value] = 1;
+        }
+    }
+
+    for (const value in amount_per_value) {
+        if (amount_per_value[value] > 1) {
+            extra_score += amount_per_value[value] * 7;
+        }
+    }
+
+    return extra_score;
 }

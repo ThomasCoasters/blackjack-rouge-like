@@ -17,7 +17,9 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "scarp drone", "hover_text": "reusable card with a value of 2 but gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
     {"suit": "special_row_1", "value": "special_value:increase_max", "hover_name": "overclock monkey", "hover_text": "the monkeys designed some usefull stuff: this hand only, increase max total value by +7", "special": increase_max_total_value_7, "special_location": "total value"},
     {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "score"}, // deltarune reference
-    {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "protector", "hover_text": "this one of a kind card is retriggerable and will protect you if your score is missing 25% of the needed score", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // deltarune reference
+    {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "yodelling protector", "hover_text": "this one of a kind card is retriggerable and will protect you if your score is missing 25% of the needed score", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // shakra reference
+    {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score"}, // hk refrence
+    {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score"}, // hk refrence
     ],
 
     "permanent_upgrades": [
@@ -29,7 +31,7 @@ window.all_upgrades = {
     {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_negative_blackjack", "hover_name": "extra hands", "hover_text": "increases number of hands by 1 but decrease blackjack multiplier to -0.5 (losing points for blackjack)", "effect": increase_hands_but_negative_blackjack},
     {"suit": "permanent_upgrade_row_1", "value": "increase_hands_but_less_discards", "hover_name": "trade", "hover_text": "increases number of hands by 1 but have 1 less discard", "effect": increase_hands_but_less_discards},
     {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_less_hands", "hover_name": "trade", "hover_text": "increases number of discards by 1 but have 1 less hand", "effect": increase_discards_but_less_hands},
-    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 3 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
+    {"suit": "permanent_upgrade_row_1", "value": "increase_discards_but_draw_more", "hover_name": "test your luck", "hover_text": "increases number of discards by 6 but draw 5 more cards at the beginning", "effect": increase_discards_but_draw_more},
     {"suit": "permanent_upgrade_row_1", "value": "1_hand_now", "hover_name": "glass hand", "hover_text": "this round you have 1 hand but after this round you will get 2", "effect": hand_now_1_later_2},
     {"suit": "permanent_upgrade_row_1", "value": "gain_discard_each_hand", "hover_name": "tactician", "hover_text": "gain a discard every round but start with 2 less discards", "effect": gain_discard_each_hand},
     {"suit": "permanent_upgrade_row_1", "value": "less_hands_but_reuse_face_cards", "hover_name": "faces galore", "hover_text": "lose 1 hand but can reuse face cards", "effect": less_hands_but_reuse_face_cards},
@@ -64,6 +66,8 @@ const col_map = {
     "special_value:increase_max": 5,
     "special_value:reusable+retrigger": 6,
     "special_value:run_save": 7,
+    "special_value:suit_rally": 8,
+    "special_value:value_rally": 9,
 
 
 
@@ -90,7 +94,7 @@ const row_map = {
     "clubs": 0,
 
     "special_row_1": 4,
-    "permanent_upgrade_row_1": 4
+    "permanent_upgrade_row_1": 5
 
 };
 
@@ -241,8 +245,8 @@ async function increase_discards_but_less_hands() {
 }
 
 async function increase_discards_but_draw_more() {
-    window.discards_amount += 3;
-    window.max_discards_amount += 3;
+    window.discards_amount += 6;
+    window.max_discards_amount += 6;
     window.forced_amount_draw += 5;
 }
 

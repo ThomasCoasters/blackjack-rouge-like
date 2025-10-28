@@ -32,6 +32,9 @@ const score_per_card = {
     "special_value:none": 0,
     "special_value:increase_max": 0,
 
+    "special_value:suit_rally":0,
+    "special_value:value_rally":0,
+
     "special_value:5_1": 5,
     "special_value:5_2": 5,
     "special_value:2": 2
@@ -60,6 +63,9 @@ const priority_list = {
     "special_value:increase_max": 0,
     "special_value:reusable+retrigger": 100,
     "special_value:run_save": 0,
+
+    "special_value:suit_rally": 16,
+    "special_value:value_rally": 16,
 
 
     "special_value:5_1": 15,
