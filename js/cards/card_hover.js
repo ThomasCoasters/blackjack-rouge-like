@@ -59,7 +59,7 @@ function text_color_change(text) {
     new_text = new_text.replace(/\b(?:increas(?:e|es|ing)?|max(?:imum)?)\b/gi, '<span style="background: linear-gradient(to top, LawnGreen, LightGreen);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
     new_text = new_text.replace(/\b(?:decreas(?:e|es|ing)?|min(?:imum)?|but)\b/gi, '<span style="background: linear-gradient(to top, Salmon, GoldenRod);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
 
-    new_text = new_text.replace(/(a random joker|\?\?\?|permanent upgrade:|DEAL!!)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
+    new_text = new_text.replace(/(a random joker|\?\?\?|permanent upgrade:|DEAL!!|one of a kind)/g, '<span style="background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
     new_text = new_text.replace(/(chaos, chaos|free, free)/g, '<span style="background: linear-gradient(to top, red, purple);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
 
     return new_text;

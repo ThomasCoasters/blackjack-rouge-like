@@ -131,7 +131,17 @@ async function use_cards() {
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-    using_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+    var reusable_cards = using_cards.filter(reuse_card => reuse_card.reusing);
+
+    await delete_all_cards_of_type("used card");
+
+    using_cards = [];
+
+    for (let i = 0; i < reusable_cards.length; i++) {
+        window.held_cards.push(reusable_cards[i]);
+    }
+    
+
 
     window.held_cards.sort((a, b) => priority_list[b.value] - priority_list[a.value]);
 
@@ -141,24 +151,30 @@ async function use_cards() {
 
     document.getElementById("total_value_text").textContent="Total value: 0 / " + window.max_total_value;
 
+    const handCardDomCount = document.getElementsByClassName("card").length;
+
     for (let i = 0; i < window.held_cards.length; i++) {
         const card = window.held_cards[i];
 
         using_cards.push(card);
 
         create_new_card(card, use_cardsContainer, "used card");
+    }
 
-        delete_old_card("card", [0]);
+    if (handCardDomCount > 0) {
+        const indices = Array.from({ length: handCardDomCount }, (_, i) => i); // er waren un fixable errors dus copilor red mijn leven
+        await delete_old_card("card", indices);
     }
 
     window.held_cards = [];
 
 
-    const use_cards_count = use_cardsContainer.children.length;
+    const usedDomEls = use_cardsContainer.getElementsByClassName("used card");// er waren un fixable errors dus copilor red mijn leven
+    const use_cards_count = usedDomEls.length;
 
 
     for (let i = 0; i < use_cards_count; i++) {
-        const card = use_cardsContainer.children[i];
+        const card = usedDomEls[i];
 
         card.style.position = "absolute";
 
@@ -177,7 +193,7 @@ async function use_cards() {
     var score_text_scale = 1;
 
     for (let i = 0; i < use_cards_count; i++) {
-        const card = use_cardsContainer.children[i];
+        const card = usedDomEls[i];
 
         card.style.top = "-10%";
 
@@ -197,7 +213,7 @@ async function use_cards() {
 
     var to_be_deleted = [];
 
-    for (let i = 0; i < use_cards_count; i++) {
+    for (let i = 0; i < using_cards.length; i++) {
         if (!using_cards[i].reusing) {
             to_be_deleted.push(i);
         }
@@ -215,8 +231,9 @@ async function delete_old_card(type, to_be_deleted) {
     var card = document.getElementsByClassName(type);
 
     for (let i = 0; i < to_be_deleted.length; i++) {
-        card[to_be_deleted[i]-i].parentNode.removeChild(card[to_be_deleted[i]-i]);
-        await delay(200*(1/window.animation_speed));
+        const idx = to_be_deleted[i] - i;
+        if (!card[idx] || !card[idx].parentNode) continue; // guard
+        card[idx].parentNode.removeChild(card[idx]);// er waren un fixable errors dus copilor red mijn leven
     }
 
     hide_Card_Info();

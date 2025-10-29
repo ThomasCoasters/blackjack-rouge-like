@@ -102,3 +102,9 @@ function shock_sfx() {
     audio.volume = 1*(music_volume/100);
     audio.play();
 }
+
+function runs_save_sfx() {
+    const audio = new Audio('../../../audio/sfx/poshanka.mp3');
+    audio.volume = 1*(music_volume/100);
+    audio.play();
+}

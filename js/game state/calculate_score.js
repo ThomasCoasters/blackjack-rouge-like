@@ -164,12 +164,22 @@ async function run_save() {
     const score_to_beat = winning_score;
     const current_score = parseInt(current_score_text.textContent);
 
-    if (current_score < score_to_beat * 0.75 && window.hands_amount == 1) {
-        // If the current score is less than 75% of the winning score, activate the special effect
+    if (current_score < score_to_beat && window.hands_amount == 0) {
+        // If the current score is less than the winning score, activate the special effect
 
-        window.held_cards = window.held_cards.filter(card => card.value !== "special_value:run_save");
+        const cardArrays = [window.held_cards, window.available_cards, used_cards];
+    
+        for (const cardArray of cardArrays) {
+            for (let i = cardArray.length - 1; i >= 0; i--) {
+                if (cardArray[i].value === "special_value:run_save") {
+                    cardArray.splice(i, 1); // remove the card after use
+                }
+            }
+        }
 
-        return Math.ceil(score_to_beat * 0.25);
+        runs_save_sfx()
+
+        return Math.ceil(score_to_beat);
     }
     return 0;
 }
