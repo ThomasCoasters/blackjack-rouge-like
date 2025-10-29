@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/start_style.css">
+
+    <title>start</title>
+
+
+    <!-- all js stuff -->
+
+    <script src="../../js/start page/main_page.js" defer></script>
+    <script src="../../js/start page/card_scroll.js" defer></script>
+    
+</head>
+
+
+<body>
+    <!-- all text buttons -->
+    <div class="start_page_text_container">
+        <div id="start_button" class="start_page_text" style="width: 100%; font-size: 40px;">
+            score and required score: <br> left top you can see the required score to win the round. <br> under that you can see your current score. <br> if your score is equal to or higher than the required score, you can choose an upgrade!
+        </div>
+
+        <div id="start_button" class="start_page_text" style="width: 100%; font-size: 40px;">
+            hands/discards: <br> left bottom you can see your hands and discards. <br> hands are used when you play all your cards. <br> discards are used when you discard a card from your hand.
+        </div>
+
+        <div id="start_button" class="start_page_text" style="width: 100%; font-size: 40px;">
+            blackjack bonus: <br> if you get exactly the same value as the bust value is with your cards, you get a blackjack bonus! <br> this multiplies your score by the amount of blackjack bonus you have. <br> you can see the current blackjack bonus under your discards.
+        </div>
+
+        <div id="start_button" class="start_page_text" style="width: 100%; font-size: 40px;">
+            cards amount: <br> above the deck cards you can see the amount of cards you have / full deck size.
+        </div>
+
+        <!-- back -->
+        <div id="back_button" class="start_page_text_button" onclick="go_to_link('../rules')">
+            back
+        </div>
+    </div>
+
+    <!-- overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    
+</body>
+</html>
