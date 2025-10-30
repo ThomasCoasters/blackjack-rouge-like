@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/card_style.css">
+    <link rel="stylesheet" href="../css/tutorial.css">
+
+    <title>Black jack rougelite</title>
+
+
+    <!-- all js stuff -->
+    <script src="../js/tutorial/general/music_controller.js" defer></script>
+    
+    <script src="../js/tutorial/game state/total_value.js" defer></script>
+    <script src="../js/tutorial/game state/calculate_score.js" defer></script>
+    <script src="../js/tutorial/game state/upgrades.js" defer></script>
+
+    <script src="../js/tutorial/cards/play_card.js" defer></script>
+    <script src="../js/tutorial/cards/grab_card.js" defer></script>
+    <script src="../js/tutorial/cards/use_card.js" defer></script>
+    <script src="../js/tutorial/cards/card_hover.js" defer></script>
+
+    <!-- deze als laatste zodat de functions eerst allemaal defined worden -->
+    <script src="../js/tutorial/game state/order.js" defer></script>
+    
+</head>
+
+
+<body>
+    <div id="screen_shake_div" class="screen_shake_div">
+        <div id="tutorial_box" class="tutorial_box">
+            <div id="tutorial_text" class="tutorial_text">
+                <p id="tutorial_text_p"></p>
+            </div>
+        </div>
+        <div id="tutorial_overlay" class="tutorial_overlay"></div>
+        <!-- container for all cards -->
+        <div id="cardsContainer">
+            
+        <!-- draw new card box -->
+        <div id="play_card_box" class="drag_input"></div>
+        
+        </div>
+
+        <!-- total value amount -->
+        <div id="total_value_container" class="total_value_container">
+            <div id="total_value_text" class="total_value_text">Total value: 0 / 21</div>
+        </div>
+
+        <!-- playing cards -->
+        <div id="deck_cards" class="deck_cards"></div>
+        <!-- no id so you can't move it -->
+        <div class="deck_cards"></div>
+        
+        <!-- amount of cards left text -->
+        <div id="deck_cards_box" class="cards_left_text">
+            <p id="cards_left_p">52/52</p>
+        </div>
+
+        <!-- use cards box -->
+        <div id="use_cardsContainer" class="played_card_container">
+            <div id="use_card_box" class="drag_input"></div>
+        </div>
+        <!-- animation container for used cards -->
+        <div id="cards_used_anim_container" class="cards_used_anim_container"></div>
+
+        <!-- game info container -->
+        <div id="game_info_container" class="game_info_container">
+            <div id="score_to_beat_container" class="game_info_text_container">
+                <div id="rounds_text" class="game_info_text">
+                    <p id="round_static_text" class="game_info_p">round:</p>
+                    <p id="round_current" class="game_info_p">1</p>
+                </div>
+                <div id="score_to_beat_text" class="game_info_text">
+                    <p id="score_to_beat_static_text" class="game_info_p">score at least:</p>
+                    <p id="score_to_beat_amount" class="game_info_p">21</p>
+                </div>
+            </div>
+
+            <div id="total_score_container" class="game_info_text_container">
+                <p id="total_score_p" class="game_info_p">round score:</p>
+                <div id="total_score_text" class="game_info_text">
+                    <p id="current_score_text">0</p>
+                </div>
+            </div>
+            <div id="total_hands_and_discards_container" class="game_info_text_container">
+                <div id="total_hands_p" class="game_info_p">hands:</div>
+                <div id="total_hands_text" class="game_info_text">3</div>
+
+                <div id="total_discards_container" class="game_info_text_container">
+                    <div id="total_discards_p" class="game_info_p">discards:</div>
+                    <div id="total_discards_text" class="game_info_text">4</div>
+                    <div id="blackjack_bonus_p" class="game_info_p">blackjack bonus:</div>
+                    <div id="blackjack_bonus_text" class="game_info_text">×1.5</div>
+                </div>
+            </div>   
+        </div>
+    
+        <!-- overlay for fade out effect -->
+        <div id="overlay" class="overlay"></div>
+
+
+        <div id="screen_text_container" class="screen_text_container">
+            <div id="screen_text" class="screen_text">
+                <p id="screen_text_p"></p>
+            </div>
+        </div>
+
+        <div id="upgrade_container" class="upgrade_container">
+    </div>
+</body>
+</html>

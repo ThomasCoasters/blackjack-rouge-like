@@ -60,8 +60,6 @@ const value_map = {
 function addCard() {
   available_cards = window.available_cards;
 
-  console.log(available_cards);
-
   //check if there are available cards and reshuffle if not
   if (available_cards.length === 0) {
     available_cards = used_cards;
