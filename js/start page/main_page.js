@@ -16,6 +16,10 @@ const music_volumes = [0, 25, 50, 75, 100];
 const music_volume_button = document.getElementById('music_volume_button');
 const animation_speed_button = document.getElementById('animation_speed_button');
 
+if (localStorage.getItem("tutorial") === null || localStorage.getItem("tutorial") === "false") {
+    window.location.href = "tutorial.html?";
+}
+
 if (urlvars) {
     const urlparams = new URLSearchParams(urlvars);
     current_background_color = urlparams.get('background_color');

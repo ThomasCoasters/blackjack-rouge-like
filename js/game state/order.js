@@ -39,6 +39,10 @@ const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), 
 
 window.animation_speed;
 
+if (localStorage.getItem("tutorial") === null || localStorage.getItem("tutorial") === "false") {
+    window.location.href = "tutorial.html?";
+}
+
 if (urlvars) {
     const urlparams = new URLSearchParams(urlvars);
     current_background_color = urlparams.get('background_color');

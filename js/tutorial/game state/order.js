@@ -86,6 +86,12 @@ async function tutorial_play(step) {
             tutorial_overlay.style.zIndex = 5000;
             tutorial_text_p.innerHTML = "Well done!<br>If your total value exceeds 21, you will bust and lose the round.";
             break;
+
+
+        
+        case 25:
+            stop_tutorial();
+            break;
         // Add more tutorial steps as needed
 
 
@@ -256,3 +262,10 @@ async function screen_light(){
     overlay.style.opacity = 0;
     await delay(1000);
 }
+
+function stop_tutorial() {
+    localStorage.setItem("tutorial", true);
+    window.location.href = "start.html?"
+}
+
+
