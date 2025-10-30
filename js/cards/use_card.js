@@ -259,6 +259,8 @@ async function score_visuals(card_index, score_text_scale, is_blackjack) {
         screen_shake_div.style.animation = "shake";
     }
 
+    swoosh_sfx(score_text_scale);
+
     screen_shake_div.style.animationDuration = Math.max((1.5 - (score_text_scale/2))*(1/window.animation_speed), 0.1) + "s";
     screen_shake_div.style.animationTimingFunction = "ease-in-out";
     screen_shake_div.style.animationIterationCount = "infinite";

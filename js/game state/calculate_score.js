@@ -189,6 +189,8 @@ async function suit_rally() {
 
     extra_score = 0;
 
+    grub_sfx();
+
     for (const card of using_cards) {
         if (amount_per_suit[card.suit]) {
             amount_per_suit[card.suit] += 1;
@@ -211,6 +213,8 @@ async function value_rally() {
     amount_per_value = {};
 
     extra_score = 0;
+
+    flea_sfx();
 
     for (const card of using_cards) {
         if (amount_per_value[card.value]) {

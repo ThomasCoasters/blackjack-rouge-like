@@ -108,3 +108,22 @@ function runs_save_sfx() {
     audio.volume = 1*(music_volume/100);
     audio.play();
 }
+
+function swoosh_sfx(speed) {
+    const audio = new Audio('../../../audio/sfx/swoosh-sound-effects.mp3');
+    audio.playbackRate = Math.min(3,speed);
+    audio.volume = 0.1*(music_volume/100);
+    audio.play();
+}
+
+function grub_sfx() {
+    const audio = new Audio('../../../audio/sfx/grub.mp3');
+    audio.volume = 1*(music_volume/100);
+    audio.play();
+}
+
+function flea_sfx() {
+    const audio = new Audio('../../../audio/sfx/flea.mp3');
+    audio.volume = 1*(music_volume/100);
+    audio.play();
+}
