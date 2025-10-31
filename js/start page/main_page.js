@@ -16,7 +16,11 @@ const music_volumes = [0, 25, 50, 75, 100];
 const music_volume_button = document.getElementById('music_volume_button');
 const animation_speed_button = document.getElementById('animation_speed_button');
 
-if (localStorage.getItem("tutorial") === null || localStorage.getItem("tutorial") === "false") {
+if ((localStorage.getItem("begin") === null || localStorage.getItem("begin") === "false") && window.location.pathname.indexOf("begin.html") === -1) {
+    window.location.href = "begin.html?";
+}
+
+if ((localStorage.getItem("tutorial") === null || localStorage.getItem("tutorial") === "false") && window.location.pathname.indexOf("tutorial.html") === -1) {
     window.location.href = "tutorial.html?";
 }
 
@@ -73,6 +77,17 @@ async function go_to_link(location) {
     await delay(1000);
 
     window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume;
+}
+
+async function begin_done() {
+    overlay.style.zIndex = 99999;
+    overlay.style.opacity = 1;
+
+    await delay(1000);
+
+    localStorage.setItem("begin", true);
+
+    window.location.href = "tutorial.html";
 }
 
 

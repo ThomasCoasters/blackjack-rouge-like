@@ -165,8 +165,17 @@ body {
 
 
 
-.size-img{
-    background-image: url("../images/begin_assets/Needle_1_Needle.png");
+.size-img-vertical{
     width: auto;
-    height: auto;
+    height: 1070px;
+}
+
+.size-img-horizontal{
+    rotate: 90deg;
+    position: absolute;
+    top:-10%;
+    left: 45.5%;
+    /* transform: translate(-50%, -50%); */
+    width: auto;
+    height: 2100px;
 }

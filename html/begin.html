@@ -20,10 +20,16 @@
 
 <body>
     <div id="start_button" class="start_page_text" style="width: 100%; font-size: 40px; top: 10px; position: absolute; text-align: center;">
-        change the screen size until you can see the full needle
+        change the screen size until you can <strong>JUST</strong> see the full needle
     </div>
 
-    <div id="size-img" class="size-img"></div>
+    <div id="back_button" class="start_page_text_button" onclick="begin_done()" style="top: 50%; transform: translateY(-50%, -50%); left: 40%; position: absolute;">
+        back
+    </div>
+
+    <img src="../images/begin_assets/Needle_1_Needle.png" alt="Needle" id="size-img-vertical" class="size-img-vertical"/>
+    <img src="../images/begin_assets/Needle_1_Needle.png" alt="Needle" id="size-img-horizontal" class="size-img-horizontal"/>
+
     <!-- deco card -->
     <div id="deco_card" class="deco_card"></div>
 

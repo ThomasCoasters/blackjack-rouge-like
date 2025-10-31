@@ -39,6 +39,10 @@ const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), 
 
 window.animation_speed;
 
+if (localStorage.getItem("begin") === null || localStorage.getItem("begin") === "false") {
+    window.location.href = "begin.html?";
+}
+
 if (localStorage.getItem("tutorial") === null || localStorage.getItem("tutorial") === "false") {
     window.location.href = "tutorial.html?";
 }
