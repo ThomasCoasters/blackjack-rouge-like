@@ -5,14 +5,24 @@ available_cards = [
   {"suit": "hearts", "value": "4", "hover_name": "4 of hearts", "hover_text": "hearts card with an value of 4"},
   {"suit": "clubs", "value": "10", "hover_name": "10 of clubs", "hover_text": "clubs card with an value of 10"},
   {"suit": "spades", "value": "6", "hover_name": "6 of spades", "hover_text": "spades card with an value of 6"},
+
+  {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"},
+  {"suit": "spades", "value": "9", "hover_name": "9 of spades", "hover_text": "spades card with an value of 9"},
+  {"suit": "clubs", "value": "2", "hover_name": "2 of clubs", "hover_text": "clubs card with an value of 2"},
+  {"suit": "diamonds", "value": "5", "hover_name": "5 of diamonds", "hover_text": "diamonds card with an value of 5"},
+
+  {"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true},
+  {"suit": "spades", "value": "jack", "hover_name": "jack of spades", "hover_text": "spades face card with an value of 10"},
+  {"suit": "diamonds", "value": "queen", "hover_name": "queen of diamonds", "hover_text": "diamonds face card with an value of 10"},
 ];
 
-// {"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"},  {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"}, {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"}, {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
-// {"suit": "diamonds", "value": "ace", "hover_name": "ace of diamonds", "hover_text": "diamonds card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "diamonds", "value": "2", "hover_name": "2 of diamonds", "hover_text": "diamonds card with an value of 2"}, {"suit": "diamonds", "value": "3", "hover_name": "3 of diamonds", "hover_text": "diamonds card with an value of 3"}, {"suit": "diamonds", "value": "4", "hover_name": "4 of diamonds", "hover_text": "diamonds card with an value of 4"}, {"suit": "diamonds", "value": "5", "hover_name": "5 of diamonds", "hover_text": "diamonds card with an value of 5"}, {"suit": "diamonds", "value": "6", "hover_name": "6 of diamonds", "hover_text": "diamonds card with an value of 6"}, {"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "diamonds", "value": "8", "hover_name": "8 of diamonds", "hover_text": "diamonds card with an value of 8"}, {"suit": "diamonds", "value": "9", "hover_name": "9 of diamonds", "hover_text": "diamonds card with an value of 9"}, {"suit": "diamonds", "value": "10", "hover_name": "10 of diamonds", "hover_text": "diamonds card with an value of 10"}, {"suit": "diamonds", "value": "jack", "hover_name": "jack of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "queen", "hover_name": "queen of diamonds", "hover_text": "diamonds face card with an value of 10"}, {"suit": "diamonds", "value": "king", "hover_name": "king of diamonds", "hover_text": "diamonds face card with an value of 10"},
-// {"suit": "spades", "value": "ace", "hover_name": "ace of spades", "hover_text": "spades card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "spades", "value": "2", "hover_name": "2 of spades", "hover_text": "spades card with an value of 2"}, {"suit": "spades", "value": "3", "hover_name": "3 of spades", "hover_text": "spades card with an value 3"}, {"suit": "spades", "value": "4", "hover_name": "4 of spades", "hover_text": "spades card with an value of 4"}, {"suit": "spades", "value": "5", "hover_name": "5 of spades", "hover_text": "spades card with an value of 5"},  {"suit": "spades", "value": "7", "hover_name": "7 of spades", "hover_text": "spades card with an value of 7"}, {"suit": "spades", "value": "8", "hover_name": "8 of spades", "hover_text": "spades card with an value of 8"}, {"suit": "spades", "value": "9", "hover_name": "9 of spades", "hover_text": "spades card with an value of 9"}, {"suit": "spades", "value": "10", "hover_name": "10 of spades", "hover_text": "spades card with an value of 10"}, {"suit": "spades", "value": "jack", "hover_name": "jack of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "queen", "hover_name": "queen of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "king", "hover_name": "king of spades", "hover_text": "spades face card with an value of 10"},
-// {"suit": "clubs", "value": "ace", "hover_name": "ace of clubs", "hover_text": "clubs card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "clubs", "value": "2", "hover_name": "2 of clubs", "hover_text": "clubs card with an value of 2"}, {"suit": "clubs", "value": "3", "hover_name": "3 of clubs", "hover_text": "clubs card with an value 3"}, {"suit": "clubs", "value": "4", "hover_name": "4 of clubs", "hover_text": "clubs card with an value of 4"}, {"suit": "clubs", "value": "5", "hover_name": "5 of clubs", "hover_text": "clubs card with an value of 5"}, {"suit": "clubs", "value": "6", "hover_name": "6 of clubs", "hover_text": "clubs card with an value of 6"}, {"suit": "clubs", "value": "7", "hover_name": "7 of clubs", "hover_text": "clubs card with an value of 7"}, {"suit": "clubs", "value": "8", "hover_name": "8 of clubs", "hover_text": "clubs card with an value of 8"}, {"suit": "clubs", "value": "9", "hover_name": "9 of clubs", "hover_text": "clubs card with an value of 9"},  {"suit": "clubs", "value": "jack", "hover_name": "jack of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "queen", "hover_name": "queen of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "king", "hover_name": "king of clubs", "hover_text": "clubs face card with an value of 10"},
 
-var used_cards = [];
+var used_cards = [
+  {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"},  {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"},  {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
+  {"suit": "diamonds", "value": "ace", "hover_name": "ace of diamonds", "hover_text": "diamonds card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "diamonds", "value": "2", "hover_name": "2 of diamonds", "hover_text": "diamonds card with an value of 2"}, {"suit": "diamonds", "value": "3", "hover_name": "3 of diamonds", "hover_text": "diamonds card with an value of 3"}, {"suit": "diamonds", "value": "4", "hover_name": "4 of diamonds", "hover_text": "diamonds card with an value of 4"},  {"suit": "diamonds", "value": "6", "hover_name": "6 of diamonds", "hover_text": "diamonds card with an value of 6"}, {"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "diamonds", "value": "8", "hover_name": "8 of diamonds", "hover_text": "diamonds card with an value of 8"}, {"suit": "diamonds", "value": "9", "hover_name": "9 of diamonds", "hover_text": "diamonds card with an value of 9"}, {"suit": "diamonds", "value": "10", "hover_name": "10 of diamonds", "hover_text": "diamonds card with an value of 10"}, {"suit": "diamonds", "value": "jack", "hover_name": "jack of diamonds", "hover_text": "diamonds face card with an value of 10"},  {"suit": "diamonds", "value": "king", "hover_name": "king of diamonds", "hover_text": "diamonds face card with an value of 10"},
+  {"suit": "spades", "value": "ace", "hover_name": "ace of spades", "hover_text": "spades card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "spades", "value": "2", "hover_name": "2 of spades", "hover_text": "spades card with an value of 2"}, {"suit": "spades", "value": "3", "hover_name": "3 of spades", "hover_text": "spades card with an value 3"}, {"suit": "spades", "value": "4", "hover_name": "4 of spades", "hover_text": "spades card with an value of 4"}, {"suit": "spades", "value": "5", "hover_name": "5 of spades", "hover_text": "spades card with an value of 5"}, {"suit": "spades", "value": "7", "hover_name": "7 of spades", "hover_text": "spades card with an value of 7"}, {"suit": "spades", "value": "8", "hover_name": "8 of spades", "hover_text": "spades card with an value of 8"},  {"suit": "spades", "value": "10", "hover_name": "10 of spades", "hover_text": "spades card with an value of 10"},  {"suit": "spades", "value": "queen", "hover_name": "queen of spades", "hover_text": "spades face card with an value of 10"}, {"suit": "spades", "value": "king", "hover_name": "king of spades", "hover_text": "spades face card with an value of 10"},
+  {"suit": "clubs", "value": "ace", "hover_name": "ace of clubs", "hover_text": "clubs card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true},  {"suit": "clubs", "value": "3", "hover_name": "3 of clubs", "hover_text": "clubs card with an value 3"}, {"suit": "clubs", "value": "4", "hover_name": "4 of clubs", "hover_text": "clubs card with an value of 4"}, {"suit": "clubs", "value": "5", "hover_name": "5 of clubs", "hover_text": "clubs card with an value of 5"}, {"suit": "clubs", "value": "6", "hover_name": "6 of clubs", "hover_text": "clubs card with an value of 6"}, {"suit": "clubs", "value": "7", "hover_name": "7 of clubs", "hover_text": "clubs card with an value of 7"}, {"suit": "clubs", "value": "8", "hover_name": "8 of clubs", "hover_text": "clubs card with an value of 8"}, {"suit": "clubs", "value": "9", "hover_name": "9 of clubs", "hover_text": "clubs card with an value of 9"},  {"suit": "clubs", "value": "jack", "hover_name": "jack of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "queen", "hover_name": "queen of clubs", "hover_text": "clubs face card with an value of 10"}, {"suit": "clubs", "value": "king", "hover_name": "king of clubs", "hover_text": "clubs face card with an value of 10"},
+];
 
 window.held_cards = []; // cards that are currently held by the player
 
@@ -98,13 +108,19 @@ function create_new_card(card, container, new_class_name) {
 
   // Add hover event listeners to show card info
 
-  newCard.addEventListener('mouseover', () => {
-    show_Card_Info(newCard, card.hover_name, card.hover_text, card);
-  });
+  if (window.step == 14) {
+    newCard.addEventListener('mouseover', async () => {
+      show_Card_Info(newCard, card.hover_name, card.hover_text, card);
+      if (window.step == 14) {
+        await delay(500);
+        tutorial_play(window.step + 1);
+      }
+    });
 
-  newCard.addEventListener('mouseout', () => {
-    hide_Card_Info();
-  });
+    newCard.addEventListener('mouseout', () => {
+      hide_Card_Info();
+    });
+  }
 
   
   if (new_class_name === "used card") {
@@ -112,11 +128,38 @@ function create_new_card(card, container, new_class_name) {
     return; 
   }
 
-  newCard.addEventListener('click', async () => {
-    await discard_card(new_class_name, [Array.from(container.children).indexOf(newCard)-1]);
-  });
+  if (window.step == 7) {
+    newCard.addEventListener('click', async () => {
+      await discard_card(new_class_name, [Array.from(container.children).indexOf(newCard)-1]);
+    });
+  }
 
   container.appendChild(newCard);
 
   update_Total_Value();
+}
+
+async function discard_card(class_name, card_indx) {
+  if (window.step != 11) {
+    return; // can't discard yet
+  }
+
+  if (window.discards_amount <= 0) {
+    return; // no discards left
+  }
+
+  window.discards_amount -= 1;
+
+  const card = window.held_cards[card_indx];
+  window.held_cards.splice(card_indx, 1);
+
+  delete_old_card(class_name, card_indx);
+
+
+  update_Total_Value();
+
+  const total_discards_text = document.getElementById('total_discards_text');
+  total_discards_text.textContent = window.discards_amount;
+
+  tutorial_play(window.step + 1);
 }

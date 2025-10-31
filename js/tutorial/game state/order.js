@@ -4,7 +4,7 @@ window.max_total_value = 21;
 
 window.blackjack_bonus_multiplier = 1.5;
 
-winning_score = 31;
+winning_score = 75;
 
 current_round = 1;
 
@@ -60,8 +60,8 @@ async function tutorial_play(step) {
             tutorial_overlay.addEventListener('click', () => tutorial_play(1), { once: true });
             tutorial_text_p.innerHTML = "Welcome to the tutorial!<br>click or do the question asked to continue.";
 
-            addCard(0);
-            addCard(1);
+            addCard();
+            addCard();
             break;
         
         case 1:
@@ -70,26 +70,133 @@ async function tutorial_play(step) {
             window.isDealing = false;
             tutorial_text_p.innerHTML = "You need to draw cards to be able to win.<br>To draw a card, drag the bottom right card that is face down to the bottom dotted line box.";
             break;
+
         case 2:
             tutorial_overlay.addEventListener('click', () => tutorial_play(3), { once: true });
-            tutorial_overlay.style.zIndex = 5000;
             tutorial_text_p.innerHTML = "Great job!<br>On the bottom you can see the total value of your hand.";
+
+            document.getElementById("total_value_text").classList.add('tutorial_text_animated');
             break;
+            
         case 3:
+            document.getElementById("total_value_text").classList.remove('tutorial_text_animated');
             tutorial_overlay.style.zIndex = -4000;
             
             window.isDealing = false;
-            tutorial_text_p.innerHTML = "Now lets play the cards.<br>To play a card, drag the bottom right card again but now to the top.";
+            tutorial_text_p.innerHTML = "Now lets play the cards.<br>To play a hand, drag the bottom right card again but now to the top.";
             break;
+
         case 4:
             tutorial_overlay.addEventListener('click', () => tutorial_play(5), { once: true });
-            tutorial_overlay.style.zIndex = 5000;
-            tutorial_text_p.innerHTML = "Well done!<br>If your total value exceeds 21, you will bust and lose the round.";
+            tutorial_text_p.innerHTML = "Well done!<br>You just gained some score.<br>You can see the score you gained at the left of your screen";
+
+            document.getElementById("current_score_text").classList.add('tutorial_text_animated');
             break;
+
+        case 5:
+            document.getElementById("current_score_text").classList.remove('tutorial_text_animated');
+
+            tutorial_overlay.addEventListener('click', () => tutorial_play(6), { once: true });
+            tutorial_text_p.innerHTML = "above the score you can see what score you need to beat to win the round.<br>Each round this score increases.";
+
+            score_to_beat_amount_text.classList.add('tutorial_text_animated');
+            break;
+        case 6:
+            score_to_beat_amount_text.classList.remove('tutorial_text_animated');
+
+            tutorial_overlay.addEventListener('click', () => tutorial_play(7), { once: true });
+            tutorial_text_p.innerHTML = "If you look under the score you can see your amount of hands.<br>You have a limited amount of hands to reach this score.<br>If you run out of hands before reaching the score to beat, you lose.";
+            
+            total_hands_text.classList.add('tutorial_text_animated');
+
+            addCard();
+            addCard();
+            
+            break;
+
+        case 7:
+            total_hands_text.classList.remove('tutorial_text_animated');
+
+            tutorial_overlay.style.zIndex = -4000;
+            
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "You still have some hands left to reach the required score.<br>draw a card to get some more score next play.";
+            break;
+
+        case 8:
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "You still can get some more score next play.<br>Draw another card.";
+            break;
+
+        case 9:
+            tutorial_overlay.addEventListener('click', () => tutorial_play(10), { once: true });
+            tutorial_text_p.innerHTML = "Oh no! Your total value went over 21!<br>This is called a bust and you won't gain any score if you play this hand.";
+            break;
+
+        case 10:
+            total_discards_text.classList.add('tutorial_text_animated');
+
+            tutorial_overlay.addEventListener('click', () => tutorial_play(11), { once: true });
+            tutorial_text_p.innerHTML = "Luckily you have some discards, you can see them under the hands text!<br>You can use them to get rid of cards you don't need.<br>But be careful, you have a limited amount of discards each round.";
+            break;
+
+        case 11:
+            total_discards_text.classList.remove('tutorial_text_animated');
+
+            tutorial_overlay.style.zIndex = -4000;
+            
+            tutorial_text_p.innerHTML = "Let's discard a card.<br>If you look at the total value it is 2 to high.<br>So let's discard the 2 by clicking on it.";
+            break;
+
+        case 12:
+            blackjack_bonus_text.classList.add('tutorial_text_animated');
+
+            tutorial_overlay.addEventListener('click', () => tutorial_play(13), { once: true });
+            tutorial_text_p.innerHTML = "Great!<br>Your total value is now exactly the 21, that means it is a blackjack.<br>if you look under the discards you can see the blackjack bonus.<br>This means your score gained this round is multiplied by this amount if you get a blackjack.";
+            break;
+
+        case 13:
+            blackjack_bonus_text.classList.remove('tutorial_text_animated');
+
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "Now let's play the blackjack to get a lot of score!";
+            break;
+        
+        case 14:
+            tutorial_overlay.style.zIndex = -4000;
+
+            addCard();
+
+            tutorial_text_p.innerHTML = "Well done!<br>You just got a lot of score!<br>But you just got an ace, Let's hover over it to see its special ability.";
+            break;
+        
+        case 15:
+            tutorial_overlay.style.zIndex = -4000;
+
+            addCard();
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "Let's just play another card for now.";
+            break;
+        
+        case 16:
+            tutorial_overlay.addEventListener('click', () => tutorial_play(17), { once: true });
+            tutorial_text_p.innerHTML = "As you can see the ace can count as a value of 1 or 11.<br>So looking at what the card does can really help you get better.";
+            break;
+
+        case 17:
+            tutorial_overlay.addEventListener('click', () => tutorial_play(18), { once: true });
+            tutorial_text_p.innerHTML = "PLACEHOLDER";
+            break;
+
 
 
         
-        case 25:
+        case 24:
             stop_tutorial();
             break;
         // Add more tutorial steps as needed
@@ -100,23 +207,23 @@ async function tutorial_play(step) {
         // laat player drawen GEDAAN 
         // leg value uit GEDAAN
         // laat ze playen GEDAAN
+        // leg round score uit GEDAAN
+        // leg score to beat uit GEDAAN
+        // leg hands uit GEDAAN
+        // laat nog geen keer pakken GEDAAN
+        // laat nog geen keer pakken GEDAAN
+        // het is > 21 GEDAAN
+        // leg bust uit GEDAAN
+        // leg discards uit GEDAAN
+        // laat ze discarden GEDAAN
+        // leg blackjack bonus uit GEDAAN
+        // speel de blackjack GEDAAN
+        // krijg een ace GEDAAN
+        // hover uitleggen GEDAAN
+        // speel een kaart GEDAAN
+        // ace gaat van 11 naar 1 vertel van hover vertelde info GEDAAN
 
 
-        // leg round score uit
-        // leg score to beat uit
-        // leg hands uit
-        // laat nog geen keer pakken
-        // laat nog geen keer pakken
-        // het is > 21
-        // leg bust uit
-        // leg discards uit
-        // laat ze discarden
-        // leg blackjack bonus uit
-        // speel de blackjack
-        // krijg een ace
-        // hover uitleggen
-        // speel een kaart
-        // ace gaat van 11 naar 1 vertel van hover vertelde info
         // speel en win de round
         // leg special cards uit
         // speel een special card en win de round
@@ -139,29 +246,18 @@ async function update_values() {
     blackjack_bonus_text.textContent = "×" + window.blackjack_bonus_multiplier;
 
     total_discards_text.textContent = window.discards_amount;
+
+    tutorial_overlay.style.zIndex = 5000;
 }
 
 
 async function start_turn(score) {
-    // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.
-    
-
-
     if (window.hands_amount <= 0 || score >= winning_score) {
         await win_round(score);
         return;
     } else {
         window.hands_amount -= 1;
     }
-
-    for (let i = 0; i < forced_amount_draw; i++) {
-        addCard();
-        //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
-        await delay(500 * (1/window.animation_speed));
-    }
-
-    // https://byby.dev/js-global-variables#:~:text=In%20JavaScript%2C%20you%20can%20use%20global%20variables%20across,system%20to%20import%20and%20export%20variables%20between%20files.
-    window.isDealing = false;
 }
 
 

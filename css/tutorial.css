@@ -16,3 +16,21 @@
     opacity: 0;
     z-index: 5000;
 }
+
+.tutorial_text_animated {
+    animation: tutorial_text_glow 2s infinite ease;
+}
+
+
+@keyframes tutorial_text_glow {
+    0% {
+        text-shadow: 0 0 0px yellow;
+    }
+    50% {
+        text-shadow: 0 0 10px yellow;
+        color: yellow;
+    }
+    100% {
+        text-shadow: 0 0 0px yellow;
+    }
+}
