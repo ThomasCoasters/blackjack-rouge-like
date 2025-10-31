@@ -175,12 +175,14 @@ async function tutorial_play(step) {
             break;
         
         case 15:
+            await delay(500);
+            
             tutorial_overlay.style.zIndex = -4000;
 
             addCard();
 
             window.isDealing = false;
-            tutorial_text_p.innerHTML = "Let's just play another card for now.";
+            tutorial_text_p.innerHTML = "Great job!<br>Let's just play another card for now.";
             break;
         
         case 16:

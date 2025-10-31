@@ -112,7 +112,6 @@ function create_new_card(card, container, new_class_name) {
     newCard.addEventListener('mouseover', async () => {
       show_Card_Info(newCard, card.hover_name, card.hover_text, card);
       if (window.step == 14) {
-        await delay(500);
         tutorial_play(window.step + 1);
       }
     });
