@@ -19,7 +19,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "score"}, // deltarune reference
     {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "yodelling protector", "hover_text": "this one of a kind card is retriggerable and will protect you if you did not get the required score in your last hand (while this card is in play) and breaks after use", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // shakra reference
     {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score", "effect": grub_sfx}, // hk refrence
-    {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
+    {"suit": "special_row_1", "value": "special_value:value_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
     ],
 
     "permanent_upgrades": [
@@ -66,8 +66,8 @@ const col_map = {
     "special_value:increase_max": 5,
     "special_value:reusable+retrigger": 6,
     "special_value:run_save": 7,
-    "special_value:suit_rally": 8,
-    "special_value:value_rally": 9,
+    "special_value:suit_rally": 9,
+    "special_value:value_rally": 8,
 
 
 

@@ -165,3 +165,8 @@ body {
 
 
 
+.size-img{
+    background-image: url("../images/begin_assets/Needle_1_Needle.png");
+    width: auto;
+    height: auto;
+}
