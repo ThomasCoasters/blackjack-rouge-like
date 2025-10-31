@@ -80,12 +80,12 @@ async function resetPosition() {
     card.style.top = start_pos_y + "px";
     card.style.left = start_pos_x + "px";
 
-    if (is_card_in_play_box(card, play_card_box) && (window.step === 1 || window.step === 7 || window.step === 8 || window.step === 15)){
+    if (is_card_in_play_box(card, play_card_box) && (window.step === 1 || window.step === 7 || window.step === 8 || window.step === 15 || window.step === 21)){
         addCard();
         tutorial_play(window.step + 1);
     }
 
-    else if (is_card_in_play_box(card, use_card_box) && (window.step === 3 || window.step === 13)){
+    else if (is_card_in_play_box(card, use_card_box) && (window.step === 3 || window.step === 13 || window.step === 17 || window.step === 22 || window.step === 25)){
         await use_cards();
         tutorial_play(window.step + 1);
     }

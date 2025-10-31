@@ -113,19 +113,16 @@ async function choose_upgrade_setup() {
     await delay(1000);
 
     await choose_upgrade_type();
+
+    tutorial_play(window.step);
 }
 
 
 async function choose_upgrade_type() {
-    const upgradeTypes = Object.keys(window.all_upgrades);
-    
-    for (let i = 0; i < window.max_upgrades_amount; i++) {
-        const randomIndex = Math.floor(Math.random() * upgradeTypes.length);
-        const selectedType = upgradeTypes[randomIndex];
-
-        const upgrade = await choose_upgrade(selectedType);
-
-        upgrade_container.appendChild(await create_upgrade_card(upgrade, selectedType));
+    if (window.step == 18) {
+        upgrade_container.appendChild(await create_upgrade_card({"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, "special_cards"));
+    } else {
+        upgrade_container.appendChild(await create_upgrade_card({"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "increase max total value", "hover_text": "permanent upgrade: increases the maximum total value by 2", "effect": increase_max_total_value}, "permanent_upgrades"));
     }
 }
 
@@ -165,6 +162,9 @@ async function create_upgrade_card(upgrade, selectedType) {
 
     newCard.addEventListener('mouseover', () => {
         show_Card_Info(newCard, upgrade.hover_name, upgrade.hover_text, upgrade, 14);
+        if (window.step == 18) {
+            tutorial_play(window.step + 1);
+        }
     });
 
     newCard.addEventListener('mouseout', () => {
@@ -196,6 +196,13 @@ async function upgrade_card_chosen(upgrade, upgrade_type) {
     }
     await screen_light();
     start_turn();
+    if (window.step == 19) {
+        window.available_cards.push({"suit": "diamonds", "value": "7", "hover_name": "7 of diamonds", "hover_text": "diamonds card with an value of 7"}, {"suit": "clubs", "value": "7", "hover_name": "7 of clubs", "hover_text": "clubs card with an value of 7"}, {"suit": "spades", "value": "7", "hover_name": "7 of spades", "hover_text": "spades card with an value of 7"});
+    } else {
+        window.available_cards.push({"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "spades", "value": "8", "hover_name": "8 of spades", "hover_text": "spades card with an value of 8"},{"suit": "clubs", "value": "5", "hover_name": "5 of clubs", "hover_text": "clubs card with an value of 5"});
+    }
+
+    tutorial_play(window.step + 1);
 }
 
 

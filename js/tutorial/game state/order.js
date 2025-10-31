@@ -4,7 +4,7 @@ window.max_total_value = 21;
 
 window.blackjack_bonus_multiplier = 1.5;
 
-winning_score = 75;
+winning_score = 100;
 
 current_round = 1;
 
@@ -175,9 +175,9 @@ async function tutorial_play(step) {
             break;
         
         case 15:
-            await delay(500);
-            
             tutorial_overlay.style.zIndex = -4000;
+
+            await delay(500);
 
             addCard();
 
@@ -191,14 +191,74 @@ async function tutorial_play(step) {
             break;
 
         case 17:
-            tutorial_overlay.addEventListener('click', () => tutorial_play(18), { once: true });
-            tutorial_text_p.innerHTML = "PLACEHOLDER";
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "Now let's play the hand and win the round!";
             break;
 
+        case 18:
+            tutorial_overlay.style.zIndex = -4000;
 
+            tutorial_text_p.innerHTML = "Here you can choose upgrades to help you in the next round.<br>This is a new card so hover to see what it does.";
+            break;
 
+        case 19:
+            tutorial_overlay.style.zIndex = -4000;
+
+            tutorial_text_p.innerHTML = "Let's get this card now.<br>Click on it to get the new card.";
+            break;
+        
+        case 20:
+            tutorial_overlay.addEventListener('click', () => tutorial_play(21), { once: true });
+
+            addCard();
+            addCard();
+            addCard();
+
+            tutorial_text_p.innerHTML = "Great choice!<br>With upgrades you can really improve your chances of winning.<br>Try to choose wisely!";
+            break;
+
+        case 21:
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "Let's grab one card!";
+            break;
+        
+        case 22:
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+            tutorial_text_p.innerHTML = "And now let's win the round by playing these cards!";
+            break;
+
+        case 23:
+            tutorial_overlay.style.zIndex = -4000;
+
+            tutorial_text_p.innerHTML = "this is an permanent upgrade.<br>permanent upgrades stay forever and can really help you in the long run.<br>hover over it to see what it does and then get it by clicking on it.";
+            break;
         
         case 24:
+            tutorial_overlay.addEventListener('click', () => tutorial_play(25), { once: true });
+            tutorial_text_p.innerHTML = "Great job!<br>With permanent upgrades you can really improve your chances of winning.<br>Try to choose wisely!";
+            break;
+
+        case 25:
+            tutorial_overlay.style.zIndex = -4000;
+
+            window.isDealing = false;
+
+            addCard();
+            addCard();
+            addCard();
+
+            tutorial_text_p.innerHTML = "Now let's win the round by playing these cards!";
+            break;
+
+        case 26:
+            tutorial_text_p.innerHTML = "You beat the tutorial!<br>Good luck on your adventure!";
+            await delay(5000);
             stop_tutorial();
             break;
         // Add more tutorial steps as needed
@@ -224,10 +284,10 @@ async function tutorial_play(step) {
         // hover uitleggen GEDAAN
         // speel een kaart GEDAAN
         // ace gaat van 11 naar 1 vertel van hover vertelde info GEDAAN
+        // speel en win de round GEDAAN
+        // leg special cards uit GEDAAN
 
 
-        // speel en win de round
-        // leg special cards uit
         // speel een special card en win de round
         // leg upgrades uit
         // laat ze een upgrade kiezen
@@ -290,39 +350,15 @@ window.onload = function() {
 
 
 
-async function win_round(score) {
-    if (score >= winning_score) {
-        // Player wins the round
-        await won_round();
-        await reset();
-
-        // start_turn(0);
-    } else {
-        // Player loses the round
-
-        await delay(1000*(1/animation_speed));
-        screen_text.style.animation = "none";
-        void screen_text.offsetWidth; // trigger reflow to restart animation
-
-        screen_text_p.innerHTML = "<b>You Lost</b>";
-
-        screen_text.style.animation = "screen_text_animation";
-        screen_text.style.animationDuration = 2500*(1/animation_speed) + "ms";
-        screen_text.style.animationIterationCount = "1";
-
-        await delay(1250*(1/animation_speed));
-
-        await screen_darker(1);
-
-        window.location.href = "start.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed;
-        await delay(10000000000); // Prevent further code execution
-    }
+async function win_round() {
+    await won_round();
+    await reset();
 }
 
 async function won_round() {
     window.hands_amount = max_hands_amount;
     window.discards_amount = max_discards_amount;
-    window.winning_score += 10;
+    window.winning_score -= 35;
     window.current_round += 1;
 
     total_hands_text.textContent = window.hands_amount;
