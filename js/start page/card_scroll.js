@@ -28,9 +28,9 @@ function choose_random_card() {
   let col = Math.floor(Math.random() * 13);
   let row = Math.floor(Math.random() * 6);
 
-  // if (row == 4 && col > 0) { // change coll higher depending on amount of special cards
-  //   col = 0; // reset to first special card
-  // }
+  if (row == 4 && col > 10) { // change coll higher depending on amount of special cards
+    col = 0; // reset to first special card
+  }
 
   change_card(col, row);
 }
