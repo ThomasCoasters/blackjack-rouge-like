@@ -21,8 +21,9 @@ const suit_map = {
   "diamonds": 1,
   "spades": 3,
   "clubs": 0,
-  
-  "special_row_1": 4
+
+  "special_row_1": 4,
+  "zote_row": 6,
 };
 
 // also stolen =)
@@ -52,7 +53,21 @@ const value_map = {
   "special_value:run_save": 7,
   "special_value:suit_rally": 9,
   "special_value:value_rally": 8,
-  "special_value:lower_score": 10
+  "special_value:lower_score": 10,
+  "special_value:gain_card": 11,
+
+  "zote_card:zoteling": 0,
+  "zote_card:winged_zoteling": 1,
+  "zote_card:Heavy_zoteling": 2,
+  "zote_card:turret_zoteling": 3,
+  "zote_card:Lanky_zoteling": 4,
+  "zote_card:head_of_zote": 5,
+  "zote_card:volitile_zoteling": 6,
+  "zote_card:Fluke_zoteling": 7,
+  "zote_card:zote_curse": 8,
+  "zote_card:GPZ": 9,
+  "zote_card:the_mighty": 10,
+  "zote_card:the_getting_killed": 11
 };
 
 

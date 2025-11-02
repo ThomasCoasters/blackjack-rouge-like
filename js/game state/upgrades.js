@@ -14,14 +14,15 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:none", "hover_name": "king of the jokers", "hover_text": "'I am the king here, here and like chaos, chaos so I'll retrigger, retrigger all king cards' (ALL king cards get +1 retrigger for every use)" , "special": retrigger_all_kings, "special_location": "score", "effect": play_freedom_motif},// jevil deltarune reference
     {"suit": "special_row_1", "value": "special_value:5_1", "reusing": true, "hover_name": "shock em' and they'll stay", "hover_text": "maybe shocking this card will make it's 5 score be reusable", "special": shock_sfx, "special_location": "score"}, // hassan dog reference
     {"suit": "special_row_1", "value": "special_value:5_2", "retrigger": 1, "hover_name": "amazing performer", "hover_text": "this performance is so good that it got a 5/5 score and can be retriggered once", "special": trobbio_sfx, "special_location": "score"}, // trobbio refrence
-    {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "Spamton’s Assistant", "hover_text": "Keeps coming back for another DEAL!! reusable card with a value of 2 and gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
+    {"suit": "special_row_1", "value": "special_value:2", "reusing": true, "hover_name": "Spamton's Assistant", "hover_text": "Keeps coming back for another DEAL!! reusable card with a value of 2 and gives 1 discard when used", "special": scrap_drone_special, "special_location": "score"},
     {"suit": "special_row_1", "value": "special_value:increase_max", "hover_name": "overclock monkey", "hover_text": "the monkeys designed some usefull stuff: this hand only, increase max total value by +7", "special": increase_max_total_value_7, "special_location": "total value"}, // btd6 refrence
     {"suit": "special_row_1", "value": "special_value:reusable+retrigger", "hover_name": "weird route", "hover_text": "maybe things took a weird route and a random held card will retrigger and be reusable", "special": reusable_and_retrigger, "special_location": "score"}, // deltarune reference
     {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "yodelling protector", "hover_text": "this one of a kind card is reusable and will protect you if you did not get the required score in your last hand (while this card is in play) and breaks after use", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // shakra reference
     {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score", "effect": grub_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:value_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:lower_score", "reusing": true, "hover_name": "deadly skarr traps", "hover_text": "this reusable card has a value of 2 and sets a trap that lowers the required score by 0.5 for every card in play (rounds up) every use", "special": lower_required_score, "special_location": "score"}, // hk refrence
-    ],
+    {"suit": "special_row_1", "value": "special_value:gain_card", "hover_name": "zote's boat", "hover_text": "this card has a value of 3 and gives a zote? type of card when used", "special": summon_zote_card, "special_location": "score"}, // hk refrence
+],
 
     "permanent_upgrades": [
     {"suit": "permanent_upgrade_row_1", "value": "increase_max_total_value", "hover_name": "power of the vessel", "hover_text": "'Sealed away it's power grows' permanent upgrade: increases the maximum total value by 2", "effect": increase_max_total_value},// hk refrence
@@ -70,6 +71,7 @@ const col_map = {
     "special_value:suit_rally": 9,
     "special_value:value_rally": 8,
     "special_value:lower_score": 10,
+    "special_value:gain_card": 11,
 
 
 
@@ -126,6 +128,10 @@ async function choose_upgrade_type() {
         const selectedType = upgradeTypes[randomIndex];
 
         const upgrade = await choose_upgrade(selectedType);
+
+        if (upgrade.special === summon_zote_card) {
+            background_music_zote("upgrade");
+        }
 
         upgrade_container.appendChild(await create_upgrade_card(upgrade, selectedType));
     }

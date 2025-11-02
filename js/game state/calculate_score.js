@@ -10,7 +10,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack, retri
     }
 
     if (card.special && card.special_location === "score") {
-        if (card.special.name === "random_score" || card.special.name === "run_save" || card.special.name === "suit_rally" || card.special.name === "value_rally") { // special case for score adding specials
+        if (card.special.name === "random_score" || card.special.name === "run_save" || card.special.name === "suit_rally" || card.special.name === "value_rally" || card.special.name === "win_round_score") { // special case for score adding specials
             card_score += await card.special();
         } else {
             await card.special();
@@ -243,4 +243,79 @@ async function lower_required_score() {
     score_to_beat_amount_text.textContent = window.winning_score;
 
     background_music_karmelita_vocal();
+}
+
+async function summon_zote_card() {
+    const zote_cards = [
+        {"suit": "zote_row", "value": "zote_card:zoteling", "hover_name": "zote's zoteling", "hover_text": "this has an value of 1"},
+        {"suit": "zote_row", "value": "zote_card:winged_zoteling", "hover_name": "zote's winged zoteling", "hover_text": "this has an value of 2"},
+        {"suit": "zote_row", "value": "zote_card:Heavy_zoteling", "hover_name": "zote's Heavy zoteling", "hover_text": "this has an value of 8"},
+        {"suit": "zote_row", "value": "zote_card:turret_zoteling", "reusing": true, "hover_name": "zote's turret zoteling", "hover_text": "this has a value of 4 and is reusable"},
+        {"suit": "zote_row", "value": "zote_card:Lanky_zoteling", "hover_name": "zote's Lanky zoteling", "hover_text": "this will give a random card retrigger when used" , "special": retrigger_random_card, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:head_of_zote", "hover_name": "zote's head", "hover_text": "has no value but is worth 10 score", "different_value_and_score": true},
+        {"suit": "zote_row", "value": "zote_card:volitile_zoteling", "hover_name": "zote's volitile zoteling", "hover_text": "this has no value and self destructs after use deleting all versions of this card, giving 12 score and destroys another random card", "different_value_and_score": true, "special": destroy_random_card_and_self_destruct, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:Fluke_zoteling", "hover_name": "zote's fluke zoteling", "hover_text": "this has an value of -5 and no score", "different_value_and_score": true},
+        {"suit": "zote_row", "value": "zote_card:zote_curse", "hover_name": "zote's Curse", "hover_text": "this has a value of 50 and the amount of score you need to win the round", "different_value_and_score": true, "special": win_round_score, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:GPZ", "hover_name": "Invincible, Fearless, Sensual, Mysterious, Enchanting, Vigorous, Diligent, Overwhelming, Gorgeous, Passionate, Terrifying, Beautiful, Powerful, Grey Prince Zote", "hover_text": "Invincible, Fearless, Sensual, Mysterious, Enchanting, Vigorous, Diligent, Overwhelming, Gorgeous, Passionate, Terrifying, Beautiful, Powerful, Grey Prince Zote has a value of 11 and lowers the required score by 0.25 for all the zote cards you have in your deck", "special": GPZ_special, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:the_mighty", "hover_name": "zote the mighty", "hover_text": "this has an value of 4 and gives another zote? type of card when used", "special": summon_zote_card, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:the_getting_killed", "hover_name": "zote the getting killed", "hover_text": "this has an value of -6, no score and removes 1-3 random cards when scored", "special": remove_random_card, "special_location": "score"},
+        {"suit": "zote_row", "value": "zote_card:the_fallen", "hover_name": "zote the fallen", "hover_text": "this card works like an ace", "special": ace_special, "special_location": "total value", "different_value_and_score": true},
+    ];
+    window.available_cards.push(zote_cards[Math.floor(Math.random() * zote_cards.length)]);
+}
+
+async function retrigger_random_card() {
+    const card = window.available_cards[Math.floor(Math.random() * window.available_cards.length)];
+    card.retrigger = (card.retrigger || 0) + 1;
+}
+
+async function destroy_random_card_and_self_destruct() {
+    remove_one_random_card();
+
+    const cardArrays = [window.held_cards, window.available_cards, used_cards];
+    
+    for (const cardArray of cardArrays) {
+        for (let i = cardArray.length - 1; i >= 0; i--) {
+            if (cardArray[i].value === "zote_card:volitile_zoteling") {
+                cardArray.splice(i, 1); // remove the card after use
+            }
+        }
+    }
+}
+
+
+async function win_round_score() {
+    return winning_score;
+}
+
+async function GPZ_special() {
+    let zote_card_count = 0;
+
+    const cardArrays = [window.held_cards, window.available_cards, used_cards];
+
+    for (const cardArray of cardArrays) {
+        for (const card of cardArray) {
+            if (card.value.startsWith("zote_card:")) {
+                zote_card_count++;
+            }
+        }
+    }
+
+    winning_score -= Math.round(zote_card_count * 0.25);
+    if (winning_score < 1) {
+        winning_score = 1;
+    }
+    
+    score_to_beat_amount_text.textContent = window.winning_score;
+}
+
+async function remove_random_card() {
+    for (let i = 0; i < Math.floor(Math.random() * 3) + 1; i++) {
+        remove_one_random_card();
+    }
+}
+
+function remove_one_random_card() {
+    const card_index = Math.floor(Math.random() * window.available_cards.length);
+    window.available_cards.splice(card_index, 1);
 }

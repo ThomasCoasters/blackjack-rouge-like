@@ -33,7 +33,7 @@ body {
 
     background-position: 0 0; /*top left card (default position)*/
 
-    background-size: 1300% 600%;
+    background-size: 1300% 700%;
 
     transition: transform 0.2s opacity 0.2s, box-shadow 0.2s;
 

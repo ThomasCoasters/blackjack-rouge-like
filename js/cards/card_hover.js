@@ -39,6 +39,9 @@ function text_color_change(text) {
     new_text = new_text.replace(/(1|2|3|4|5|6|7|8|9|0|\.|\-)/g, '<span style="color: darkblue;">$1</span>');
 
 
+
+    new_text = new_text.replace(/Invincible, Fearless, Sensual, Mysterious, Enchanting, Vigorous, Diligent, Overwhelming, Gorgeous, Passionate, Terrifying, Beautiful, Powerful, Grey Prince Zote/g, '<span style="font-size: 12px; line-height: 0.8; display: block; background: linear-gradient(to right, red, green, blue, indigo, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
+
     new_text = new_text.replace(/(hearts|diamonds)/g, '<span style="color: red;">$1</span>');
     new_text = new_text.replace(/(spades|clubs)/g, '<span style="color: black;">$1</span>');
 
@@ -54,7 +57,7 @@ function text_color_change(text) {
     new_text = new_text.replace(/\bretrigger(?:able)?(?:ed)?(?:ing)?|shocking\b/gi, '<span style="background: linear-gradient(to top, purple, violet);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
     new_text = new_text.replace(/\breus(?:able)?(?:ing)?(?:ed)?\b/gi, '<span style="background: linear-gradient(to top, Fuchsia, indigo);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
 
-    new_text = new_text.replace(/(bust|win)/g, '<span style="background: linear-gradient(to right, MediumTurquoise, DodgerBlue);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
+    new_text = new_text.replace(/\b(bust|win)\b/g, '<span style="background: linear-gradient(to right, MediumTurquoise, DodgerBlue);-webkit-background-clip: text;background-clip: text;color: transparent;">$1</span>');
 
     new_text = new_text.replace(/\b(?:increas(?:e|es|ing)?|max(?:imum)?)\b/gi, '<span style="background: linear-gradient(to top, LawnGreen, LightGreen);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');
     new_text = new_text.replace(/\b(?:decreas(?:e|es|ing)?|min(?:imum)?|but)\b/gi, '<span style="background: linear-gradient(to top, Salmon, GoldenRod);-webkit-background-clip: text;background-clip: text;color: transparent;">$&</span>');

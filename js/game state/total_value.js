@@ -25,6 +25,20 @@ const value_per_card = {
     "special_value:5_1": 5,
     "special_value:5_2": 5,
     "special_value:lower_score": 2,
+    "special_value:gain_card": 3,
+
+    "zote_card:zoteling": 1,
+    "zote_card:winged_zoteling": 2,
+    "zote_card:Heavy_zoteling": 8,
+    "zote_card:turret_zoteling": 4,
+    "zote_card:Lanky_zoteling": 0,
+    "zote_card:head_of_zote": 0,
+    "zote_card:volitile_zoteling": 0,
+    "zote_card:Fluke_zoteling": -5,
+    "zote_card:zote_curse": 50,
+    "zote_card:GPZ": 11,
+    "zote_card:the_mighty": 4,
+    "zote_card:the_getting_killed": -6
 };
 
 var increase_max_total_value_count = 0;
@@ -54,6 +68,10 @@ async function update_Total_Value(from_calculate_score = false) {
         }
         if (card.special === lower_required_score) {
             background_music_karmelita_no_vocal();
+        }
+
+        if (card.value.startsWith("zote_card:") || card.special === summon_zote_card) {
+            background_music_zote();
         }
     }
 

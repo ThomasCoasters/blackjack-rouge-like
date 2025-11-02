@@ -91,6 +91,28 @@ function background_music_karmelita_no_vocal() {
     karmelita_vocal = false;
 }
 
+
+function background_music_zote(location = false) {
+    let time_now = background_audio.currentTime;
+
+    currentTime = 0;
+    background_audio.pause();
+
+    if (location === "upgrade") { background_audio.src = '../../../audio/music/Zote zen garden.mp3'; }
+    else if (karmelita_vocal || karmelita_no_vocal) { background_audio.src = '../../../audio/music/Zote karmelita.mp3'; }
+    else if (trobbio_motif_played) { background_audio.src = '../../../audio/music/Zote trobbio.mp3'; }
+    else { background_audio.src = '../../../audio/music/Zote grasswalk.mp3'; }
+
+    background_audio.currentTime = time_now;
+    background_audio.loop = true;
+    background_audio.play();
+
+    freedom_motif_played = false;
+    trobbio_motif_played = false;
+    karmelita_no_vocal = false;
+    karmelita_vocal = false;
+}
+
 function start_upgrade_music() {
     trobbio_motif_played = false;
     karmelita_no_vocal = false;

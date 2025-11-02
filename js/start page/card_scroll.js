@@ -16,7 +16,7 @@ setInterval(() => {
 
 function change_card(col, row) {
   const xPercent = (col / 12) * 100; // change the 12 to the new value map numver (when changes)
-  const yPercent = (row / 5) * 100;  // change the 5 to the new suit map numver (when changes)
+  const yPercent = (row / 6) * 100;  // change the 6 to the new suit map numver (when changes)
 
   deco_card.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
 }
@@ -26,7 +26,7 @@ function change_card(col, row) {
 function choose_random_card() {
   //choose random card from available cards
   let col = Math.floor(Math.random() * 13);
-  let row = Math.floor(Math.random() * 6);
+  let row = Math.floor(Math.random() * 7);
 
   if (row == 4 && col > 10) { // change coll higher depending on amount of special cards
     col = Math.floor(Math.random() * 11);
