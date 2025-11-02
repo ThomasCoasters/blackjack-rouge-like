@@ -24,6 +24,7 @@ const value_per_card = {
     "special_value:2": 2,
     "special_value:5_1": 5,
     "special_value:5_2": 5,
+    "special_value:lower_score": 2,
 };
 
 var increase_max_total_value_count = 0;
@@ -50,6 +51,9 @@ async function update_Total_Value(from_calculate_score = false) {
         // Collect special functions to execute later
         if (card.special_location === "total value" && card.special) {
             specialCards.push(card.special);
+        }
+        if (card.special === lower_required_score) {
+            background_music_karmelita_no_vocal();
         }
     }
 

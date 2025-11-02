@@ -37,7 +37,8 @@ const score_per_card = {
 
     "special_value:5_1": 5,
     "special_value:5_2": 5,
-    "special_value:2": 2
+    "special_value:2": 2,
+    "special_value:lower_score": 2,
 };
 
 
@@ -66,6 +67,7 @@ const priority_list = {
 
     "special_value:suit_rally": 16,
     "special_value:value_rally": 16,
+    "special_value:lower_score": 10,
 
 
     "special_value:5_1": 15,

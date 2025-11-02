@@ -232,3 +232,14 @@ async function value_rally() {
 
     return extra_score;
 }
+
+
+async function lower_required_score() {
+    winning_score -= Math.floor(Math.random() * 10) + 1;
+    if (winning_score < 1) {
+        winning_score = 1;
+    }
+    score_to_beat_amount_text.textContent = window.winning_score;
+
+    background_music_karmelita_vocal();
+}

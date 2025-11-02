@@ -51,7 +51,8 @@ const value_map = {
   "special_value:reusable+retrigger": 6,
   "special_value:run_save": 7,
   "special_value:suit_rally": 9,
-  "special_value:value_rally": 8
+  "special_value:value_rally": 8,
+  "special_value:lower_score": 10
 };
 
 

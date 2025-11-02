@@ -3,6 +3,9 @@ var freedom_motif_played = false;
 var trobbio_motif_played = false;
 var currentTime = 0;
 
+var karmelita_no_vocal = false;
+var karmelita_vocal = false;
+
 function background_music_play_normal() {
     background_audio.loop = true;
     background_audio.play();
@@ -11,6 +14,8 @@ function background_music_play_normal() {
 
 function background_music_play_freedom() {
     trobbio_motif_played = false;
+    karmelita_no_vocal = false;
+    karmelita_vocal = false;
     currentTime = background_audio.currentTime;
     background_audio.pause();
     background_audio.src = '../../../audio/music/Grasswalk freedom motif.mp3';
@@ -38,6 +43,8 @@ function play_freedom_motif() {
 
 function background_music_trobbio() {
     freedom_motif_played = false;
+    karmelita_no_vocal = false;
+    karmelita_vocal = false;
     currentTime = 0;
     background_audio.pause();
     background_audio.src = '../../../audio/music/trobbio music.mp3';
@@ -45,10 +52,49 @@ function background_music_trobbio() {
     background_audio.play();
 }
 
+function background_music_karmelita_vocal() {
+    if ( karmelita_vocal ) {return;}
 
+    freedom_motif_played = false;
+    trobbio_motif_played = false;
+
+    let time_now;
+    if ( karmelita_no_vocal) { time_now = background_audio.currentTime; }
+    else { time_now = 0; }
+
+    currentTime = 0;
+
+    background_audio.pause();
+    background_audio.src = '../../../audio/music/Skarrsinger Karmelita.mp3';
+    background_audio.loop = true;
+    background_audio.currentTime = time_now;
+    background_audio.play();
+
+    karmelita_no_vocal = false;
+    karmelita_vocal = true;
+}
+
+function background_music_karmelita_no_vocal() {
+    if (karmelita_vocal || karmelita_no_vocal) { return; }
+
+    freedom_motif_played = false;
+    trobbio_motif_played = false;
+
+    currentTime = 0;
+
+    background_audio.pause();
+    background_audio.src = '../../../audio/music/Skarrsinger Karmelita no vocal.mp3';
+    background_audio.loop = true;
+    background_audio.play();
+
+    karmelita_no_vocal = true;
+    karmelita_vocal = false;
+}
 
 function start_upgrade_music() {
     trobbio_motif_played = false;
+    karmelita_no_vocal = false;
+    karmelita_vocal = false;
     if (currentTime === 0) { currentTime = background_audio.currentTime; }
     background_audio.pause();
     if (freedom_motif_played) {

@@ -6,6 +6,8 @@ window.blackjack_bonus_multiplier = 1.5;
 
 winning_score = 31;
 
+winning_score_backup = winning_score;
+
 current_round = 1;
 
 window.max_upgrades_amount = 3;
@@ -167,8 +169,10 @@ async function win_round(score) {
 async function won_round() {
     window.hands_amount = max_hands_amount;
     window.discards_amount = max_discards_amount;
-    if (window.current_round >= 30) {window.winning_score = Math.floor(window.winning_score * 1.1);}
-    else {window.winning_score += 10;}
+    if (window.current_round >= 30) {winning_score_backup = Math.floor(winning_score_backup * 1.1);}
+    else {winning_score_backup += 10;}
+
+    winning_score = winning_score_backup;
     window.current_round += 1;
 
     total_hands_text.textContent = window.hands_amount;
