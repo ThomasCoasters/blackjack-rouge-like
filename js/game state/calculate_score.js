@@ -235,7 +235,8 @@ async function value_rally() {
 
 
 async function lower_required_score() {
-    winning_score -= Math.floor(Math.random() * 10) + 1;
+    winning_score -= Math.round(using_cards.length / 2);
+
     if (winning_score < 1) {
         winning_score = 1;
     }

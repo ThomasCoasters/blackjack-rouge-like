@@ -20,7 +20,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:run_save", "reusing": true, "hover_name": "yodelling protector", "hover_text": "this one of a kind card is reusable and will protect you if you did not get the required score in your last hand (while this card is in play) and breaks after use", "special": run_save, "special_location": "score", "effect": remove_run_save_special_card}, // shakra reference
     {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score", "effect": grub_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:value_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
-    {"suit": "special_row_1", "value": "special_value:lower_score", "reusing": true, "hover_name": "deadly skarr traps", "hover_text": "this reusable card has a value of 2 and sets a trap that lowers the required score by 1 - 10 every use", "special": lower_required_score, "special_location": "score"}, // hk refrence
+    {"suit": "special_row_1", "value": "special_value:lower_score", "reusing": true, "hover_name": "deadly skarr traps", "hover_text": "this reusable card has a value of 2 and sets a trap that lowers the required score by 0.5 for every card in play (rounds up) every use", "special": lower_required_score, "special_location": "score"}, // hk refrence
     ],
 
     "permanent_upgrades": [
