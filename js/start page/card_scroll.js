@@ -28,9 +28,14 @@ function choose_random_card() {
   let col = Math.floor(Math.random() * 13);
   let row = Math.floor(Math.random() * 7);
 
-  if (row == 4 && col > 10) { // change coll higher depending on amount of special cards
-    col = Math.floor(Math.random() * 11);
+  if (row == 4 && col > 11) { // change coll higher depending on amount of special cards
+    col = Math.floor(Math.random() * 12);
   }
 
+  if (row == 6 || row == 4 && col == 11) {
+    background_music_play_zote();
+  } else {
+    background_music_play_normal();
+  }
   change_card(col, row);
 }

@@ -6,6 +6,8 @@ var currentTime = 0;
 var karmelita_no_vocal = false;
 var karmelita_vocal = false;
 
+var zote_music_babyy = false;
+
 function background_music_play_normal() {
     background_audio.loop = true;
     background_audio.play();
@@ -16,6 +18,7 @@ function background_music_play_freedom() {
     trobbio_motif_played = false;
     karmelita_no_vocal = false;
     karmelita_vocal = false;
+
     currentTime = background_audio.currentTime;
     background_audio.pause();
     background_audio.src = '../../../audio/music/Grasswalk freedom motif.mp3';
@@ -50,6 +53,10 @@ function background_music_trobbio() {
     background_audio.src = '../../../audio/music/trobbio music.mp3';
     background_audio.loop = true;
     background_audio.play();
+
+    if (zote_music_babyy) {
+        background_music_zote();
+    }
 }
 
 function background_music_karmelita_vocal() {
@@ -72,6 +79,10 @@ function background_music_karmelita_vocal() {
 
     karmelita_no_vocal = false;
     karmelita_vocal = true;
+
+    if (zote_music_babyy) {
+        background_music_zote();
+    }
 }
 
 function background_music_karmelita_no_vocal() {
@@ -89,10 +100,16 @@ function background_music_karmelita_no_vocal() {
 
     karmelita_no_vocal = true;
     karmelita_vocal = false;
+
+    if (zote_music_babyy) {
+        background_music_zote();
+    }
 }
 
 
 function background_music_zote(location = false) {
+    zote_music_babyy = true;
+
     let time_now = background_audio.currentTime;
 
     currentTime = 0;
@@ -117,6 +134,8 @@ function start_upgrade_music() {
     trobbio_motif_played = false;
     karmelita_no_vocal = false;
     karmelita_vocal = false;
+    zote_music_babyy = false;
+
     if (currentTime === 0) { currentTime = background_audio.currentTime; }
     background_audio.pause();
     if (freedom_motif_played) {
@@ -132,6 +151,8 @@ function start_upgrade_music() {
 
 function stop_upgrade_music() {
     background_audio.pause();
+    zote_music_babyy = false;
+
     if (freedom_motif_played) {
         background_audio.src = '../../../audio/music/Grasswalk freedom motif.mp3';
     }else {

@@ -7,9 +7,9 @@ var current_background_color = null;
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
 var animation_speed;
-const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3];
+const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3, 10];
 
-var music_volume = 100;
+var music_volume = null;
 const music_volumes = [0, 25, 50, 75, 100];
 
 
@@ -30,6 +30,8 @@ if (urlvars) {
 
     animation_speed = parseFloat(urlparams.get('animation_speed'));
 
+    music_volume = parseInt(urlparams.get('volume'));
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
@@ -37,7 +39,12 @@ if (urlvars) {
     if (animation_speed == "null" || isNaN(animation_speed)) {
         animation_speed = 1;
     }
+
+    if (music_volume == "null" || isNaN(music_volume)) {
+        music_volume = 100;
+    }
 }
+
 
 if (background_color_setting_output) { // failsafe for other pages
     if (current_background_color) {
@@ -61,6 +68,12 @@ else if (!current_background_color) {
 if (animation_speed_button) { // failsafe for other pages
     if (animation_speed) {
         animation_speed_button.innerText = "animation speed: " + animation_speed + "×";
+    }
+}
+
+if (music_volume_button) { // failsafe for other pages
+    if (music_volume) {
+        music_volume_button.innerText = "volume: " + music_volume + "%";
     }
 }
 
@@ -98,6 +111,10 @@ async function page_just_loaded() {
 
     overlay.style.transition = "all 0.35s ease";
 
+
+    background_music_play_normal();
+
+
     await delay(1000);
 }
 
@@ -125,4 +142,55 @@ function music_volume_change() {
     }
     music_volume = music_volumes[new_index];
     music_volume_button.innerText = "volume: " + music_volume + "%";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var background_audio = new Audio('../../../audio/music/silksong.mp3');
+
+var type = null;
+
+var currentTime = 3;
+
+background_audio.currentTime = currentTime;
+
+function background_music_play_normal() {
+    if (type === "normal") {return;}
+
+    type = "normal";
+
+    currentTime = background_audio.currentTime;
+    background_audio.pause();
+    background_audio.src = '../../../audio/music/silksong.mp3';
+
+    background_audio.loop = true;
+    background_audio.currentTime = currentTime;
+    background_audio.play();
+    background_audio.volume = 0.3*(music_volume/100);
+}
+
+function background_music_play_zote() {
+    if (type === "zote_da_goat") {return;}
+
+    type = "zote_da_goat";
+
+    currentTime = background_audio.currentTime;
+    background_audio.pause();
+    background_audio.src = '../../../audio/music/silksong zote.mp3';
+
+    background_audio.loop = true;
+    background_audio.currentTime = currentTime;
+    background_audio.play();
+    background_audio.volume = 0.3*(music_volume/100);
 }
