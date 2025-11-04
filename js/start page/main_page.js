@@ -66,13 +66,24 @@ else if (!current_background_color) {
 }
 
 if (seed_button) { // failsafe for other pages
-    if (seed) {
+    if (seed && seed !== "null") {
         seed_button.value = seed;
     }
     else {
         seed = Math.floor(Math.random() * 1000000).toString();
         seed_button.value = seed;
     }
+
+    seed_button.addEventListener('input', (event) => {
+        const v = event.target.value;
+        if (v === '' || v === 'null') {
+            // fallback to a random seed if the input is cleared
+            seed = Math.floor(Math.random() * 1000000).toString();
+            seed_button.value = seed;
+        } else {
+            seed = v.toString();
+        }
+    });
 }
 
 
