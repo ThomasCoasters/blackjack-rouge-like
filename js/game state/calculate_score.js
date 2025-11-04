@@ -41,7 +41,7 @@ async function calculate_score(card_index, score_text_scale, is_blackjack, retri
 
         await delay(250 * (1 / window.animation_speed));
 
-        use_cardsContainer.children[card_index].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+        use_cardsContainer.children[card_index].style.transform = "rotate(" + (window.random() * 40 - 20) + "deg)";
 
         await calculate_score(card_index, score_text_scale, is_blackjack, retriggering_number);
     }
@@ -126,7 +126,7 @@ async function hide_score_box(score_box) {
 async function random_score() {
     value_for_card = 0;
     while (true) {
-        if (Math.random() < 0.25) {
+        if (window.random() < 0.25) {
             break;
         } else {
             value_for_card += 1;
@@ -154,7 +154,7 @@ async function scrap_drone_special() {
 async function reusable_and_retrigger() {
     weird_sfx()
     
-    const card = using_cards[Math.floor(Math.random() * using_cards.length)];
+    const card = using_cards[Math.floor(window.random() * using_cards.length)];
 
     card.retrigger = (card.retrigger || 0) + 1;
     card.reusing = true;
@@ -261,11 +261,11 @@ async function summon_zote_card() {
         {"suit": "zote_row", "value": "zote_card:the_getting_killed", "hover_name": "zote the getting killed", "hover_text": "this has an value of -6, no score and removes 1-3 random cards when scored", "special": remove_random_card, "special_location": "score"},
         {"suit": "zote_row", "value": "zote_card:the_fallen", "hover_name": "zote the fallen", "hover_text": "this card works like an ace", "special": ace_special, "special_location": "total value", "different_value_and_score": true},
     ];
-    window.available_cards.push(zote_cards[Math.floor(Math.random() * zote_cards.length)]);
+    window.available_cards.push(zote_cards[Math.floor(window.random() * zote_cards.length)]);
 }
 
 async function retrigger_random_card() {
-    const card = window.available_cards[Math.floor(Math.random() * window.available_cards.length)];
+    const card = window.available_cards[Math.floor(window.random() * window.available_cards.length)];
     card.retrigger = (card.retrigger || 0) + 1;
 }
 
@@ -310,12 +310,12 @@ async function GPZ_special() {
 }
 
 async function remove_random_card() {
-    for (let i = 0; i < Math.floor(Math.random() * 3) + 1; i++) {
+    for (let i = 0; i < Math.floor(window.random() * 3) + 1; i++) {
         remove_one_random_card();
     }
 }
 
 function remove_one_random_card() {
-    const card_index = Math.floor(Math.random() * window.available_cards.length);
+    const card_index = Math.floor(window.random() * window.available_cards.length);
     window.available_cards.splice(card_index, 1);
 }

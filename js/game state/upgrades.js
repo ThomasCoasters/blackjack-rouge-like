@@ -159,8 +159,8 @@ async function choose_upgrade(type) {
 function weightedPick(array, getWeight) {
     const weights = array.map(getWeight);
     const total = weights.reduce((a, b) => a + b, 0);
-    if (total <= 0) return array[Math.floor(Math.random() * array.length)];
-    let r = Math.random() * total;
+    if (total <= 0) return array[Math.floor(window.random() * array.length)];
+    let r = window.random() * total;
     for (let i = 0; i < array.length; i++) {
         r -= weights[i];
         if (r < 0) return array[i];

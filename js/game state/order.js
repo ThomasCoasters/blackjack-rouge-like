@@ -57,6 +57,8 @@ if (urlvars) {
 
     window.music_volume = parseInt(urlparams.get('volume'));
 
+    seed = urlparams.get('seed');
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
@@ -69,7 +71,10 @@ if (urlvars) {
         music_volume = 100;
     }
 
-
+    if (seed == "null" || !seed) {
+        seed = Math.floor(Math.random() * 1000000);
+        window.location.href = "play_cards.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed;
+    }
 
     document.body.style.backgroundColor = current_background_color;
 }
@@ -111,6 +116,8 @@ async function start_turn(score) {
 
 
 async function page_just_loaded() {
+    window.random = seededRandom(seed)
+
     screen_text_p.innerHTML = "<b>START</b>";
     
     
