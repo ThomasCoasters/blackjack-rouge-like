@@ -4,8 +4,8 @@ window.gain_discard_each_hand_amount = 0;
 
 window.upgrade_type_weights = {
     "normal_cards": 1,
-    "special_cards": 4,
-    "permanent_upgrades": 3
+    "special_cards": 2,
+    "permanent_upgrades": 2
 };
 window.all_upgrades = {
     "normal_cards": [{"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"}, {"suit": "hearts", "value": "4", "hover_name": "4 of hearts", "hover_text": "hearts card with an value of 4"}, {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"}, {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"}, {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
@@ -26,7 +26,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score", "effect": grub_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:value_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:lower_score", "reusing": true, "hover_name": "deadly skarr traps", "hover_text": "this reusable card has a value of 2 and sets a trap that lowers the required score by 0.5 for every card in play (rounds up) every use", "special": lower_required_score, "special_location": "score"}, // hk refrence
-    {"suit": "special_row_1", "value": "special_value:gain_card", "hover_name": "zote's boat", "hover_text": "this card has a value of 3 and gives a zote? type of card when used", "special": summon_zote_card, "special_location": "score", "weight": 3.5}, // hk refrence
+    {"suit": "special_row_1", "value": "special_value:gain_card", "hover_name": "zote's boat", "hover_text": "this card has a value of 3 and gives a zote? type of card when used", "special": summon_zote_card, "special_location": "score", "weight": 2.5}, // hk refrence
 ],
 
     "permanent_upgrades": [
