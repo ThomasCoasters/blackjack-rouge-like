@@ -170,7 +170,9 @@ async function won_round() {
     window.hands_amount = max_hands_amount;
     window.discards_amount = max_discards_amount;
     if (window.current_round >= 30) {winning_score_backup = Math.floor(winning_score_backup * 1.1);}
-    else {winning_score_backup += 10;}
+    else if (window.current_round >= 20) {winning_score_backup += 15;}
+    else if (window.current_round >= 10) {winning_score_backup += 10;}
+    else {winning_score_backup += 5;}
 
     winning_score = winning_score_backup;
     window.current_round += 1;

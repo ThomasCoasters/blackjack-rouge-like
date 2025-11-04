@@ -7,7 +7,7 @@ var current_background_color = null;
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
 var animation_speed;
-const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3];
+const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3, 100];
 
 var music_volume = 100;
 const music_volumes = [0, 25, 50, 75, 100];

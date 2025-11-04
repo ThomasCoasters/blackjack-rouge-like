@@ -4,8 +4,8 @@ window.gain_discard_each_hand_amount = 0;
 
 window.upgrade_type_weights = {
     "normal_cards": 1,
-    "special_cards": 3,
-    "permanent_upgrades": 2
+    "special_cards": 4,
+    "permanent_upgrades": 3
 };
 window.all_upgrades = {
     "normal_cards": [{"suit": "hearts", "value": "ace", "hover_name": "ace of hearts", "hover_text": "hearts card with an value of 1 or 11 but an score of 11", "special": ace_special, "special_location": "total value", "different_value_and_score": true}, {"suit": "hearts", "value": "2", "hover_name": "2 of hearts", "hover_text": "hearts card with an value of 2"}, {"suit": "hearts", "value": "3", "hover_name": "3 of hearts", "hover_text": "hearts card with an value 3"}, {"suit": "hearts", "value": "4", "hover_name": "4 of hearts", "hover_text": "hearts card with an value of 4"}, {"suit": "hearts", "value": "5", "hover_name": "5 of hearts", "hover_text": "hearts card with an value of 5"}, {"suit": "hearts", "value": "6", "hover_name": "6 of hearts", "hover_text": "hearts card with an value of 6"}, {"suit": "hearts", "value": "7", "hover_name": "7 of hearts", "hover_text": "hearts card with an value of 7"}, {"suit": "hearts", "value": "8", "hover_name": "8 of hearts", "hover_text": "hearts card with an value of 8"}, {"suit": "hearts", "value": "9", "hover_name": "9 of hearts", "hover_text": "hearts card with an value of 9"}, {"suit": "hearts", "value": "10", "hover_name": "10 of hearts", "hover_text": "hearts card with an value of 10"}, {"suit": "hearts", "value": "jack", "hover_name": "jack of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "queen", "hover_name": "queen of hearts", "hover_text": "hearts face card with an value of 10"}, {"suit": "hearts", "value": "king", "hover_name": "king of hearts", "hover_text": "hearts face card with an value of 10"},
