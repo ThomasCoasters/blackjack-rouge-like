@@ -57,6 +57,8 @@ if (urlvars) {
 
     window.music_volume = parseInt(urlparams.get('volume'));
 
+    seed = urlparams.get('seed');
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
@@ -69,7 +71,10 @@ if (urlvars) {
         music_volume = 100;
     }
 
-
+    if (seed == "null" || !seed) {
+        seed = Math.floor(Math.random() * 1000000);
+        window.location.href = "play_cards.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed;
+    }
 
     document.body.style.backgroundColor = current_background_color;
 }
@@ -111,6 +116,8 @@ async function start_turn(score) {
 
 
 async function page_just_loaded() {
+    window.random = seededRandom(seed)
+
     screen_text_p.innerHTML = "<b>START</b>";
     
     
@@ -170,6 +177,9 @@ async function won_round() {
     window.hands_amount = max_hands_amount;
     window.discards_amount = max_discards_amount;
     if (window.current_round >= 30) {winning_score_backup = Math.floor(winning_score_backup * 1.1);}
+    else if (window.current_round >= 25) {winning_score_backup += 15;}
+    else if (window.current_round >= 15) {winning_score_backup += 10;}
+    else if (window.current_round >= 5) {winning_score_backup += 5;}
     else {winning_score_backup += 10;}
 
     winning_score = winning_score_backup;

@@ -85,7 +85,7 @@ function addCard() {
 
 
   //choose random card from available cards
-  const card = available_cards[Math.floor(Math.random() * available_cards.length)];
+  const card = available_cards[Math.floor(window.random() * available_cards.length)];
 
   //remove chosen card from available cards
   const index = available_cards.indexOf(card); // volgens google geeft indexof -1 als het niet bestaat dus daarom de in inderx !== -1 (waarom deed ik dit nl?)

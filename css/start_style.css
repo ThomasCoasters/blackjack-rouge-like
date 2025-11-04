@@ -63,6 +63,20 @@ body {
     align-items: center;
 }
 
+.setting_page_text_button_container{
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 7%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12%;
+
+    justify-content: center;
+    align-items: center;
+}
+
 .start_page_text_container{
     position: absolute;
     top: 10%;
@@ -178,4 +192,10 @@ body {
     /* transform: translate(-50%, -50%); */
     width: auto;
     height: 2100px;
+}
+
+#seed_setting{
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
 }

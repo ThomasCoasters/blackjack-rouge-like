@@ -7,7 +7,7 @@ var current_background_color = null;
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
 var animation_speed;
-const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3, 10];
+const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3, 100];
 
 var music_volume = null;
 const music_volumes = [0, 25, 50, 75, 100];
@@ -15,6 +15,7 @@ const music_volumes = [0, 25, 50, 75, 100];
 
 const music_volume_button = document.getElementById('music_volume_button');
 const animation_speed_button = document.getElementById('animation_speed_button');
+const seed_button = document.getElementById('seed_setting');
 
 if ((localStorage.getItem("begin") === null || localStorage.getItem("begin") === "false") && window.location.pathname.indexOf("begin.html") === -1) {
     window.location.href = "begin.html?";
@@ -31,6 +32,8 @@ if (urlvars) {
     animation_speed = parseFloat(urlparams.get('animation_speed'));
 
     music_volume = parseInt(urlparams.get('volume'));
+
+    seed = urlparams.get('seed');
 
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
@@ -57,13 +60,35 @@ if (background_color_setting_output) { // failsafe for other pages
     background_color_setting_output.addEventListener('input', (event) => {
         current_background_color = event.target.value;
         document.body.style.backgroundColor = current_background_color;
-
-        console.log(current_background_color);
     });
 }
 else if (!current_background_color) {
     current_background_color = "#357D35"; //default color
 }
+
+if (seed_button) { // failsafe for other pages
+    if (seed && seed !== "null") {
+        seed_button.value = seed;
+    }
+    else {
+        seed = Math.floor(Math.random() * 1000000).toString();
+        seed_button.value = seed;
+    }
+
+    seed_button.addEventListener('input', (event) => {
+        const v = event.target.value;
+        if (v === '' || v === 'null') {
+            // fallback to a random seed if the input is cleared
+            seed = Math.floor(Math.random() * 1000000).toString();
+            seed_button.value = seed;
+        } else {
+            seed = v.toString();
+        }
+    });
+}
+
+
+
 
 if (animation_speed_button) { // failsafe for other pages
     if (animation_speed) {
@@ -89,7 +114,7 @@ async function go_to_link(location) {
 
     await delay(1000);
 
-    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume;
+    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed;
 }
 
 async function begin_done() {

@@ -4,7 +4,7 @@ window.gain_discard_each_hand_amount = 0;
 
 window.upgrade_type_weights = {
     "normal_cards": 1,
-    "special_cards": 3,
+    "special_cards": 2,
     "permanent_upgrades": 2
 };
 window.all_upgrades = {
@@ -26,7 +26,7 @@ window.all_upgrades = {
     {"suit": "special_row_1", "value": "special_value:suit_rally", "hover_name": "horde of grubs", "hover_text": "this card will give 3 score for every card that has a suit that is the same as another card suit", "special": suit_rally, "special_location": "score", "effect": grub_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:value_rally", "hover_name": "horde of fleas", "hover_text": "this card will give 7 score for every card that has a value that is the same as another card value", "special": value_rally, "special_location": "score", "effect": flea_sfx}, // hk refrence
     {"suit": "special_row_1", "value": "special_value:lower_score", "reusing": true, "hover_name": "deadly skarr traps", "hover_text": "this reusable card has a value of 2 and sets a trap that lowers the required score by 0.5 for every card in play (rounds up) every use", "special": lower_required_score, "special_location": "score"}, // hk refrence
-    {"suit": "special_row_1", "value": "special_value:gain_card", "hover_name": "zote's boat", "hover_text": "this card has a value of 3 and gives a zote? type of card when used", "special": summon_zote_card, "special_location": "score", "weight": 3.5}, // hk refrence
+    {"suit": "special_row_1", "value": "special_value:gain_card", "hover_name": "zote's boat", "hover_text": "this card has a value of 3 and gives a zote? type of card when used", "special": summon_zote_card, "special_location": "score", "weight": 2.5}, // hk refrence
 ],
 
     "permanent_upgrades": [
@@ -159,8 +159,8 @@ async function choose_upgrade(type) {
 function weightedPick(array, getWeight) {
     const weights = array.map(getWeight);
     const total = weights.reduce((a, b) => a + b, 0);
-    if (total <= 0) return array[Math.floor(Math.random() * array.length)];
-    let r = Math.random() * total;
+    if (total <= 0) return array[Math.floor(window.random() * array.length)];
+    let r = window.random() * total;
     for (let i = 0; i < array.length; i++) {
         r -= weights[i];
         if (r < 0) return array[i];

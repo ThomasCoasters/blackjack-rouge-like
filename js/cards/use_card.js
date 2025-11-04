@@ -229,7 +229,7 @@ async function use_cards() {
 
         await delay(100*(1/animation_speed));
 
-        card.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+        card.style.transform = "rotate(" + (window.random() * 40 - 20) + "deg)";
 
         score_text_scale = await score_visuals(i, score_text_scale, is_blackjack);
 
@@ -322,7 +322,7 @@ async function reset() {
 
 
 function score_text_move(score_text_scale, extra_score=0) {
-    total_score_text.style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+    total_score_text.style.transform = "rotate(" + (window.random() * 40 - 20) + "deg)";
     total_score_text.style.scale = score_text_scale;
 
     total_score_text.textContent = score + extra_score;
