@@ -52,7 +52,8 @@ const score_per_card = {
     "zote_card:zote_curse": 0,
     "zote_card:GPZ": 11,
     "zote_card:the_mighty": 4,
-    "zote_card:the_getting_killed": 0
+    "zote_card:the_getting_killed": 0,
+    "zote_card:the_fallen": 11
 };
 
 
@@ -100,7 +101,8 @@ const priority_list = {
     "zote_card:zote_curse": 38,
     "zote_card:GPZ": 39,
     "zote_card:the_mighty": 40,
-    "zote_card:the_getting_killed": 41
+    "zote_card:the_getting_killed": 41,
+    "zote_card:the_fallen": 14
 }
 
 

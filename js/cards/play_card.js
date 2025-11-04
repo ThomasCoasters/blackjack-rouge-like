@@ -67,7 +67,8 @@ const value_map = {
   "zote_card:zote_curse": 8,
   "zote_card:GPZ": 9,
   "zote_card:the_mighty": 10,
-  "zote_card:the_getting_killed": 11
+  "zote_card:the_getting_killed": 11,
+  "zote_card:the_fallen": 12
 };
 
 

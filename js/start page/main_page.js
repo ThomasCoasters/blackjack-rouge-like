@@ -78,11 +78,18 @@ if (seed_button) { // failsafe for other pages
     seed_button.addEventListener('input', (event) => {
         const v = event.target.value;
         if (v === '' || v === 'null') {
-            // fallback to a random seed if the input is cleared
-            seed = Math.floor(Math.random() * 1000000).toString();
-            seed_button.value = seed;
+            seed = ''; // Allow empty temporarily while typing
         } else {
             seed = v.toString();
+        }
+    });
+
+    // Use blur event to generate random seed only when user leaves empty field
+    seed_button.addEventListener('blur', (event) => {
+        const v = event.target.value;
+        if (v === '' || v === 'null') {
+            seed = Math.floor(Math.random() * 1000000).toString();
+            seed_button.value = seed;
         }
     });
 }

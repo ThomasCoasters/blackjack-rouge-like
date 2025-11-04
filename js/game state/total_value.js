@@ -38,7 +38,8 @@ const value_per_card = {
     "zote_card:zote_curse": 50,
     "zote_card:GPZ": 11,
     "zote_card:the_mighty": 4,
-    "zote_card:the_getting_killed": -6
+    "zote_card:the_getting_killed": -6,
+    "zote_card:the_fallen": 11
 };
 
 var increase_max_total_value_count = 0;
