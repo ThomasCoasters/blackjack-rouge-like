@@ -176,11 +176,18 @@ async function win_round(score) {
 async function won_round() {
     window.hands_amount = max_hands_amount;
     window.discards_amount = max_discards_amount;
-    if (window.current_round >= 30) {winning_score_backup = Math.floor(winning_score_backup * 1.1);}
+
+    if (window.current_round >= 65) {winning_score_backup = Math.floor(winning_score_backup * 2);}
+    else if (window.current_round >= 50) {winning_score_backup = Math.floor(winning_score_backup * 1.5);}
+    else if (window.current_round >= 40) {winning_score_backup = Math.floor(winning_score_backup * 1.25);}
+    else if (window.current_round >= 30) {winning_score_backup = Math.floor(winning_score_backup * 1.1);}
     else if (window.current_round >= 25) {winning_score_backup += 15;}
     else if (window.current_round >= 15) {winning_score_backup += 10;}
     else if (window.current_round >= 5) {winning_score_backup += 5;}
     else {winning_score_backup += 10;}
+
+
+    if (window.current_round >= 50) {window.max_total_value -= 2;}
 
     winning_score = winning_score_backup;
     window.current_round += 1;
