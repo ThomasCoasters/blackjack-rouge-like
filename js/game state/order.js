@@ -36,6 +36,8 @@ window.max_discards_amount = 4;
 
 window.music_volume = 100;
 
+window.zote_music = null;
+
 
 const urlvars = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 
@@ -59,6 +61,8 @@ if (urlvars) {
 
     seed = urlparams.get('seed');
 
+    window.zote_music = urlparams.get('zote_music');
+
     if (current_background_color == "null") {
         current_background_color = "#357D35";;
     }
@@ -71,9 +75,19 @@ if (urlvars) {
         music_volume = 100;
     }
 
+    if (window.zote_music === null || window.zote_music === "null") {
+        window.zote_music = true;
+    } else {
+        if (typeof window.zote_music === 'string') {
+            window.zote_music = window.zote_music.toLowerCase() === 'true';
+        } else {
+            window.zote_music = Boolean(window.zote_music);
+        }
+    }
+
     if (seed == "null" || !seed) {
         seed = Math.floor(Math.random() * 1000000);
-        window.location.href = "play_cards.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed;
+        window.location.href = "play_cards.html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed + "&zote_music=" + window.zote_music;
     }
 
     document.body.style.backgroundColor = current_background_color;
@@ -187,7 +201,7 @@ async function won_round() {
     else {winning_score_backup += 10;}
 
 
-    if (window.current_round >= 50) {window.max_total_value -= 2;}
+    if (window.current_round >= 50) {window.max_total_value -= 1;}
 
     winning_score = winning_score_backup;
     window.current_round += 1;

@@ -108,6 +108,7 @@ function background_music_karmelita_no_vocal() {
 
 
 function background_music_zote(location = false) {
+    if (window.zote_music === false) {return;}
     zote_music_babyy = true;
 
     let time_now = background_audio.currentTime;

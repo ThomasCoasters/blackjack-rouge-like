@@ -71,7 +71,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 12%;
+    gap: 7%;
 
     justify-content: center;
     align-items: center;
@@ -91,6 +91,10 @@ body {
 
     justify-content: center;
     align-items: center;
+}
+
+#peak_music_button{
+    font-size: 40px;
 }
 
 

@@ -12,7 +12,10 @@ const animation_speeds = [0.1, 0.5, 1, 1.5, 2, 3, 100];
 var music_volume = null;
 const music_volumes = [0, 25, 50, 75, 100];
 
+window.zote_music = null;
 
+
+const peak_music_button = document.getElementById('peak_music_button');
 const music_volume_button = document.getElementById('music_volume_button');
 const animation_speed_button = document.getElementById('animation_speed_button');
 const seed_button = document.getElementById('seed_setting');
@@ -35,16 +38,28 @@ if (urlvars) {
 
     seed = urlparams.get('seed');
 
-    if (current_background_color == "null") {
+    window.zote_music = urlparams.get('zote_music');
+
+    if (current_background_color == "null" || current_background_color == null || isNaN(current_background_color)) {
         current_background_color = "#357D35";;
     }
 
-    if (animation_speed == "null" || isNaN(animation_speed)) {
+    if (animation_speed == "null" || animation_speed == null || isNaN(animation_speed)) {
         animation_speed = 1;
     }
 
-    if (music_volume == "null" || isNaN(music_volume)) {
+    if (music_volume == "null" || music_volume == null || isNaN(music_volume)) {
         music_volume = 100;
+    }
+
+    if (window.zote_music === null || window.zote_music === "null") {
+        window.zote_music = true;
+    } else {
+        if (typeof window.zote_music === 'string') {
+            window.zote_music = window.zote_music.toLowerCase() === 'true';
+        } else {
+            window.zote_music = Boolean(window.zote_music);
+        }
     }
 }
 
@@ -109,6 +124,12 @@ if (music_volume_button) { // failsafe for other pages
     }
 }
 
+if (peak_music_button) { // failsafe for other pages
+    if (window.zote_music !== null) {
+        peak_music_button.innerText = "zote music: " + (window.zote_music ? "on" : "off");
+    }
+}
+
 //https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -121,7 +142,7 @@ async function go_to_link(location) {
 
     await delay(1000);
 
-    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed;
+    window.location.href = location+".html?" + "background_color=" + current_background_color + "&animation_speed=" + animation_speed + "&volume=" + music_volume + "&seed=" + seed + "&zote_music=" + window.zote_music;
 }
 
 async function begin_done() {
@@ -213,7 +234,7 @@ function background_music_play_normal() {
 }
 
 function background_music_play_zote() {
-    if (type === "zote_da_goat") {return;}
+    if (type === "zote_da_goat" || window.zote_music === false) {return;}
 
     type = "zote_da_goat";
 
@@ -225,4 +246,11 @@ function background_music_play_zote() {
     background_audio.currentTime = currentTime;
     background_audio.play();
     background_audio.volume = 0.3*(music_volume/100);
+}
+
+
+
+function peak_music_change() {
+    window.zote_music = !window.zote_music;
+    peak_music_button.innerText = "zote music: " + (window.zote_music ? "on" : "off");
 }
